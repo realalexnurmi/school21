@@ -5,12 +5,8 @@
 #define inf 1.0/0.0
 int main()
 {
-	int x;
+	char *s = "asdasdas" "sadassa";
 
-	x = 99;
-	int prec = 10;
-	int new = 5;
-	printf("thisnospace%3.3-%dd\n", x);
-	printf("%d%d\n",x, prec);
+	printf("%.1s", s);
 	return (1);
 }
