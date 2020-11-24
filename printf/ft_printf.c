@@ -12,12 +12,21 @@
 
 #include "libftprintf.h"
 
-void			ft_lstprf_anlz(t_list_prf **lst)
+void			ft_lstprf_fill(t_list_prf **lst, va_list *ap,
+								char const *fs)
 {
-	while (*lst)
-	{
+	t_list_prf	*curr;
+	char		*s;
 
-		*lst = (*lst)->next;
+	curr = (*lst);
+	while (curr)
+	{
+		s = ft_substr(fs, curr->begin, curr->end - curr->begin);
+		ft_check_width_prec(&(curr->width), &(curr->prec), ap, s);
+		ft_check_flag_size(&(curr->flag), &(curr->size), s);
+		free(s);
+		ft_claim_content(&(curr->size), ap, fs[curr->end]);
+		curr = curr->next;
 	}
 }
 
@@ -113,6 +122,8 @@ int				ft_printf(char const *format, ...)
 	va_start(list_arg, format);
 	list_spec = NULL;
 	print_len = ft_parser(&list_spec, format);
-	ft_lstprf_anlz();
+	ft_lstprf_fill(&list_spec, &list_arg, format);
+	va_end(list_arg);
+	ft_lstprf_apply(
 	return (print_len);
 }

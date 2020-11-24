@@ -42,9 +42,9 @@ typedef struct	s_list_prf
 	size_t			begin;
 	size_t			end;
 	t_func_do		func;
-	t_stbl			flag;
 	size_t			width;
 	size_t			prec;
+	t_stbl			flag;
 	t_msize			size;
 	void			*content;
 	char			*print;
