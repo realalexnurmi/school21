@@ -6,7 +6,7 @@
 /*   By: enena <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/19 19:24:22 by enena             #+#    #+#             */
-/*   Updated: 2020/11/22 20:27:40 by enena            ###   ########.fr       */
+/*   Updated: 2020/11/27 01:47:42 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,13 @@
 # define PLUS_FLAG 0b00010000
 # include <stdarg.h>
 # include <string.h>
+# include <stdbool.h>
+# include <stdlib.h>
 
+typedef _Bool			t_bool;
 typedef unsigned char	t_stbl;
 
-typedef char*	(*t_func_do)(void *, size_t);
+typedef char*	(*t_func_do)(void *, size_t *);
 
 typedef enum	e_msize
 {
@@ -38,16 +41,16 @@ typedef enum	e_msize
 
 typedef struct	s_list_prf
 {
-	struct s_list	*next;
-	size_t			begin;
-	size_t			end;
-	t_func_do		func;
-	size_t			width;
-	size_t			prec;
-	t_stbl			flag;
-	t_msize			size;
-	void			*content;
-	char			*print;
+	struct s_list_prf	*next;
+	size_t				begin;
+	size_t				end;
+	t_func_do			func;
+	size_t				*width;
+	size_t				*prec;
+	t_stbl				flag;
+	t_msize				size;
+	void				*content;
+	char				*print;
 }				t_list_prf;
 
 int				ft_printf(const char *format, ...);

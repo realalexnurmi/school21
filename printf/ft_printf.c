@@ -6,28 +6,70 @@
 /*   By: enena <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/19 17:37:53 by enena             #+#    #+#             */
-/*   Updated: 2020/11/24 18:07:06 by enena            ###   ########.fr       */
+/*   Updated: 2020/11/27 01:49:10 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-void			ft_lstprf_fill(t_list_prf **lst, va_list *ap,
+t_bool			ft_last_width(size_t **width, char *s)
+{
+	while (*--s)
+		;
+	return (true);
+}
+
+t_bool			ft_last_prec(size_t **prec, char *s)
+{
+	while (*--s)
+		;
+	return (true);
+}
+
+t_bool			ft_check_width_prec(t_list_prf **curr, va_list *ap, char *s)
+{
+	while (*++s)
+		if (*s == '*')
+		{
+			if (*(s - 1) == '.')
+			{
+				if (!((*curr)->prec = malloc(sizeof(size_t))))
+					return (false);
+				*((*curr)->prec) = va_arg(*ap, size_t);
+			}
+			else
+			{
+				if (!((*curr)->width = malloc(sizeof(size_t))))
+					return (false);
+				*((*curr)->width) = va_arg(*ap, size_t);
+			}
+		}
+	return(ft_last_prec(&((*curr)->prec), s)
+			&& ft_last_width(&((*curr)->width), s));
+}
+
+t_bool			ft_lstprf_fill(t_list_prf **lst, va_list *ap,
 								char const *fs)
 {
 	t_list_prf	*curr;
 	char		*s;
 
 	curr = (*lst);
+	s = NULL;
 	while (curr)
 	{
-		s = ft_substr(fs, curr->begin, curr->end - curr->begin);
-		ft_check_width_prec(&(curr->width), &(curr->prec), ap, s);
-		ft_check_flag_size(&(curr->flag), &(curr->size), s);
+		if (!(s = ft_substr(fs, curr->begin, curr->end - curr->begin)))
+			return (false);
+		if (!(ft_check_width_prec(&curr, ap, s)))
+			return (false);
+		if (!(ft_check_flag_size(&curr, s)))
+			return (false);
 		free(s);
-		ft_claim_content(&(curr->size), ap, fs[curr->end]);
+		if (!(ft_claim_content(&curr, ap, fs[curr->end])))
+			return (false);
 		curr = curr->next;
 	}
+	return (true);
 }
 
 t_list_prf		*ft_lstprf_last(t_list_prf *lst)
@@ -54,6 +96,7 @@ t_list_prf		*ft_lstprf_new(size_t begin, size_t end, t_func_do func)
 {
 	t_list_prf	*new;
 
+	new = NULL;
 	if (!(new = malloc(sizeof(t_list_prf))))
 		return (NULL);
 	new->next = NULL;
@@ -61,15 +104,15 @@ t_list_prf		*ft_lstprf_new(size_t begin, size_t end, t_func_do func)
 	new->end = end;
 	new->func = func;
 	new->flag = NONE_FLAG;
-	new->width = 0;
-	new->prec = 0;
+	new->width = NULL;
+	new->prec = NULL;
 	new->size = NONE;
 	new->content = NULL;
 	new->print = NULL;
 	return (new);
 }
 
-t_func_do		ft_conv_comp(char const supp_conv)
+t_func_do		ft_conv_find_func(char const supp_conv)
 {
 	unsigned int	counter;
 
@@ -83,33 +126,33 @@ t_func_do		ft_conv_comp(char const supp_conv)
 	return (NULL);
 }
 
-size_t			ft_parser(t_list_prf **l_spec, char const *fs)
+t_bool			ft_parser(t_list_prf **l_spec, char const *fs)
 {
 	size_t		ind_len;
 	size_t		ind_end;
 	t_func_do	func;
+	t_list_prf	*new_node;
 
 	ind_len = 0;
+	new_node = NULL;
 	while (fs[ind_len])
-	{
-		if (fs[ind_len] == '%')
+		if (fs[ind_len++] == '%')
 		{
-			ind_end = ind_len + 1;
+			ind_end = ind_len;
 			func = NULL;
 			while (fs[ind_end] && (!func))
 			{
-				if (!(func = ft_conv_find_func(fs[ind_end])))
+				if (!!(func = ft_conv_find_func(fs[ind_end])))
 				{
-					ft_lstprf_addback(l_spec,
-							ft_lstprf_new(ind_len, ind_end, func));
+					if (!(new_node = ft_lstprf_new(ind_len - 1, ind_end, func)))
+						return (false);
+					ft_lstprf_addback(l_spec, new_node);
 				}
 				ind_end++;
 			}
-			ind_len = ind_end - 1;
+			ind_len = ind_end;
 		}
-		ind_len++;
-	}
-	return (ind_len);
+	return (true);
 }
 
 int				ft_printf(char const *format, ...)
@@ -119,11 +162,14 @@ int				ft_printf(char const *format, ...)
 	va_list			list_arg;
 	t_list_prf		*list_spec;
 
+	print_len = ft_strlen(format);
 	va_start(list_arg, format);
 	list_spec = NULL;
-	print_len = ft_parser(&list_spec, format);
-	ft_lstprf_fill(&list_spec, &list_arg, format);
+	if (!(ft_parser(&list_spec, format)))
+		return (-1);
+	if (!(ft_lstprf_fill(&list_spec, &list_arg, format)))
+		return (-1);
 	va_end(list_arg);
-	ft_lstprf_apply(
+	ft_lstprf_apply();
 	return (print_len);
 }
