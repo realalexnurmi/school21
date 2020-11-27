@@ -6,7 +6,7 @@
 /*   By: enena <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/19 17:37:53 by enena             #+#    #+#             */
-/*   Updated: 2020/11/27 01:49:10 by enena            ###   ########.fr       */
+/*   Updated: 2020/11/27 22:32:01 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,19 @@
 
 t_bool			ft_last_width(size_t **width, char *s)
 {
-	while (*--s)
-		;
+	t_bool	found;
+
+	found = false;
+	while (*s != '%' && !((*s == '*') && (*(s - 1) != '.')))
+	{
+		if (!(found))
+	}
 	return (true);
 }
 
 t_bool			ft_last_prec(size_t **prec, char *s)
 {
-	while (*--s)
+	while (*--s != '%' && !((*s == '*') && (*(s - 1) == '.')))
 		;
 	return (true);
 }
