@@ -6,51 +6,119 @@
 /*   By: enena <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/19 17:37:53 by enena             #+#    #+#             */
-/*   Updated: 2020/11/27 22:32:01 by enena            ###   ########.fr       */
+/*   Updated: 2020/12/01 21:45:21 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-t_bool			ft_last_width(size_t **width, char *s)
+t_bool			ft_last(size_t **find, char *s, t_bool is_width)
 {
 	t_bool	found;
+	size_t	last;
 
 	found = false;
-	while (*s != '%' && !((*s == '*') && (*(s - 1) != '.')))
+	last = 0;
+	while (!(found) && *--s != '%' &&
+			!((*s == '*') && ((*(s - 1) != '.') == is_width)))
 	{
-		if (!(found))
+		if (ft_isdigit(*s) && !(ft_isdigit(*(s - 1))))
+		{
+			last = (size_t)ft_atoi(s);
+			if (last > 0)
+				found = true;
+		}
+		if (found)
+		{
+			if (!(*find))
+				if (!((*find) = malloc(sizeof(size_t))))
+					return (false);
+			**find = last;
+		}
 	}
-	return (true);
-}
-
-t_bool			ft_last_prec(size_t **prec, char *s)
-{
-	while (*--s != '%' && !((*s == '*') && (*(s - 1) == '.')))
-		;
 	return (true);
 }
 
 t_bool			ft_check_width_prec(t_list_prf **curr, va_list *ap, char *s)
 {
 	while (*++s)
-		if (*s == '*')
-		{
-			if (*(s - 1) == '.')
+	{
+		if (*s == '.')
+			if (!(*curr)->prec)
 			{
 				if (!((*curr)->prec = malloc(sizeof(size_t))))
 					return (false);
-				*((*curr)->prec) = va_arg(*ap, size_t);
+				*((*curr)->prec) = 0;
 			}
+		if (*s == '*')
+		{
+			if (*(s - 1) == '.')
+				*((*curr)->prec) = va_arg(*ap, size_t);
 			else
 			{
-				if (!((*curr)->width = malloc(sizeof(size_t))))
-					return (false);
+				if (!(*curr)->width)
+					if (!((*curr)->width = malloc(sizeof(size_t))))
+						return (false);
 				*((*curr)->width) = va_arg(*ap, size_t);
 			}
 		}
-	return(ft_last_prec(&((*curr)->prec), s)
-			&& ft_last_width(&((*curr)->width), s));
+	}
+	return (ft_last(&((*curr)->prec), s, false)
+			&& ft_last(&((*curr)->width), s, true));
+}
+
+void			ft_check_size(t_msize *size, char *s)
+{
+	if (*s == 'l')
+		*size = (*(s - 1) == 'l') ? LL : L;
+	if (*s == 'h')
+		*size = (*(s - 1) == 'h') ? HH : H;
+	if (*s == 'z')
+		*size = Z;
+}
+
+void			ft_check_flag_size(t_list_prf **curr, char *s)
+{
+	while (*++s)
+	{
+		if (*s == '0' && !(ft_isdigit(*(s - 1))) && *(s - 1) != '.')
+			(*curr)->flag = (*curr)->flag | ZERO_FLAG;
+		if (*s == '-')
+			(*curr)->flag = (*curr)->flag | MNUS_FLAG;
+		if (*s == '#')
+			(*curr)->flag = (*curr)->flag | HASH_FLAG;
+		if (*s == ' ')
+			(*curr)->flag = (*curr)->flag | SPCE_FLAG;
+		if (*s == '+')
+			(*curr)->flag = (*curr)->flag | PLUS_FLAG;
+		ft_check_size(&((*curr)->size), s);
+	}
+	if (ft_isupcase(*(s - 1)))
+		(*curr)->flag = (*curr)->flag | UPCS_FLAG;
+	if ((*curr)->width && *(*curr)->width < 0)
+	{
+		*(*curr)->width *= -1;
+		(*curr)->flag = (*curr)->flag | MNUS_FLAG;
+	}
+}
+
+t_bool			ft_claim_content(t_list_prf **curr, va_list *ap, char conv)
+{
+	if (((conv == 'c') || (conv == 's')) && ((*curr)->flag & UPCS_FLAG))
+		(*curr)->size = L;
+	if ((conv == 'f') || (conv == 'e') || (conv == 'g'))
+		(*curr)->to_content = (double *)&(va_arg(*ap, double));
+	if (conv == 'c')
+		(*curr)->to_content = ((*curr)->size == L) ?
+			(wchar_t *)&(va_arg(*ap, wchar_t)) : (char *)&(va_arg(*ap, char));
+	if (conv == 's')
+		(*curr)->to_content = ((*curr)->size == L) ?
+			(wchar_t **)&(va_arg(*ap, wchar_t *)) :
+			(char **)&(va_arg(*ap, char *));
+	if (conv == 'p')
+		(*curr)->to_content = (void **)&(va_arg(*ap, void *));
+	if ((conv == 'd') || (conv == 'i'))
+		(*curr)->to_content = (int *)&(va_arg(*ap, int));
 }
 
 t_bool			ft_lstprf_fill(t_list_prf **lst, va_list *ap,
@@ -60,18 +128,16 @@ t_bool			ft_lstprf_fill(t_list_prf **lst, va_list *ap,
 	char		*s;
 
 	curr = (*lst);
-	s = NULL;
 	while (curr)
 	{
+		s = NULL;
 		if (!(s = ft_substr(fs, curr->begin, curr->end - curr->begin)))
 			return (false);
 		if (!(ft_check_width_prec(&curr, ap, s)))
 			return (false);
-		if (!(ft_check_flag_size(&curr, s)))
-			return (false);
+		ft_check_flag_size(&curr, s);
 		free(s);
-		if (!(ft_claim_content(&curr, ap, fs[curr->end])))
-			return (false);
+		ft_claim_content(&curr, ap, ft_lower(fs[curr->end]));
 		curr = curr->next;
 	}
 	return (true);

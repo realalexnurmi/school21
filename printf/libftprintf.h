@@ -6,7 +6,7 @@
 /*   By: enena <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/19 19:24:22 by enena             #+#    #+#             */
-/*   Updated: 2020/11/27 01:47:42 by enena            ###   ########.fr       */
+/*   Updated: 2020/12/01 20:18:29 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # define HASH_FLAG 0b00000100
 # define SPCE_FLAG 0b00001000
 # define PLUS_FLAG 0b00010000
+# define UPCS_FLAG 0b00100000
 # include <stdarg.h>
 # include <string.h>
 # include <stdbool.h>
@@ -27,7 +28,7 @@
 typedef _Bool			t_bool;
 typedef unsigned char	t_stbl;
 
-typedef char*	(*t_func_do)(void *, size_t *);
+typedef void	(*t_func_do)(void **);
 
 typedef enum	e_msize
 {
@@ -49,7 +50,7 @@ typedef struct	s_list_prf
 	size_t				*prec;
 	t_stbl				flag;
 	t_msize				size;
-	void				*content;
+	void				*to_content;
 	char				*print;
 }				t_list_prf;
 
