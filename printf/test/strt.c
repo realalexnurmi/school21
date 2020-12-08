@@ -74,12 +74,14 @@ int main(int argc, char **argv)
 		t_drob++;
 	}
 	while (*p)
-	{
+	{		
+		printf("Add:%s\n", addendum);
+		printf("Sum:%s\n", drob);
 		if (*p++ == '1')
 			drob = adding(drob, addendum);
 		addendum = divide(addendum);
 	}
-	printf("%s\n", drob);
+	printf("All:%s\n", drob);
 	free(drob);
 	free(addendum);
 }
