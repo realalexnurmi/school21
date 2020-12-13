@@ -6,7 +6,7 @@
 /*   By: enena <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/19 19:24:22 by enena             #+#    #+#             */
-/*   Updated: 2020/12/08 17:00:03 by enena            ###   ########.fr       */
+/*   Updated: 2020/12/13 12:01:38 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,8 @@ typedef enum	e_msize
 /*
 ** Type node of list for parsing
 ** next: pointer to next node
-** begin: index in |format| in %
-** end: index in |format| in specifier conversion
+** begin: index in [format] in %
+** end: index in [format] in specifier conversion
 ** func: pointer to handler specifier function
 ** width/prec: pointer to same pars modifier
 ** flag: unsigned char for flag
@@ -108,8 +108,9 @@ t_list_prf		*ft_lstprf_del_first(t_list_prf **head_list);
 */
 t_func_do		ft_conv_find_func(char const supp_conv);
 t_bool			ft_check_width_prec(t_list_prf *curr, va_list *ap, char *s);
-t_bool			ft_last_num(int *find, char *s, t_bool is_width);
+t_bool			ft_last_num(int **find, char *s, t_bool is_width);
 void			ft_check_flag_size(t_list_prf *curr, char *s);
+void			ft_check_special_case(t_list_prf *curr, char *s);
 void			ft_check_size(t_msize *size, char *s);
 /*
 ** claim_malloc_content
@@ -150,6 +151,12 @@ t_bool			ft_n_func(void *node);
 t_bool			ft_f_func(void *node);
 t_bool			ft_g_func(void *node);
 t_bool			ft_e_func(void *node);
+/*
+** Broad function func_print_utils
+*/
+size_t		ft_get_charlen(size_t cnt_byte, char *mbs);
+char		*ft_make_min_width(t_list_prf *lp, char *pr);
+void		ft_take_prec(t_list_prf *lp, char *pr);
 
 /*
 ** Global array conversion specifier for find correspond handler

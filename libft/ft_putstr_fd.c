@@ -6,7 +6,7 @@
 /*   By: enena <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/11 01:14:05 by enena             #+#    #+#             */
-/*   Updated: 2020/11/13 22:39:57 by enena            ###   ########.fr       */
+/*   Updated: 2020/12/12 20:26:21 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,5 @@
 void	ft_putstr_fd(char *s, int fd)
 {
 	if (s)
-		while (*s)
-		{
-			ft_putchar_fd(*s, fd);
-			s++;
-		}
+		write(fd, s, ft_strlen(s));
 }

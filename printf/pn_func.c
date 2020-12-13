@@ -6,7 +6,7 @@
 /*   By: enena <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/08 16:00:01 by enena             #+#    #+#             */
-/*   Updated: 2020/12/08 16:00:23 by enena            ###   ########.fr       */
+/*   Updated: 2020/12/12 17:33:40 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 t_bool	ft_p_func(void *node)
 {
-	return (true);
+	return (TRUE);
 }
 
 t_bool	ft_n_func(void *node)
 {
-	return (true);
+	return (TRUE);
 }

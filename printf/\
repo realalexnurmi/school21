@@ -6,12 +6,12 @@
 /*   By: enena <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/19 17:37:53 by enena             #+#    #+#             */
-/*   Updated: 2020/12/13 11:56:12 by enena            ###   ########.fr       */
+/*   Updated: 2020/12/12 19:57:29 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
-#include "tester.h"
+
 int				ft_printf(char const *format, ...)
 {
 	char			*print_str;
@@ -28,7 +28,7 @@ int				ft_printf(char const *format, ...)
 	{
 		va_start(list_arg, format);
 		if (!(ft_lstprf_parser_fill(list_spec, &list_arg, format)) ||
-				!(ft_lstprf_apply_func_to_content(list_spec)) ||printlist(list_spec, FALSE) ||
+				!(ft_lstprf_apply_func_to_content(list_spec)) ||
 				!(ft_lstprf_in_tab(&list_spec, &s_tab, format)))
 			return (-1);
 	}

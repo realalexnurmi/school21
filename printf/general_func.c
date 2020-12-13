@@ -6,7 +6,7 @@
 /*   By: enena <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/08 14:43:01 by enena             #+#    #+#             */
-/*   Updated: 2020/12/08 15:13:27 by enena            ###   ########.fr       */
+/*   Updated: 2020/12/12 19:55:58 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,14 @@ t_bool			ft_preparser(t_list_prf **l_spec, char const *fs)
 				if (!!(func = ft_conv_find_func(ft_tolower(fs[ind_end]))))
 				{
 					if (!(new_node = ft_lstprf_new(ind_len - 1, ind_end, func)))
-						return (false);
+						return (FALSE);
 					ft_lstprf_addback(l_spec, new_node);
 				}
 				ind_end++;
 			}
 			ind_len = ind_end;
 		}
-	return (true);
+	return (TRUE);
 }
 
 t_bool			ft_lstprf_parser_fill(t_list_prf *curr, va_list *ap,
@@ -53,19 +53,20 @@ t_bool			ft_lstprf_parser_fill(t_list_prf *curr, va_list *ap,
 				!(ft_check_width_prec(curr, ap, s)))
 		{
 			va_end(*ap);
-			return (false);
+			return (FALSE);
 		}
 		ft_check_flag_size(curr, s);
 		free(s);
-		if (!(ft_claim_content(curr, ap, ft_tolower(fs[curr->end]))))
-		{
-			va_end(*ap);
-			return (false);
-		}
+		if (fs[curr->end] != '%')
+			if (!(ft_claim_content(curr, ap, ft_tolower(fs[curr->end]))))
+			{
+				va_end(*ap);
+				return (FALSE);
+			}
 		curr = curr->next;
 	}
 	va_end(*ap);
-	return (true);
+	return (TRUE);
 }
 
 t_bool			ft_lstprf_apply_func_to_content(t_list_prf *curr)
@@ -77,11 +78,11 @@ t_bool			ft_lstprf_apply_func_to_content(t_list_prf *curr)
 	{
 		curr->ofst = offset;
 		if (!(curr->func(curr)))
-			return (false);
+			return (FALSE);
 		offset += ft_strlen(curr->print) - (curr->end - curr->begin + 1);
 		curr = curr->next;
 	}
-	return (true);
+	return (TRUE);
 }
 
 t_bool			ft_lstprf_in_tab(t_list_prf **head, char ***s_tab,
@@ -91,7 +92,7 @@ t_bool			ft_lstprf_in_tab(t_list_prf **head, char ***s_tab,
 	size_t		start;
 
 	if (!(*s_tab = malloc(sizeof(char *) * (2 + 2 * ft_lstprf_size(*head)))))
-		return (false);
+		return (FALSE);
 	s_curr = *s_tab;
 	start = 0;
 	while (*head)
@@ -106,7 +107,7 @@ t_bool			ft_lstprf_in_tab(t_list_prf **head, char ***s_tab,
 	*s_curr = ft_substr(fs, start, ft_strlen(&(fs[start])));
 	s_curr++;
 	*s_curr = NULL;
-	return (true);
+	return (TRUE);
 }
 
 char			*ft_connect(char ***s_tab)

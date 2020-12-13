@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   ft_check_size_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: enena <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/31 18:54:20 by enena             #+#    #+#             */
-/*   Updated: 2020/11/05 17:37:54 by enena            ###   ########.fr       */
+/*   Created: 2020/12/13 04:09:32 by enena             #+#    #+#             */
+/*   Updated: 2020/12/13 04:30:25 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "libftprintf.h"
 
-void	*ft_calloc(size_t count, size_t size)
+void			ft_check_size(t_msize *size, char *s)
 {
-	void	*p_temp;
-
-	p_temp = malloc(count * size);
-	if (p_temp)
-		ft_bzero(p_temp, count * size);
-	return (p_temp);
+	if (*s == 'l')
+		*size = (*(s - 1) == 'l') ? LL : L;
+	if (*s == 'h')
+		*size = (*(s - 1) == 'h') ? HH : H;
+	if (*s == 'z')
+		*size = Z;
 }

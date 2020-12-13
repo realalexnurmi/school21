@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_atol.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: enena <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/29 17:55:40 by enena             #+#    #+#             */
-/*   Updated: 2020/12/13 06:42:23 by enena            ###   ########.fr       */
+/*   Created: 2020/12/10 22:00:44 by enena             #+#    #+#             */
+/*   Updated: 2020/12/13 06:46:49 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@
 ** Discards any whitespace characters until the first
 ** non-whitespace character is found, then takes as many characters
 ** as possible to form a valid integer number representation
-** and converts them to an integer value. Returns {int}
+** and converts them to an integer value. Returns {long int}
 */
 
-int	ft_atoi(const char *str)
+long int	ft_atol(const char *str)
 {
 	long long int	ret;
 	char			sign;

@@ -6,16 +6,20 @@
 /*   By: enena <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/31 18:39:07 by enena             #+#    #+#             */
-/*   Updated: 2020/11/05 17:39:16 by enena            ###   ########.fr       */
+/*   Updated: 2020/12/11 21:37:06 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_isdigit(int c)
+/*
+** Returns TRUE (1) if character digit, else FALSE (0)
+*/
+
+t_bool	ft_isdigit(int c)
 {
 	if ((c >= '0') && (c <= '9'))
-		return (1);
+		return (TRUE);
 	else
-		return (0);
+		return (FALSE);
 }

@@ -6,11 +6,19 @@
 /*   By: enena <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/13 19:51:13 by enena             #+#    #+#             */
-/*   Updated: 2020/11/13 21:17:14 by enena            ###   ########.fr       */
+/*   Updated: 2020/12/11 21:27:30 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
+/*
+** Function creates a copy of the SLL list [lst]
+** and applies the function [f] to each node
+** Returns pointer to begin new SLL list.
+** In case of memory allocation error,
+** clears the created list and returns with [del]
+*/
 
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {

@@ -6,13 +6,17 @@
 /*   By: enena <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/29 18:38:37 by enena             #+#    #+#             */
-/*   Updated: 2020/11/05 17:38:11 by enena            ###   ########.fr       */
+/*   Updated: 2020/12/11 21:33:01 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_isalnum(int c)
+/*
+** Returns TRUE (1) if character letter or digit, else FALSE (0)
+*/
+
+t_bool	ft_isalnum(int c)
 {
-	return (ft_isalpha(c) | ft_isdigit(c));
+	return (ft_isalpha(c) || ft_isdigit(c));
 }

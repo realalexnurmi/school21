@@ -6,11 +6,15 @@
 /*   By: enena <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/12 21:11:55 by enena             #+#    #+#             */
-/*   Updated: 2020/11/13 22:39:26 by enena            ###   ########.fr       */
+/*   Updated: 2020/12/11 21:37:26 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
+/*
+** Function returns the number of nodes [cnt] in the SLL list [lst] (aka size)
+*/
 
 int	ft_lstsize(t_list *lst)
 {

@@ -6,13 +6,13 @@
 #    By: enena <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/08/03 17:51:07 by enena             #+#    #+#              #
-#    Updated: 2020/11/13 23:32:28 by enena            ###   ########.fr        #
+#    Updated: 2020/12/13 02:59:25 by enena            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SHELL = /bin/sh
 
-.PHONY: all clean fclean re bonus
+.PHONY: all clean fclean re recl bonus
 
 CC = gcc
 
@@ -21,11 +21,16 @@ NAME = libft.a
 HEADER = libft.h 
 
 SRC_NAME =  ft_atoi\
+			ft_atol\
+			ft_atoll\
 			ft_bzero\
 			ft_calloc\
 			ft_isalnum\
 			ft_isalpha\
 			ft_isascii\
+			ft_isupper\
+			ft_islower\
+			ft_isspace\
 			ft_isdigit\
 			ft_isprint\
 			ft_itoa\
@@ -54,6 +59,11 @@ SRC_NAME =  ft_atoi\
 			ft_substr\
 			ft_tolower\
 			ft_toupper\
+			ft_mbtowc\
+			ft_wctomb\
+			ft_wcstombs\
+			ft_wclen\
+			ft_wstrlen_byte\
 
 BONUS_NAME = ft_lstadd_back\
 			 ft_lstadd_front\
@@ -94,3 +104,6 @@ fclean: clean
 	@rm -f $(NAME)
 
 re: fclean all
+
+recl:
+	@make re && make clean

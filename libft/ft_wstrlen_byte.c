@@ -1,28 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memchr.c                                        :+:      :+:    :+:   */
+/*   ft_wstrlen_byte.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: enena <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/29 14:05:26 by enena             #+#    #+#             */
-/*   Updated: 2020/11/09 17:17:08 by enena            ###   ########.fr       */
+/*   Created: 2020/12/10 15:52:00 by enena             #+#    #+#             */
+/*   Updated: 2020/12/11 21:26:03 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memchr(const void *s, int c, size_t n)
-{
-	unsigned char	*p_srch;
+/*
+** Function returns the required length in bytes
+** to represent in a MultiByte string (UTF-8)
+*/
 
-	p_srch = (unsigned char*)s;
-	while (n--)
-	{
-		if (*p_srch != (unsigned char)c)
-			p_srch++;
-		else
-			return (p_srch);
-	}
-	return (NULL);
+size_t	ft_wstrlen_byte(wchar_t *wstring)
+{
+	size_t	len;
+
+	len = 0;
+	while (*wstring)
+		len += ft_wclen(*wstring++);
+	return (len);
 }

@@ -6,7 +6,7 @@
 /*   By: enena <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/08 16:45:09 by enena             #+#    #+#             */
-/*   Updated: 2020/12/08 16:55:40 by enena            ###   ########.fr       */
+/*   Updated: 2020/12/13 11:57:37 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,30 +14,59 @@
 
 t_bool	ft_s_func(void *node)
 {
-	t_list_prf	*lcl;
-	char		*str;
-	size_t		len;
+	t_list_prf	*lp;
+	char		*print;
 
-	lcl = (t_list_prf *)node;
-	str = *((char **)lcl->p_cnt);
-	len = ft_strlen(str);
-	lcl->print = ft_strdup(str);
-	return (true);
+	lp = (t_list_prf *)node;
+	if (lp->size == L)
+	{
+		if (!(print = ft_wcstombs(*((wchar_t **)lp->p_cnt))))
+			return (FALSE);
+	}
+	else if (!(print = ft_strdup(*((char **)lp->p_cnt))))
+		return (FALSE);
+	ft_take_prec(lp, print);
+	if(!(lp->print = ft_make_min_width(lp, print)))
+		return (FALSE);
+	return (TRUE);
 }
 
 t_bool	ft_c_func(void *node)
 {
-	t_list_prf	*lcl;
-	char		c;
+	t_list_prf	*lp;
+	char		*print;
 
-	lcl = (t_list_prf *)node;
-	c = *((char *)lcl->p_cnt);
-	lcl->print = ft_calloc(2, sizeof(char));
-	(lcl->print)[0] = c;
-	return (true);
+	lp = (t_list_prf *)node;
+	if (lp->size == L)
+	{
+		if (!(print = ft_calloc(ft_wclen(*((wchar_t *)lp->p_cnt)) + 1,
+						sizeof(char))))
+			return (FALSE);
+		print = ft_wctomb(*((wchar_t *)lp->p_cnt), print);
+	}
+	else
+	{
+		if (!(print = ft_calloc(2, sizeof(char))))
+			return (FALSE);
+		print[0] = *((char *)lp->p_cnt);
+	}
+	ft_take_prec(lp, print);
+	if (!(lp->print = ft_make_min_width(lp, print)))
+		return (FALSE);
+	return (TRUE);
 }
 
 t_bool	ft_prc_func(void *node)
 {
+	t_list_prf	*lp;
+	char		*print;
+
+	lp = (t_list_prf *)node;
+	if (!(print = ft_calloc(2, sizeof(char))))
+		return (FALSE);
+	print[0] = '%';
+	ft_take_prec(lp, print);
+	if (!(lp->print = ft_make_min_width(lp, print)))
+		return (FALSE);
 	return (TRUE);
 }

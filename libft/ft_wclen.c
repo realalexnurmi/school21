@@ -1,26 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
+/*   ft_wclen.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: enena <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/11 01:19:45 by enena             #+#    #+#             */
-/*   Updated: 2020/11/13 22:39:47 by enena            ###   ########.fr       */
+/*   Created: 2020/12/10 15:37:28 by enena             #+#    #+#             */
+/*   Updated: 2020/12/13 02:42:02 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putendl_fd(char *s, int fd)
+/*
+** The function returns how many bytes it takes
+** to represent a wide character in MultiByte string format (UTF-8)
+*/
+
+size_t	ft_wclen(wchar_t wc)
 {
-	if (s)
-	{
-		while (*s)
-		{
-			ft_putchar_fd(*s, fd);
-			s++;
-		}
-		ft_putchar_fd('\n', fd);
-	}
+	wint_t	i;
+
+	i = (wint_t)wc;
+	if (i <= 0x0000007F)
+		return (1);
+	if (i <= 0x000007FF)
+		return (2);
+	if (i <= 0x0000FFFF)
+		return (3);
+	if (i <= 0x0010FFFF)
+		return (4);
+	return (0);
 }

@@ -68,10 +68,7 @@ void	ft_putstr_fd(char *s, int fd)
 {
 	if (s)
 		while (*s)
-		{
-			ft_putchar_fd(s, fd);
-			s++;
-		}
+			ft_putchar_fd(s++, fd);
 }
 
 size_t	ft_wclen(wchar_t wc)
@@ -90,7 +87,7 @@ size_t	ft_wclen(wchar_t wc)
 	return (0);
 }
 
-size_t	ft_wstrlen(wchar_t *wstring)
+size_t	ft_wstrlen_byte(wchar_t *wstring)
 {
 	size_t	len;
 
@@ -99,6 +96,9 @@ size_t	ft_wstrlen(wchar_t *wstring)
 		len += ft_wclen(*wstring++);
 	return (len);
 }
+
+//size_t ft_wstrlen(wchar_t *wstring)
+//{
 
 size_t	ft_wc_to_mbc(wchar_t wc, char *s)
 {
@@ -110,14 +110,13 @@ size_t	ft_wc_to_mbc(wchar_t wc, char *s)
 	num = (wint_t)wc;
 	wln = ft_wclen(wc);
 	oct[0] = ((0xF0 << ((4 - wln) + (wln == 1))) |
-			(((0x7F >> (wln - (wln == 1)))) & (char)(num >> 8 * (wln - 1))));
+			(((0x7F >> (wln - (wln == 1)))) & (char)(num >> 6 * (wln - 1))));
 	oct[1] = (wln < 2) ? oct[1] :
-		((0x3F & (char)((num >> 8 * (wln - 2)) & 0x000000FF)) | 0x80);
+		((0x3F & (char)((num >> 6 * (wln - 2)) & 0x000000FF)) | 0x80);
 	oct[2] = (wln < 3) ? oct[2] :
-		((0x3F & (char)((num >> 8 * (wln - 3)) & 0x000000FF)) | 0x80);
+		((0x3F & (char)((num >> 6 * (wln - 3)) & 0x000000FF)) | 0x80);
 	oct[3] = (wln < 4) ? oct[3] :
 		((0x3F & (char)(num & 0x000000FF)) | 0x80);
-	printf("|%hhx||%hhx||%hhx||%hhx|\n", oct[0], oct[1], oct[2], oct[3]);
 	s = ft_memcpy(s, &(oct[0]), 4);
 	return (wln);
 }
@@ -125,34 +124,27 @@ size_t	ft_wc_to_mbc(wchar_t wc, char *s)
 char	*ft_wcs_to_mbcs(wchar_t *wstring)
 {
 	char	*s;
+	char	*ret;
 
-	s = ft_calloc(ft_wstrlen(wstring) + 1, sizeof(char));
+	s = ft_calloc(ft_wstrlen_byte(wstring) + 1, sizeof(char));
+	ret = s;
 	while (*wstring)
-	{
-		s += ft_wc_to_mbc(*wstring, s);
-		wstring++;
-	}
-	return (s);
+		s += ft_wc_to_mbc(*wstring++, s);
+	return (ret);
 }
 
 int main()
 {
     setlocale(LC_ALL, "");
-	//wchar_t w = L'i';
-	//char s[4] = "i";
-    //wchar_t *wcs = L"i";
-	//wchar_t w = L'¾';
-	//char s[4] = "¾";
-    //wchar_t *wcs = L"¾";
-	//wchar_t w = L'古';
-	//char s[4] = "古";
-    //wchar_t *wcs = L"古";
-	wchar_t w = L'𐀁';
-	char s[4] = "𐀁";
-    wchar_t *wcs = L"𐀁";
+    wchar_t *wcs1 = L"🔥";
+    wchar_t *wcs3 = L"古¾";
+    wchar_t *wcs4 = L"𐆘¾";
     char *t;
-	printf("|%hhx|%hhx|%hhx|%hhx|\n", s[0], s[1], s[2], s[3]);
-	t = ft_wcs_to_mbcs(wcs);
-	printf("%hhx", t[0]);
+	int n;
+	t = ft_wcs_to_mbcs(wcs1);
 	ft_putstr_fd(t, 1);
+	printf("\n");
+	printf("🔥%ls%n\n", wcs1, &n);
+	printf("%15s%d\n", "%ls:", n);
+	printf("%15s%lu\n", "strlen(conv):", strlen(t));
 }

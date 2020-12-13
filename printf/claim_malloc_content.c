@@ -6,7 +6,7 @@
 /*   By: enena <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/08 13:29:00 by enena             #+#    #+#             */
-/*   Updated: 2020/12/08 16:03:48 by enena            ###   ########.fr       */
+/*   Updated: 2020/12/12 19:52:32 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ t_bool	ft_malloc_content(t_list_prf *curr, char conv)
 	}
 	else
 		ft_malloc_size_content(curr, conv);
-	return (!(curr->p_cnt) ? false : true);
+	return (!(curr->p_cnt) ? FALSE : TRUE);
 }
 
 void	ft_malloc_size_content(t_list_prf *curr, char conv)
@@ -55,7 +55,7 @@ t_bool	ft_claim_content(t_list_prf *curr, va_list *ap, char conv)
 	if (((conv == 'c') || (conv == 's')) && (curr->flag & UPCS_FLAG))
 		curr->size = L;
 	if (!(ft_malloc_content(curr, conv)))
-		return (false);
+		return (FALSE);
 	if (curr->size == NONE)
 	{
 		if ((conv == 'f') || (conv == 'e') || (conv == 'g'))
@@ -75,7 +75,7 @@ t_bool	ft_claim_content(t_list_prf *curr, va_list *ap, char conv)
 	}
 	else
 		ft_claim_size_content(curr, ap, conv);
-	return (true);
+	return (TRUE);
 }
 
 void	ft_claim_size_content(t_list_prf *curr, va_list *ap, char conv)

@@ -6,7 +6,7 @@
 /*   By: enena <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/11 01:19:45 by enena             #+#    #+#             */
-/*   Updated: 2020/11/13 22:39:47 by enena            ###   ########.fr       */
+/*   Updated: 2020/12/12 17:43:05 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ void	ft_putendl_fd(char *s, int fd)
 	{
 		while (*s)
 		{
-			ft_putchar_fd(*s, fd);
+			ft_putchar_fd(s, fd);
 			s++;
 		}
-		ft_putchar_fd('\n', fd);
+		ft_putchar_fd("\n", fd);
 	}
 }
