@@ -6,7 +6,7 @@
 /*   By: enena <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/08 14:43:01 by enena             #+#    #+#             */
-/*   Updated: 2020/12/14 19:53:24 by enena            ###   ########.fr       */
+/*   Updated: 2020/12/15 17:56:03 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ t_bool			ft_lstprf_parser_fill(t_list_prf *curr, va_list *ap,
 	while (curr)
 	{
 		s = NULL;
-		if (!(s = ft_substr(fs, curr->begin, curr->end - curr->begin)) ||
+		if (!(s = ft_substr(fs, curr->begin, curr->end - curr->begin + 1)) ||
 				!(ft_check_width_prec(curr, ap, s)))
 		{
 			if (s)

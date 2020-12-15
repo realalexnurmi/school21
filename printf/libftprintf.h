@@ -6,13 +6,12 @@
 /*   By: enena <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/19 19:24:22 by enena             #+#    #+#             */
-/*   Updated: 2020/12/15 01:21:52 by enena            ###   ########.fr       */
+/*   Updated: 2020/12/15 22:14:08 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFTPRINTF_H
 # define LIBFTPRINTF_H
-
 /*
 ** Definition of count handle specifier
 */
@@ -160,8 +159,13 @@ t_bool			ft_e_func(void *node);
 /*
 ** Broad function func_print_utils
 */
-char		*ft_make_min_width(t_list_prf *lp, char *pr);
-void		ft_take_prec(t_list_prf *lp, char *pr);
+char			*ft_make_min_width(t_list_prf *lp, char *pr);
+void			ft_take_prec_s(t_list_prf *lp, char *pr);
+char			*ft_take_prec_dioux(t_list_prf *lp, char *pr);
+long long int	ft_take_signed(t_list_prf *curr);
+t_ullint		ft_take_unsigned(t_list_prf *curr);
+char			*ft_take_space_plus(t_list_prf *lp, char *pr);
+char			*ft_hash(t_list_prf *lp, char *pr, t_bool isx);
 
 /*
 ** Global array conversion specifier for find correspond handler

@@ -6,7 +6,7 @@
 /*   By: enena <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/08 15:00:06 by enena             #+#    #+#             */
-/*   Updated: 2020/12/15 06:21:30 by enena            ###   ########.fr       */
+/*   Updated: 2020/12/15 21:12:53 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,7 @@ void			ft_check_special_case(t_list_prf *curr, char *s)
 	if (ft_isupper(*s))
 		curr->flag = curr->flag | UPCS_FLAG;
 	*s = ft_tolower(*s);
-	if (curr->prec && (*s == 'd' || *s == 'i' || *s == 'o' || *s == 'x'))
+	if (curr->prec &&
+			(*s == 'd' || *s == 'i' || *s == 'u' || *s == 'o' || *s == 'x'))
 		curr->flag &= (~(ZERO_FLAG));
 }

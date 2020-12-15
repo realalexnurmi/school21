@@ -6,12 +6,11 @@
 /*   By: enena <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/12 20:48:00 by enena             #+#    #+#             */
-/*   Updated: 2020/12/15 01:04:41 by enena            ###   ########.fr       */
+/*   Updated: 2020/12/15 21:24:17 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
-#include "tester.h"
 
 char	*ft_make_min_width(t_list_prf *lp, char *pr)
 {
@@ -19,9 +18,7 @@ char	*ft_make_min_width(t_list_prf *lp, char *pr)
 	char	*add;
 	char	*ret;
 
-	if (!(lp->width))
-		return (pr);
-	else
+	if (lp->width)
 	{
 		len = ft_strlen(pr);
 		ret = pr;
@@ -38,12 +35,34 @@ char	*ft_make_min_width(t_list_prf *lp, char *pr)
 		}
 		return (ret);
 	}
+	return (pr);
 }
 
-void	ft_take_prec(t_list_prf *lp, char *pr)
+char	*ft_take_space_plus(t_list_prf *lp, char *pr)
+{
+	char	*add;
+	char	*ret;
+	
+	if ((lp->flag & SPCE_FLAG) || (lp->flag & PLUS_FLAG))
+	{	
+		if (!(add = ft_calloc(2, sizeof(char))))
+			return (NULL);
+		if (lp->flag & SPCE_FLAG)
+			add[0] = ((*pr == '-') ? '-': ' ');
+		else
+			add[0] = ((*pr == '-') ? '-': '+');
+		if (!(ret = ft_strjoin(add, pr)))
+			return (NULL);
+		free(pr);
+		free(add);
+		return (ret);
+	}
+	return (pr);
+}
+
+void	ft_take_prec_s(t_list_prf *lp, char *pr)
 {
 	size_t	c_cnt;
-	char	*end;
 
 	if (lp->prec)
 	{
@@ -55,4 +74,55 @@ void	ft_take_prec(t_list_prf *lp, char *pr)
 		*pr = '\0';
 		}
 	}
+}
+
+char	*ft_take_prec_dioux(t_list_prf *lp, char *pr)
+{
+	size_t	len;
+	char	*add;
+	char	*ret;
+
+	if (lp->prec)
+	{
+		len = ft_strlen(pr) - !(ft_isdigit(*pr));
+		if ((*(lp->prec) > len) && (len = *(lp->prec) - len))
+		{
+			if (!(add = ft_calloc(len + 1, sizeof(char))))
+				return (NULL);
+			ft_memset(add, '0', len);
+			if (!(ft_isdigit(*pr)))
+			{
+				add[0] = *pr;
+				*pr = '0';
+			}
+			if (!(ret = ft_strjoin(add, pr)))
+				return (NULL);
+			free(add);
+			free(pr);
+			return (ret);
+		}
+	}
+	return (pr);
+}
+
+char	*ft_hash(t_list_prf *lp, char *pr, t_bool isx)
+{
+	size_t	len;
+	char	*ret;
+
+	if (lp->flag & HASH_FLAG)
+	{
+		len = ft_strlen(pr) + 1;
+		if (!(ret = ft_calloc(len + isx + 1, sizeof(char))))
+			return (NULL);
+		if (isx)
+			ret = ft_strjoin("0x", pr);
+		else
+			ret = ft_strjoin("0", pr);
+		if (!ret)
+			return (NULL);
+		free(pr);
+		return (ret);
+	}
+	return (pr);
 }

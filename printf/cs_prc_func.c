@@ -6,7 +6,7 @@
 /*   By: enena <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/08 16:45:09 by enena             #+#    #+#             */
-/*   Updated: 2020/12/15 01:31:50 by enena            ###   ########.fr       */
+/*   Updated: 2020/12/15 22:14:40 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,10 @@ t_bool	ft_s_func(void *node)
 	}
 	else if (!(print = ft_strdup(*((char **)lp->p_cnt))))
 		return (FALSE);
-	ft_take_prec(lp, print);
+	ft_take_prec_s(lp, print);
 	if(!(lp->print = ft_make_min_width(lp, print)))
 		return (FALSE);
+	free(print);
 	return (TRUE);
 }
 
@@ -53,6 +54,7 @@ t_bool	ft_c_func(void *node)
 	}
 	if (!(lp->print = ft_make_min_width(lp, print)))
 		return (FALSE);
+	free(print);
 	return (TRUE);
 }
 
@@ -67,5 +69,6 @@ t_bool	ft_prc_func(void *node)
 	print[0] = '%';
 	if (!(lp->print = ft_make_min_width(lp, print)))
 		return (FALSE);
+	free(print);
 	return (TRUE);
 }
