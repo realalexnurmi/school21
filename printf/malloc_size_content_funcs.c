@@ -6,7 +6,7 @@
 /*   By: enena <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/08 13:25:25 by enena             #+#    #+#             */
-/*   Updated: 2020/12/08 15:54:03 by enena            ###   ########.fr       */
+/*   Updated: 2020/12/15 06:09:50 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	ft_malloc_l_content(t_list_prf *curr, char conv)
 	if (conv == 'p')
 		curr->p_cnt = malloc(sizeof(void *));
 	if ((conv == 'd') || (conv == 'i'))
-		curr->p_cnt = malloc(sizeof(int));
+		curr->p_cnt = malloc(sizeof(long int));
 	if ((conv == 'o') || (conv == 'u') || (conv == 'x'))
 		curr->p_cnt = malloc(sizeof(t_uint));
 	if (conv == 'n')

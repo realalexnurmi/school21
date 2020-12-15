@@ -6,7 +6,7 @@
 /*   By: enena <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/08 15:00:06 by enena             #+#    #+#             */
-/*   Updated: 2020/12/13 11:29:56 by enena            ###   ########.fr       */
+/*   Updated: 2020/12/15 06:21:30 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,15 +86,15 @@ void			ft_check_flag_size(t_list_prf *curr, char *s)
 	while (*++s)
 	{
 		if (*s == '0' && !(ft_isdigit(*(s - 1))) && *(s - 1) != '.')
-			curr->flag = curr->flag | ZERO_FLAG;
+			curr->flag |= ZERO_FLAG;
 		if (*s == '-')
-			curr->flag = curr->flag | MNUS_FLAG;
+			curr->flag |= MNUS_FLAG;
 		if (*s == '#')
-			curr->flag = curr->flag | HASH_FLAG;
+			curr->flag |= HASH_FLAG;
 		if (*s == ' ')
-			curr->flag = curr->flag | SPCE_FLAG;
+			curr->flag |= SPCE_FLAG;
 		if (*s == '+')
-			curr->flag = curr->flag | PLUS_FLAG;
+			curr->flag |= PLUS_FLAG;
 		ft_check_size(&(curr->size), s);
 	}
 	ft_check_special_case(curr, (s - 1));
@@ -105,7 +105,7 @@ void			ft_check_special_case(t_list_prf *curr, char *s)
 	if (curr->width && *(curr->width) < 0)
 	{
 		*(curr->width) *= -1;
-		curr->flag = curr->flag | MNUS_FLAG;
+		curr->flag |= MNUS_FLAG;
 	}
 	if (curr->flag & PLUS_FLAG)
 		curr->flag &= (~(SPCE_FLAG));
