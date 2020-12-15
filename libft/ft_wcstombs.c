@@ -6,7 +6,7 @@
 /*   By: enena <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/12 17:38:11 by enena             #+#    #+#             */
-/*   Updated: 2020/12/13 00:57:14 by enena            ###   ########.fr       */
+/*   Updated: 2020/12/14 18:22:32 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,11 @@ char	*ft_wcstombs(wchar_t *wstring)
 	ret = s;
 	while (*wstring)
 	{
-		s = ft_wctomb(*wstring, s);
+		if (!(s = ft_wctomb(*wstring, s)))
+		{
+			free(ret);
+			return (NULL);
+		}
 		s += ft_wclen(*wstring);
 		wstring++;
 	}

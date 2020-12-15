@@ -1,40 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*   ft_took_next_char.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: enena <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/10 02:06:19 by enena             #+#    #+#             */
-/*   Updated: 2020/12/15 04:02:01 by enena            ###   ########.fr       */
+/*   Created: 2020/12/14 22:58:44 by enena             #+#    #+#             */
+/*   Updated: 2020/12/15 00:24:46 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_itoa(int n)
-{
-	char	*s;
-	size_t	cnt;
-	int		copy;
+/*
+** Returns pointer to next character in MultiByte string
+*/
 
-	cnt = 0;
-	copy = n;
-	if (copy <= 0)
-		cnt++;
-	while (copy)
-	{
-		copy /= 10;
-		cnt++;
-	}
-	if (!(s = ft_calloc((cnt + 1), sizeof(char))))
-		return (NULL);
-	if (n < 0)
-		*s = '-';
-	while (cnt-- > (*s == '-'))
-	{
-		s[cnt] = (n < 0 ? -(n % 10) : n % 10) + '0';
-		n /= 10;
-	}
-	return (s);
+char	*ft_took_next_char(char *mbs)
+{
+	return (mbs + ft_mblen(mbs));
 }

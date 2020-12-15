@@ -6,7 +6,7 @@
 /*   By: enena <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/12 17:37:23 by enena             #+#    #+#             */
-/*   Updated: 2020/12/13 08:57:51 by enena            ###   ########.fr       */
+/*   Updated: 2020/12/14 18:22:35 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ char	*ft_wctomb(wchar_t src, char *dest)
 	ft_bzero(oct, 4);
 	num = (wint_t)src & 0x7FFFFFFF;
 	wln = ft_wclen(src);
+	if (!(wln))
+		return (NULL);
 	oct[0] = ((0xF0 << ((4 - wln) + (wln == 1))) |
 			(((0x7F >> (wln - (wln == 1)))) & (char)(num >> 6 * (wln - 1))));
 	oct[1] = (wln < 2) ? oct[1] :

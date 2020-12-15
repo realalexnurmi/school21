@@ -6,7 +6,7 @@
 #    By: enena <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/08/03 17:51:07 by enena             #+#    #+#              #
-#    Updated: 2020/12/13 02:59:25 by enena            ###   ########.fr        #
+#    Updated: 2020/12/15 04:04:24 by enena            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,6 +34,7 @@ SRC_NAME =  ft_atoi\
 			ft_isdigit\
 			ft_isprint\
 			ft_itoa\
+			ft_lltoa_base\
 			ft_memccpy\
 			ft_memchr\
 			ft_memcmp\
@@ -59,6 +60,9 @@ SRC_NAME =  ft_atoi\
 			ft_substr\
 			ft_tolower\
 			ft_toupper\
+			ft_mblen\
+			ft_took_next_char\
+			ft_get_charcount\
 			ft_mbtowc\
 			ft_wctomb\
 			ft_wcstombs\

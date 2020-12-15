@@ -6,7 +6,7 @@
 /*   By: enena <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/19 19:24:22 by enena             #+#    #+#             */
-/*   Updated: 2020/12/13 12:01:38 by enena            ###   ########.fr       */
+/*   Updated: 2020/12/15 01:21:52 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,14 @@ size_t			ft_lstprf_size(t_list_prf *lst);
 ** list_printf_free
 */
 void			ft_lstprf_del(t_list_prf *curr_del);
-t_list_prf		*ft_lstprf_del_first(t_list_prf **head_list);
+void			ft_lstprf_del_first(t_list_prf **head_list);
+void			ft_lstprf_clear(t_list_prf **head_list);
+/*
+** null_free_utils
+*/
+char	**ft_init_null_tab(char ***tab, size_t size);
+void	ft_free_tab(char ***tab);
+int		ft_error_escape_free(t_list_prf **list, char ***tab);
 /*
 ** analize_parsing_funcs
 */
@@ -142,8 +149,7 @@ t_bool			ft_c_func(void *node);
 t_bool			ft_prc_func(void *node);
 t_bool			ft_s_func(void *node);
 t_bool			ft_p_func(void *node);
-t_bool			ft_d_func(void *node);
-t_bool			ft_i_func(void *node);
+t_bool			ft_di_func(void *node);
 t_bool			ft_u_func(void *node);
 t_bool			ft_o_func(void *node);
 t_bool			ft_x_func(void *node);
@@ -154,7 +160,6 @@ t_bool			ft_e_func(void *node);
 /*
 ** Broad function func_print_utils
 */
-size_t		ft_get_charlen(size_t cnt_byte, char *mbs);
 char		*ft_make_min_width(t_list_prf *lp, char *pr);
 void		ft_take_prec(t_list_prf *lp, char *pr);
 
@@ -185,8 +190,8 @@ static const t_func_do	g_func_array_printf[CONV_COUNT] = {
 	ft_prc_func,
 	ft_s_func,
 	ft_p_func,
-	ft_d_func,
-	ft_i_func,
+	ft_di_func,
+	ft_di_func,
 	ft_u_func,
 	ft_o_func,
 	ft_x_func,

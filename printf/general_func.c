@@ -6,7 +6,7 @@
 /*   By: enena <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/08 14:43:01 by enena             #+#    #+#             */
-/*   Updated: 2020/12/12 19:55:58 by enena            ###   ########.fr       */
+/*   Updated: 2020/12/14 19:53:24 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ t_bool			ft_lstprf_parser_fill(t_list_prf *curr, va_list *ap,
 		if (!(s = ft_substr(fs, curr->begin, curr->end - curr->begin)) ||
 				!(ft_check_width_prec(curr, ap, s)))
 		{
+			if (s)
+				free(s);
 			va_end(*ap);
 			return (FALSE);
 		}
@@ -90,23 +92,26 @@ t_bool			ft_lstprf_in_tab(t_list_prf **head, char ***s_tab,
 {
 	char		**s_curr;
 	size_t		start;
+	size_t		size_tab;
 
-	if (!(*s_tab = malloc(sizeof(char *) * (2 + 2 * ft_lstprf_size(*head)))))
+	size_tab = 2 * ft_lstprf_size(*head) + 2;
+	if (!(*s_tab = malloc(sizeof(char *) * (size_tab))))
 		return (FALSE);
-	s_curr = *s_tab;
+	s_curr = ft_init_null_tab(s_tab, size_tab);
 	start = 0;
 	while (*head)
 	{
-		*s_curr = ft_substr(fs, start, ((*head)->begin - start));
+		if (!(*s_curr = ft_substr(fs, start, ((*head)->begin - start))))
+			return (FALSE);
 		s_curr++;
 		start = (*head)->end + 1;
-		*s_curr = ft_strdup((*head)->print);
+		if (!(*s_curr = ft_strdup((*head)->print)))
+			return (FALSE);
 		s_curr++;
-		*head = ft_lstprf_del_first(head);
+		ft_lstprf_del_first(head);
 	}
-	*s_curr = ft_substr(fs, start, ft_strlen(&(fs[start])));
-	s_curr++;
-	*s_curr = NULL;
+	if (!(*s_curr = ft_substr(fs, start, ft_strlen(&(fs[start])))))
+		return (FALSE);
 	return (TRUE);
 }
 
@@ -119,19 +124,18 @@ char			*ft_connect(char ***s_tab)
 	s_curr = *s_tab;
 	if (!(out_str = ft_strjoin(*(s_curr), *(s_curr + 1))))
 		return (NULL);
-	free(*(s_curr));
-	free(*(s_curr + 1));
 	s_curr = s_curr + 2;
 	while (*s_curr)
 	{
 		if (!(new_str = ft_strjoin(out_str, *(s_curr))))
+		{
+			free (out_str);
 			return (NULL);
+		}
 		free(out_str);
-		free(*(s_curr));
 		s_curr++;
 		out_str = new_str;
 	}
-	free(*s_tab);
-	*s_tab = NULL;
+	ft_free_tab(s_tab);
 	return (out_str);
 }

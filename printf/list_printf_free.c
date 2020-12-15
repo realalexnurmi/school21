@@ -6,13 +6,13 @@
 /*   By: enena <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/08 14:56:48 by enena             #+#    #+#             */
-/*   Updated: 2020/12/08 15:30:02 by enena            ###   ########.fr       */
+/*   Updated: 2020/12/14 20:00:14 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-void		ft_lstprf_del(t_list_prf *curr_del)
+void	ft_lstprf_del(t_list_prf *curr_del)
 {
 	if (curr_del)
 	{
@@ -25,11 +25,10 @@ void		ft_lstprf_del(t_list_prf *curr_del)
 		if (curr_del->print)
 			free(curr_del->print);
 		free(curr_del);
-		curr_del = NULL;
 	}
 }
 
-t_list_prf	*ft_lstprf_del_first(t_list_prf **head_list)
+void	ft_lstprf_del_first(t_list_prf **head_list)
 {
 	t_list_prf	*next;
 
@@ -39,5 +38,10 @@ t_list_prf	*ft_lstprf_del_first(t_list_prf **head_list)
 		ft_lstprf_del(*head_list);
 		*head_list = next;
 	}
-	return (*head_list);
+}
+
+void	ft_lstprf_clear(t_list_prf **head_list)
+{
+	while (*head_list)
+		ft_lstprf_del_first(head_list);
 }

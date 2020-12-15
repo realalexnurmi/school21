@@ -6,7 +6,7 @@
 /*   By: enena <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/19 17:37:53 by enena             #+#    #+#             */
-/*   Updated: 2020/12/13 11:56:12 by enena            ###   ########.fr       */
+/*   Updated: 2020/12/15 01:24:42 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,17 +23,17 @@ int				ft_printf(char const *format, ...)
 	list_spec = NULL;
 	s_tab = NULL;
 	if (!(ft_preparser(&list_spec, format)))
-		return (-1);
+		return (ft_error_escape_free(&list_spec, &s_tab));
 	if (list_spec)
 	{
 		va_start(list_arg, format);
 		if (!(ft_lstprf_parser_fill(list_spec, &list_arg, format)) ||
 				!(ft_lstprf_apply_func_to_content(list_spec)) ||printlist(list_spec, FALSE) ||
 				!(ft_lstprf_in_tab(&list_spec, &s_tab, format)))
-			return (-1);
+			return (ft_error_escape_free(&list_spec, &s_tab));
 	}
 	if (!(print_str = s_tab ? ft_connect(&s_tab) : ft_strdup(format)))
-		return (-1);
+		return (ft_error_escape_free(&list_spec, &s_tab));
 	ft_putstr_fd(print_str, 1);
 	len = ft_strlen(print_str);
 	free(print_str);

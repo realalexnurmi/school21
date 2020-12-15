@@ -6,38 +6,35 @@
 /*   By: enena <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/12 22:45:37 by enena             #+#    #+#             */
-/*   Updated: 2020/12/13 09:05:34 by enena            ###   ########.fr       */
+/*   Updated: 2020/12/14 23:05:52 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
 /*
 ** Convert MultiByte (UTF-8) to Wide Char wchar_t (32b) ~ wint_t
 */
-wchar_t	ft_mbtowc(char *c)
+
+wchar_t	ft_mbtowc(char *mbc)
 {
 	wint_t	num;
-	char	i;
+	char	len;
 
 	num = 0;
-	if (!(*c & 0x80))
-		return ((wchar_t)(*c));
-	i = 0;
-	while (*c & 0x80)
+	len = ft_mblen(mbc);
+	if (len == 1)
+		return ((wchar_t)(*mbc));
+	else if (len > 1)
 	{
-		*c <<= 1;
-		i++;
-	}
-	*c >>= i;
-	if (--i)
-	{
-		num = *c & ((0x40 >> i) - 1);
-		while (i--)
+		num = *mbc & ((0x40 >> len) - 1);
+		while (len--)
 		{
 			num <<= 6;
-			c++;
-			num |= (*c & 0x3F);
+			mbc++;
+			num |= (*mbc & 0x3F);
 		}
+		return ((wchar_t)(*mbc));
 	}
-	return ((wchar_t)num);
+	return (0);
 }

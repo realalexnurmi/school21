@@ -48,7 +48,7 @@ t_bool printlist(t_list_prf *lst, t_bool ret)
 		printf("\t%-10s:%5s\n", "prec", ((lst->prec) ? ft_itoa(*(lst->prec)) : "NULL"));
 		printf("\t%-10s:%5x\n", "flag",lst->flag);
 		printf("\t%-10s:%5c\n", "size", ft_fsize(lst->size));
-		printf("\t%-10s:%s\n", "print",lst->print);
+		printf("\t%-10s:%s\n", "print", lst->print);
 		lst = lst->next;
 	}
 	return (ret);

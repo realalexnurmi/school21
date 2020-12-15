@@ -1,40 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*   ft_mblen.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: enena <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/10 02:06:19 by enena             #+#    #+#             */
-/*   Updated: 2020/12/15 04:02:01 by enena            ###   ########.fr       */
+/*   Created: 2020/12/14 22:19:32 by enena             #+#    #+#             */
+/*   Updated: 2020/12/15 01:04:44 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_itoa(int n)
-{
-	char	*s;
-	size_t	cnt;
-	int		copy;
+/*
+** Look UTF-8 info first byte MultiByte and returns length in byte character
+*/
 
-	cnt = 0;
-	copy = n;
-	if (copy <= 0)
-		cnt++;
-	while (copy)
+size_t	ft_mblen(char *mbc)
+{
+	size_t	count_one;
+	char	copy;
+
+	count_one = 0;
+	copy = *mbc;
+	while (copy & 0x80)
 	{
-		copy /= 10;
-		cnt++;
+		copy <<= 1;
+		count_one++;
 	}
-	if (!(s = ft_calloc((cnt + 1), sizeof(char))))
-		return (NULL);
-	if (n < 0)
-		*s = '-';
-	while (cnt-- > (*s == '-'))
-	{
-		s[cnt] = (n < 0 ? -(n % 10) : n % 10) + '0';
-		n /= 10;
-	}
-	return (s);
+	if (count_one == 0)
+		return (1);
+	else
+		return ((count_one == 1 || count_one > 4) ? 0 : count_one);
 }
