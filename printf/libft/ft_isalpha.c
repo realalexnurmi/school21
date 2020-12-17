@@ -1,26 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_isalpha.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: enena <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/11 01:14:05 by enena             #+#    #+#             */
-/*   Updated: 2020/12/17 18:35:22 by enena            ###   ########.fr       */
+/*   Created: 2020/10/31 18:28:59 by enena             #+#    #+#             */
+/*   Updated: 2020/12/12 17:42:02 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_putstr_fd(char *s, int fd)
-{
-	size_t len;
+/*
+** Returns TRUE (1) if character letter, else FALSE (0)
+** Adapted only for standart "C" locale
+*/
 
-	len = 0;
-	if (s)
-	{
-		len = ft_strlen(s);
-		write(fd, s, len);
-	}
-	return (len);
+t_bool	ft_isalpha(int c)
+{
+	return (ft_isupper(c) || ft_islower(c));
 }

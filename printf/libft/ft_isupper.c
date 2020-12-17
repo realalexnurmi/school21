@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_isupper.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: enena <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/11 01:14:05 by enena             #+#    #+#             */
-/*   Updated: 2020/12/17 18:35:22 by enena            ###   ########.fr       */
+/*   Created: 2020/12/11 14:26:04 by enena             #+#    #+#             */
+/*   Updated: 2020/12/11 21:35:45 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_putstr_fd(char *s, int fd)
-{
-	size_t len;
+/*
+** Returns TRUE (1) if character uppercase letter, else FALSE (0)
+*/
 
-	len = 0;
-	if (s)
-	{
-		len = ft_strlen(s);
-		write(fd, s, len);
-	}
-	return (len);
+t_bool	ft_isupper(int c)
+{
+	if ((c >= 'A') && (c <= 'Z'))
+		return (TRUE);
+	else
+		return (FALSE);
 }

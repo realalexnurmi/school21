@@ -1,26 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: enena <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/11 01:14:05 by enena             #+#    #+#             */
-/*   Updated: 2020/12/17 18:35:22 by enena            ###   ########.fr       */
+/*   Created: 2020/11/10 02:06:19 by enena             #+#    #+#             */
+/*   Updated: 2020/12/15 04:02:01 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_putstr_fd(char *s, int fd)
+char	*ft_itoa(int n)
 {
-	size_t len;
+	char	*s;
+	size_t	cnt;
+	int		copy;
 
-	len = 0;
-	if (s)
+	cnt = 0;
+	copy = n;
+	if (copy <= 0)
+		cnt++;
+	while (copy)
 	{
-		len = ft_strlen(s);
-		write(fd, s, len);
+		copy /= 10;
+		cnt++;
 	}
-	return (len);
+	if (!(s = ft_calloc((cnt + 1), sizeof(char))))
+		return (NULL);
+	if (n < 0)
+		*s = '-';
+	while (cnt-- > (*s == '-'))
+	{
+		s[cnt] = (n < 0 ? -(n % 10) : n % 10) + '0';
+		n /= 10;
+	}
+	return (s);
 }

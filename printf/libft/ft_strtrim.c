@@ -1,26 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: enena <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/11 01:14:05 by enena             #+#    #+#             */
-/*   Updated: 2020/12/17 18:35:22 by enena            ###   ########.fr       */
+/*   Created: 2020/11/07 21:08:14 by enena             #+#    #+#             */
+/*   Updated: 2020/11/09 23:46:28 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_putstr_fd(char *s, int fd)
+char	*ft_strtrim(char const *s1, char const *set)
 {
-	size_t len;
+	size_t			slen;
+	unsigned int	start;
 
-	len = 0;
-	if (s)
+	if (!s1)
+		return (NULL);
+	slen = ft_strlen(s1);
+	if (!set || !(*set))
+		return (ft_substr(s1, 0, slen));
+	start = 0;
+	while (s1[start] && ft_strchr(set, (int)(s1[start])))
 	{
-		len = ft_strlen(s);
-		write(fd, s, len);
+		start++;
+		slen--;
 	}
-	return (len);
+	while (slen && ft_strchr(set, (int)(s1[slen + start])))
+		slen--;
+	return (ft_substr(s1, start, slen + 1));
 }

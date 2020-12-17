@@ -1,26 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_wcstombs.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: enena <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/11 01:14:05 by enena             #+#    #+#             */
-/*   Updated: 2020/12/17 18:35:22 by enena            ###   ########.fr       */
+/*   Created: 2020/12/12 17:38:11 by enena             #+#    #+#             */
+/*   Updated: 2020/12/14 18:22:32 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_putstr_fd(char *s, int fd)
-{
-	size_t len;
+/*
+** Function returns a pointer to the allocated multibyte string
+** converted from a wide character string.
+*/
 
-	len = 0;
-	if (s)
+char	*ft_wcstombs(wchar_t *wstring)
+{
+	char	*s;
+	char	*ret;
+
+	if (!(s = ft_calloc(ft_wstrlen_byte(wstring) + 1, sizeof(char))))
+		return (NULL);
+	ret = s;
+	while (*wstring)
 	{
-		len = ft_strlen(s);
-		write(fd, s, len);
+		if (!(s = ft_wctomb(*wstring, s)))
+		{
+			free(ret);
+			return (NULL);
+		}
+		s += ft_wclen(*wstring);
+		wstring++;
 	}
-	return (len);
+	return (ret);
 }

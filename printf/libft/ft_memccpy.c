@@ -1,26 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_memccpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: enena <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/11 01:14:05 by enena             #+#    #+#             */
-/*   Updated: 2020/12/17 18:35:22 by enena            ###   ########.fr       */
+/*   Created: 2020/10/30 19:42:55 by enena             #+#    #+#             */
+/*   Updated: 2020/11/07 16:56:47 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_putstr_fd(char *s, int fd)
+void	*ft_memccpy(void *dst, const void *src, int c, size_t n)
 {
-	size_t len;
+	unsigned char	*p_src;
+	unsigned char	*p_dst;
 
-	len = 0;
-	if (s)
+	if (dst || src)
 	{
-		len = ft_strlen(s);
-		write(fd, s, len);
+		p_dst = (unsigned char *)dst;
+		p_src = (unsigned char *)src;
+		while (n--)
+		{
+			if (*p_src != (unsigned char)c)
+				*p_dst++ = *p_src++;
+			else
+			{
+				*p_dst = *p_src;
+				return (++p_dst);
+			}
+		}
 	}
-	return (len);
+	return (NULL);
 }

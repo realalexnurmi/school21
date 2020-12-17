@@ -1,26 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_get_charcount.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: enena <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/11 01:14:05 by enena             #+#    #+#             */
-/*   Updated: 2020/12/17 18:35:22 by enena            ###   ########.fr       */
+/*   Created: 2020/12/14 22:59:53 by enena             #+#    #+#             */
+/*   Updated: 2020/12/14 23:09:57 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_putstr_fd(char *s, int fd)
-{
-	size_t len;
+/*
+** Returns count UTF-8 character in [cnt_byte] bytes.
+*/
 
-	len = 0;
-	if (s)
+size_t		ft_get_charcount(size_t cnt_byte, char *mbs)
+{
+	size_t	cnt_char;
+	size_t	mblen;
+
+	cnt_char = 0;
+	while ((cnt_byte) && (*mbs))
 	{
-		len = ft_strlen(s);
-		write(fd, s, len);
+		mblen = ft_mblen(mbs);
+		if (mblen > cnt_byte)
+			return (cnt_char);
+		cnt_byte -= mblen;
+		cnt_char++;
+		mbs = ft_took_next_char(mbs);
 	}
-	return (len);
+	return (cnt_char);
 }

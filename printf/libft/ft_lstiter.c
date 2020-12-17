@@ -1,26 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_lstiter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: enena <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/11 01:14:05 by enena             #+#    #+#             */
-/*   Updated: 2020/12/17 18:35:22 by enena            ###   ########.fr       */
+/*   Created: 2020/11/13 19:09:58 by enena             #+#    #+#             */
+/*   Updated: 2020/12/11 21:31:11 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_putstr_fd(char *s, int fd)
-{
-	size_t len;
+/*
+** Applying function [f] for every node of SLL list [lst]
+*/
 
-	len = 0;
-	if (s)
-	{
-		len = ft_strlen(s);
-		write(fd, s, len);
-	}
-	return (len);
+void	ft_lstiter(t_list *lst, void (*f)(void *))
+{
+	if (f)
+		while (lst)
+		{
+			f(lst->content);
+			lst = lst->next;
+		}
 }

@@ -1,26 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_isspace.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: enena <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/11 01:14:05 by enena             #+#    #+#             */
-/*   Updated: 2020/12/17 18:35:22 by enena            ###   ########.fr       */
+/*   Created: 2020/12/10 18:22:06 by enena             #+#    #+#             */
+/*   Updated: 2020/12/12 17:41:25 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_putstr_fd(char *s, int fd)
+t_bool	ft_isspace(int c)
 {
-	size_t len;
-
-	len = 0;
-	if (s)
-	{
-		len = ft_strlen(s);
-		write(fd, s, len);
-	}
-	return (len);
+	if (c == ' ' || c == '\n' || c == '\t'
+			|| c == '\v' || c == '\f' || c == '\r')
+		return (1);
+	else
+		return (0);
 }

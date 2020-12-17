@@ -1,26 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_lstprf_new.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: enena <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/11 01:14:05 by enena             #+#    #+#             */
-/*   Updated: 2020/12/17 18:35:22 by enena            ###   ########.fr       */
+/*   Created: 2020/12/16 22:50:11 by enena             #+#    #+#             */
+/*   Updated: 2020/12/16 23:12:51 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "libftprintf.h"
 
-size_t	ft_putstr_fd(char *s, int fd)
+t_list_prf	*ft_lstprf_new(size_t begin, size_t end, t_func_do func)
 {
-	size_t len;
+	t_list_prf	*new;
 
-	len = 0;
-	if (s)
-	{
-		len = ft_strlen(s);
-		write(fd, s, len);
-	}
-	return (len);
+	new = NULL;
+	if (!(new = malloc(sizeof(t_list_prf))))
+		return (NULL);
+	new->next = NULL;
+	new->begin = begin;
+	new->end = end;
+	new->func = func;
+	new->flag = NONE_FLAG;
+	new->width = NULL;
+	new->prec = NULL;
+	new->p_cnt = NULL;
+	new->print = NULL;
+	return (new);
 }

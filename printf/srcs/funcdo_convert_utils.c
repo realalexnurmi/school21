@@ -1,26 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   funcdo_convert_utils.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: enena <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/11 01:14:05 by enena             #+#    #+#             */
-/*   Updated: 2020/12/17 18:35:22 by enena            ###   ########.fr       */
+/*   Created: 2020/12/15 16:40:06 by enena             #+#    #+#             */
+/*   Updated: 2020/12/17 23:46:32 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "libftprintf.h"
 
-size_t	ft_putstr_fd(char *s, int fd)
+long long int	ft_take_signed(t_list_prf *curr)
 {
-	size_t len;
+	long long int	ret;
 
-	len = 0;
-	if (s)
-	{
-		len = ft_strlen(s);
-		write(fd, s, len);
-	}
-	return (len);
+	ret = *((int *)curr->p_cnt);
+	return (ret);
+}
+
+t_ullint		ft_take_unsigned(t_list_prf *curr)
+{
+	t_ullint	ret;
+
+	ret = *((t_uint *)curr->p_cnt);
+	return (ret);
 }

@@ -1,26 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   find_handler.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: enena <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/11 01:14:05 by enena             #+#    #+#             */
-/*   Updated: 2020/12/17 18:35:22 by enena            ###   ########.fr       */
+/*   Created: 2020/12/16 22:24:22 by enena             #+#    #+#             */
+/*   Updated: 2020/12/18 01:12:21 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifdef BONUS
+# include "libftprintf_bonus.h"
+#else
+# include "libftprintf.h"
+#endif
 
-size_t	ft_putstr_fd(char *s, int fd)
+t_func_do	ft_conv_find_func(char supp_conv)
 {
-	size_t len;
+	unsigned int	counter;
 
-	len = 0;
-	if (s)
+	counter = 0;
+	while (counter < CONV_COUNT)
 	{
-		len = ft_strlen(s);
-		write(fd, s, len);
+		if (supp_conv == g_conv_array_printf[counter])
+			return (g_func_array_printf[counter]);
+		counter++;
 	}
-	return (len);
+	return (NULL);
 }

@@ -1,26 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_ulltoa_base.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: enena <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/11 01:14:05 by enena             #+#    #+#             */
-/*   Updated: 2020/12/17 18:35:22 by enena            ###   ########.fr       */
+/*   Created: 2020/12/15 15:08:19 by enena             #+#    #+#             */
+/*   Updated: 2020/12/15 15:08:49 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_putstr_fd(char *s, int fd)
+char	*ft_ulltoa_base(t_ullint n, t_uchar base)
 {
-	size_t len;
+	const char		digit[17] = "0123456789abcdef";
+	char			*s;
+	size_t			cnt;
+	t_ullint		copy;
 
-	len = 0;
-	if (s)
+	if ((base == 0) || (base == 1) || (base > 16))
+		return (NULL);
+	cnt = 1;
+	copy = n;
+	while (copy /= base)
+		cnt++;
+	if (!(s = ft_calloc((cnt + 1), sizeof(char))))
+		return (NULL);
+	while (cnt-- > 0)
 	{
-		len = ft_strlen(s);
-		write(fd, s, len);
+		s[cnt] = digit[(n % base)];
+		n /= base;
 	}
-	return (len);
+	return (s);
 }

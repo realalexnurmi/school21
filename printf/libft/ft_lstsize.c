@@ -1,26 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_lstsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: enena <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/11 01:14:05 by enena             #+#    #+#             */
-/*   Updated: 2020/12/17 18:35:22 by enena            ###   ########.fr       */
+/*   Created: 2020/11/12 21:11:55 by enena             #+#    #+#             */
+/*   Updated: 2020/12/11 21:37:26 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_putstr_fd(char *s, int fd)
-{
-	size_t len;
+/*
+** Function returns the number of nodes [cnt] in the SLL list [lst] (aka size)
+*/
 
-	len = 0;
-	if (s)
+int	ft_lstsize(t_list *lst)
+{
+	int	cnt;
+
+	cnt = 0;
+	if (lst)
 	{
-		len = ft_strlen(s);
-		write(fd, s, len);
+		cnt++;
+		while (lst->next)
+		{
+			lst = lst->next;
+			cnt++;
+		}
 	}
-	return (len);
+	return (cnt);
 }

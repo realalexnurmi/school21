@@ -1,26 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   no_func_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: enena <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/11 01:14:05 by enena             #+#    #+#             */
-/*   Updated: 2020/12/17 18:35:22 by enena            ###   ########.fr       */
+/*   Created: 2020/12/16 21:48:31 by enena             #+#    #+#             */
+/*   Updated: 2020/12/16 21:49:32 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-size_t	ft_putstr_fd(char *s, int fd)
+t_bool	ft_o_func(void *node)
 {
-	size_t len;
+	t_list_prf		*lp;
+	char			*print;
+	t_ullint	num;
 
-	len = 0;
-	if (s)
-	{
-		len = ft_strlen(s);
-		write(fd, s, len);
-	}
-	return (len);
+	lp = (t_list_prf *)node;
+	num = ft_take_unsigned(lp);
+	if (!(print = ft_ulltoa_base(num, 8)))
+		return (FALSE);
+	if (!(print = ft_take_prec_dioux(lp, print)))
+		return (FALSE);
+	if (!(print = ft_hash(lp, print, FALSE)))
+		return (FALSE);
+	if (!(lp->print = ft_make_min_width(lp, print)))
+		return (FALSE);
+	return (TRUE);
 }

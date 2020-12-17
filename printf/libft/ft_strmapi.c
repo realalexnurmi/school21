@@ -1,26 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: enena <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/11 01:14:05 by enena             #+#    #+#             */
-/*   Updated: 2020/12/17 18:35:22 by enena            ###   ########.fr       */
+/*   Created: 2020/11/10 20:32:39 by enena             #+#    #+#             */
+/*   Updated: 2020/11/10 22:27:59 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_putstr_fd(char *s, int fd)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	size_t len;
+	char			*str;
+	unsigned int	slen;
 
-	len = 0;
-	if (s)
-	{
-		len = ft_strlen(s);
-		write(fd, s, len);
-	}
-	return (len);
+	if (!s)
+		return (NULL);
+	if (!(str = ft_strdup(s)))
+		return (NULL);
+	slen = ft_strlen(str);
+	while (slen--)
+		str[slen] = f(slen, str[slen]);
+	return (str);
 }

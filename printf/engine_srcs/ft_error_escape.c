@@ -1,26 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_error_escape.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: enena <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/11 01:14:05 by enena             #+#    #+#             */
-/*   Updated: 2020/12/17 18:35:22 by enena            ###   ########.fr       */
+/*   Created: 2020/12/16 22:56:50 by enena             #+#    #+#             */
+/*   Updated: 2020/12/16 22:58:38 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifdef BONUS
+# include "libftprintf_bonus.h"
+#else
+# include "libftprintf.h"
+#endif
 
-size_t	ft_putstr_fd(char *s, int fd)
+int	ft_error_escape(t_list_prf **list, char ***tab)
 {
-	size_t len;
-
-	len = 0;
-	if (s)
-	{
-		len = ft_strlen(s);
-		write(fd, s, len);
-	}
-	return (len);
+	ft_free_tab(tab);
+	ft_lstprf_clear(list);
+	return (-1);
 }

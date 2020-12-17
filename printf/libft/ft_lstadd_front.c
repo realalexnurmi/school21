@@ -1,26 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_lstadd_front.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: enena <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/11 01:14:05 by enena             #+#    #+#             */
-/*   Updated: 2020/12/17 18:35:22 by enena            ###   ########.fr       */
+/*   Created: 2020/11/12 19:59:02 by enena             #+#    #+#             */
+/*   Updated: 2020/12/11 21:34:39 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_putstr_fd(char *s, int fd)
-{
-	size_t len;
+/*
+** Function adding a new node [new] to the begin of the SLL list [lst]
+*/
 
-	len = 0;
-	if (s)
+void	ft_lstadd_front(t_list **lst, t_list *new)
+{
+	if (new)
 	{
-		len = ft_strlen(s);
-		write(fd, s, len);
+		if (*lst)
+			new->next = *lst;
+		*lst = new;
 	}
-	return (len);
 }

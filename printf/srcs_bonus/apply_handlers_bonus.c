@@ -1,26 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   apply_handlers_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: enena <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/11 01:14:05 by enena             #+#    #+#             */
-/*   Updated: 2020/12/17 18:35:22 by enena            ###   ########.fr       */
+/*   Created: 2020/12/16 23:31:26 by enena             #+#    #+#             */
+/*   Updated: 2020/12/17 18:20:45 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "libftprintf_bonus.h"
 
-size_t	ft_putstr_fd(char *s, int fd)
+t_bool	ft_lstprf_apply_func_to_content(t_list_prf *curr)
 {
-	size_t len;
+	long long int	offset;
 
-	len = 0;
-	if (s)
+	offset = 0;
+	while (curr)
 	{
-		len = ft_strlen(s);
-		write(fd, s, len);
+		curr->ofst = offset;
+		if (!(curr->func(curr)))
+			return (FALSE);
+		offset += ft_strlen(curr->print) - (curr->end - curr->begin + 1);
+		curr = curr->next;
 	}
-	return (len);
+	return (TRUE);
 }
