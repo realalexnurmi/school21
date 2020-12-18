@@ -6,15 +6,11 @@
 /*   By: enena <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/16 22:56:24 by enena             #+#    #+#             */
-/*   Updated: 2020/12/16 23:01:24 by enena            ###   ########.fr       */
+/*   Updated: 2020/12/18 19:46:22 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifdef BONUS
-# include "libftprintf_bonus.h"
-#else
 # include "libftprintf.h"
-#endif
 
 char	**ft_init_null_tab(char ***tab, size_t size)
 {

@@ -6,36 +6,39 @@
 /*   By: enena <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/19 19:24:22 by enena             #+#    #+#             */
-/*   Updated: 2020/12/17 23:20:39 by enena            ###   ########.fr       */
+/*   Updated: 2020/12/18 21:48:43 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFTPRINTF_H
 # define LIBFTPRINTF_H
+# ifdef BONUS
+#  include "libftprintf_bonus.h"
+# else
 
 /*
 ** Definition of count handle specifier
 */
-# define CONV_COUNT 9
+#  define CONV_COUNT 9
 
 /*
 ** Binary form definition flag
 */
-# define NONE_FLAG 0b00000000
-# define ZERO_FLAG 0b00000001
-# define MNUS_FLAG 0b00000010
-# define UPCS_FLAG 0b00000100
+#  define NONE_FLAG 0b00000000
+#  define ZERO_FLAG 0b00000001
+#  define MNUS_FLAG 0b00000010
+#  define UPCS_FLAG 0b00000100
 
 /*
 ** My own LIBFT
 */
-# include "libft.h"
+#  include "libft.h"
 
 /*
 ** Standart work with indefinite number of arguments
 ** Uses:	type: va_list, macros: va_start, va_arg, va_end
 */
-# include <stdarg.h>
+#  include <stdarg.h>
 
 /*
 ** Generic function pointer type conversion specifier handlers
@@ -67,47 +70,40 @@ typedef struct	s_list_prf
 }				t_list_prf;
 
 /*
-** ft_printf
-*/
-int				ft_printf(const char *format, ...);
-
-/*
 ** 1)ENGINE PART {engine_srcs folder}
 */
 /*
 ** general_func
 */
-t_bool			ft_preparser(t_list_prf **l_spec, char const *fs);
-t_bool			ft_lstprf_parser_fill(t_list_prf *curr, va_list *ap,
-															char const *fs);
-t_bool			ft_lstprf_in_tab(t_list_prf **head, char ***s_tab,
-															const char *fs);
+t_bool			ft_preparser(t_list_prf **, char const *);
+t_bool			ft_lstprf_parser_fill(t_list_prf *, va_list *, char const *);
+t_bool			ft_lstprf_in_tab(t_list_prf **, char ***, const char *);
 char			*ft_connect(char ***s_tab);
 
 /*
 ** ft_error_escape
 */
-int				ft_error_escape(t_list_prf **list, char ***tab);
+int				ft_error_escape(t_list_prf **, char ***);
 
 /*
 ** list_work_utils
 */
-void			ft_lstprf_addback(t_list_prf **lst, t_list_prf *new);
-t_list_prf		*ft_lstprf_last(t_list_prf *lst);
-size_t			ft_lstprf_size(t_list_prf *lst);
+void			ft_lstprf_addback(t_list_prf **, t_list_prf *);
+t_list_prf		*ft_lstprf_last(t_list_prf *);
+size_t			ft_lstprf_size(t_list_prf *);
 
 /*
 ** list_free_utils
 */
-void			ft_lstprf_del(t_list_prf *curr_del);
-void			ft_lstprf_del_first(t_list_prf **head_list);
-void			ft_lstprf_clear(t_list_prf **head_list);
+void			ft_lstprf_del(t_list_prf *);
+void			ft_lstprf_del_first(t_list_prf **);
+void			ft_lstprf_clear(t_list_prf **);
 
 /*
 ** tab_utils
 */
-char			**ft_init_null_tab(char ***tab, size_t size);
-void			ft_free_tab(char ***tab);
+char			**ft_init_null_tab(char ***, size_t);
+void			ft_free_tab(char ***);
 
 /*
 ** find_handler
@@ -202,5 +198,7 @@ static const t_func_do	g_func_array_printf[CONV_COUNT] = {
 	ft_di_func,
 	ft_u_func,
 	ft_x_func};
+
+# endif
 
 #endif

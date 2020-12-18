@@ -6,11 +6,11 @@
 /*   By: enena <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/17 00:07:13 by enena             #+#    #+#             */
-/*   Updated: 2020/12/17 18:06:28 by enena            ###   ########.fr       */
+/*   Updated: 2020/12/18 19:50:10 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf_bonus.h"
+#include "libftprintf.h"
 
 t_bool	ft_malloc_content(t_list_prf *curr, char conv)
 {

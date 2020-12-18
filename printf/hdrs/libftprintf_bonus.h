@@ -6,7 +6,7 @@
 /*   By: enena <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/16 17:24:13 by enena             #+#    #+#             */
-/*   Updated: 2020/12/17 23:20:53 by enena            ###   ########.fr       */
+/*   Updated: 2020/12/18 21:44:09 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ typedef struct	s_list_prf
 /*
 ** ft_printf
 */
-int				ft_printf(const char *format, ...);
+int				ft_printf(const char *, ...);
 
 /*
 ** 1)ENGINE PART {engine_srcs folder}
@@ -107,7 +107,7 @@ char			*ft_connect(char ***s_tab);
 /*
 ** ft_error_escape
 */
-int				ft_error_escape_free(t_list_prf **list, char ***tab);
+int				ft_error_escape(t_list_prf **list, char ***tab);
 
 /*
 ** list_work_utils

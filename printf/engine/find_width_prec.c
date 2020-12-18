@@ -6,15 +6,11 @@
 /*   By: enena <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/16 22:43:18 by enena             #+#    #+#             */
-/*   Updated: 2020/12/16 23:02:11 by enena            ###   ########.fr       */
+/*   Updated: 2020/12/18 21:28:41 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifdef BONUS
-# include "libftprintf_bonus.h"
-#else
 # include "libftprintf.h"
-#endif
 
 t_bool	ft_check_width_prec(t_list_prf *curr, va_list *ap, char *s)
 {

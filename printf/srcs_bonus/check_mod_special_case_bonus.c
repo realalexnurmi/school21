@@ -6,11 +6,11 @@
 /*   By: enena <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/16 23:31:48 by enena             #+#    #+#             */
-/*   Updated: 2020/12/17 23:26:50 by enena            ###   ########.fr       */
+/*   Updated: 2020/12/18 20:13:12 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf_bonus.h"
+#include "libftprintf.h"
 
 void	ft_check_modify(t_list_prf *curr, char *s)
 {
@@ -37,6 +37,11 @@ void	ft_check_special_case(t_list_prf *curr, char *s)
 	{
 		*(curr->width) *= -1;
 		curr->flag |= MNUS_FLAG;
+	}
+	if (curr->prec && *(curr->prec) < 0)
+	{
+		free(curr->prec);
+		curr->prec = NULL;
 	}
 	if (curr->flag & PLUS_FLAG)
 		curr->flag &= (~(SPCE_FLAG));

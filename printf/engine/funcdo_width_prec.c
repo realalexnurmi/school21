@@ -6,15 +6,11 @@
 /*   By: enena <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/16 22:46:19 by enena             #+#    #+#             */
-/*   Updated: 2020/12/18 02:11:04 by enena            ###   ########.fr       */
+/*   Updated: 2020/12/18 19:45:33 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifdef BONUS
-# include "libftprintf_bonus.h"
-#else
 # include "libftprintf.h"
-#endif
 
 char	*ft_make_min_width(t_list_prf *lp, char *pr)
 {

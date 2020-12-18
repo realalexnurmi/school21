@@ -6,16 +6,15 @@
 /*   By: enena <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/17 18:14:14 by enena             #+#    #+#             */
-/*   Updated: 2020/12/17 23:24:00 by enena            ###   ########.fr       */
+/*   Updated: 2020/12/18 19:50:01 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf_bonus.h"
+#include "libftprintf.h"
 
 t_bool	ft_n_func(void *node)
 {
 	t_list_prf	*lp;
-	char		*print;
 
 	lp = (t_list_prf *)node;
 	if (lp->size == NONE)
@@ -45,7 +44,7 @@ t_bool	ft_o_func(void *node)
 	num = ft_take_unsigned(lp);
 	if (!(print = ft_ulltoa_base(num, 8)))
 		return (FALSE);
-	if (!(print = ft_take_prec_dioux(lp, print)))
+	if (!(print = ft_take_prec_int(lp, print)))
 		return (FALSE);
 	if (!(print = ft_hash(lp, print, FALSE)))
 		return (FALSE);
@@ -56,15 +55,21 @@ t_bool	ft_o_func(void *node)
 
 t_bool	ft_f_func(void *node)
 {
+	if (!(node))
+		return (FALSE);
 	return (TRUE);
 }
 
 t_bool	ft_g_func(void *node)
 {
+	if (!(node))
+		return (FALSE);
 	return (TRUE);
 }
 
 t_bool	ft_e_func(void *node)
 {
+	if (!(node))
+		return (FALSE);
 	return (TRUE);
 }

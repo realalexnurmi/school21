@@ -6,11 +6,11 @@
 /*   By: enena <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/16 23:37:42 by enena             #+#    #+#             */
-/*   Updated: 2020/12/17 23:24:32 by enena            ###   ########.fr       */
+/*   Updated: 2020/12/18 19:51:20 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf_bonus.h"
+#include "libftprintf.h"
 
 t_list_prf		*ft_lstprf_new(size_t begin, size_t end, t_func_do func)
 {

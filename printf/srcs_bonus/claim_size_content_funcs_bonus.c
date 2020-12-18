@@ -6,11 +6,11 @@
 /*   By: enena <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/08 10:35:32 by enena             #+#    #+#             */
-/*   Updated: 2020/12/17 18:09:53 by enena            ###   ########.fr       */
+/*   Updated: 2020/12/18 19:48:58 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf_bonus.h"
+#include "libftprintf.h"
 
 void	ft_claim_l_content(t_list_prf *curr, va_list *ap, char conv)
 {

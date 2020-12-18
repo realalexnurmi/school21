@@ -6,7 +6,7 @@
 #    By: enena <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/08/03 17:51:07 by enena             #+#    #+#              #
-#    Updated: 2020/12/18 01:10:30 by enena            ###   ########.fr        #
+#    Updated: 2020/12/18 21:34:58 by enena            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,8 +25,6 @@ LIB = libft.a
 LIB_PATH = libft
 
 LIB_NAME = ft
-
-INCLUDES_PATH = hdrs
 
 HEADER_MAND = libftprintf.h
 
@@ -74,12 +72,14 @@ else
 endif
 
 vpath %.c $(ENGINE_PATH) $(MAND_PATH) $(BONUS_PATH)
-vpath %.h $(INCLUDES_PATH)
+vpath %.h hdrs
 vpath %.a $(LIB_PATH)
 
 SRCS_ALL = $(PRINTF_SRC) $(ENGINE_SRCS) $(BODY_SRCS)
 
 OBJ_ALL = $(SRCS_ALL:%.c=%.o)
+
+REMOVE_O_ALL = $(OBJ_ALL) $(MAND_SRCS:%.c=%_bonus.o) $(BONUS_SRCS:%.c=%.o)
 
 all: $(NAME)
 
@@ -87,11 +87,11 @@ $(LIB):
 	$(MAKE) -C $(LIB_PATH)
 	cp $(LIB_PATH)/$(LIB) $(NAME)
 
-%.o: %.c $(HEADER_ALL) $(LIB)
-	$(CC) -c $(FLAGS) -D$(DEFINE) -I$(INCLUDES_PATH) $< -o $@
+%.o: %.c $(HEADER_ALL)
+	$(CC) -c $(FLAGS) -Ihdrs -D$(DEFINE) $< -o $@
 
-$(NAME): $(OBJ_ALL)	
-	ar rc $@ $?
+$(NAME): $(LIB) $(OBJ_ALL)	
+	ar rc $@ $(OBJ_ALL)
 	ranlib $@
 
 bonus:
@@ -99,7 +99,7 @@ bonus:
 
 clean:
 	$(MAKE) -C $(LIB_PATH) clean
-	rm -f $(OBJ_ALL)
+	rm -f $(REMOVE_O_ALL)
 
 fclean: clean
 	$(MAKE) -C $(LIB_PATH) fclean

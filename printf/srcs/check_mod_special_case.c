@@ -6,7 +6,7 @@
 /*   By: enena <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/16 22:28:04 by enena             #+#    #+#             */
-/*   Updated: 2020/12/16 23:11:11 by enena            ###   ########.fr       */
+/*   Updated: 2020/12/18 20:13:13 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,11 @@ void	ft_check_special_case(t_list_prf *curr, char *s)
 	{
 		*(curr->width) *= -1;
 		curr->flag |= MNUS_FLAG;
+	}
+	if (curr->prec && *(curr->prec) < 0)
+	{
+		free(curr->prec);
+		curr->prec = NULL;
 	}
 	if (curr->flag & MNUS_FLAG)
 		curr->flag &= (~(ZERO_FLAG));

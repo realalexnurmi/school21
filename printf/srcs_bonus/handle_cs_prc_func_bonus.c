@@ -6,11 +6,11 @@
 /*   By: enena <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/17 00:01:27 by enena             #+#    #+#             */
-/*   Updated: 2020/12/17 23:26:21 by enena            ###   ########.fr       */
+/*   Updated: 2020/12/18 19:49:35 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf_bonus.h"
+#include "libftprintf.h"
 
 t_bool	ft_s_func(void *node)
 {

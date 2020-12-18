@@ -6,11 +6,11 @@
 /*   By: enena <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/17 00:03:27 by enena             #+#    #+#             */
-/*   Updated: 2020/12/17 23:22:31 by enena            ###   ########.fr       */
+/*   Updated: 2020/12/18 19:49:46 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf_bonus.h"
+#include "libftprintf.h"
 
 t_bool	ft_di_func(void *node)
 {
@@ -24,7 +24,7 @@ t_bool	ft_di_func(void *node)
 		return (FALSE);
 	if (!(print = ft_take_space_plus(lp, print)))
 		return (FALSE);
-	if (!(print = ft_take_prec_dioux(lp, print)))
+	if (!(print = ft_take_prec_int(lp, print)))
 		return (FALSE);
 	if (!(lp->print = ft_make_min_width(lp, print)))
 		return (FALSE);
@@ -41,7 +41,7 @@ t_bool	ft_u_func(void *node)
 	num = ft_take_unsigned(lp);
 	if (!(print = ft_ulltoa_base(num, 10)))
 		return (FALSE);
-	if (!(print = ft_take_prec_dioux(lp, print)))
+	if (!(print = ft_take_prec_int(lp, print)))
 		return (FALSE);
 	if (!(lp->print = ft_make_min_width(lp, print)))
 		return (FALSE);
@@ -58,7 +58,7 @@ t_bool	ft_x_func(void *node)
 	num = ft_take_unsigned(lp);
 	if (!(print = ft_ulltoa_base(num, 16)))
 		return (FALSE);
-	if (!(print = ft_take_prec_dioux(lp, print)))
+	if (!(print = ft_take_prec_int(lp, print)))
 		return (FALSE);
 	if (!(print = ft_hash(lp, print, TRUE)))
 		return (FALSE);
@@ -72,7 +72,6 @@ t_bool	ft_x_func(void *node)
 t_bool	ft_p_func(void *node)
 {
 	t_list_prf	*lp;
-	char		*print;
 
 	lp = (t_list_prf *)node;
 	lp->flag |= HASH_FLAG;

@@ -6,15 +6,11 @@
 /*   By: enena <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/08 14:43:01 by enena             #+#    #+#             */
-/*   Updated: 2020/12/16 23:04:55 by enena            ###   ########.fr       */
+/*   Updated: 2020/12/18 19:45:50 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifdef BONUS
-# include "libftprintf_bonus.h"
-#else
 # include "libftprintf.h"
-#endif
 
 t_bool			ft_preparser(t_list_prf **l_spec, char const *fs)
 {

@@ -6,15 +6,11 @@
 /*   By: enena <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/16 22:55:15 by enena             #+#    #+#             */
-/*   Updated: 2020/12/16 22:56:13 by enena            ###   ########.fr       */
+/*   Updated: 2020/12/18 19:46:12 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifdef BONUS
-# include "libftprintf_bonus.h"
-#else
 # include "libftprintf.h"
-#endif
 
 void		ft_lstprf_addback(t_list_prf **lst, t_list_prf *new)
 {
