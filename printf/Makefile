@@ -6,7 +6,7 @@
 #    By: enena <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/08/03 17:51:07 by enena             #+#    #+#              #
-#    Updated: 2020/12/18 22:50:17 by enena            ###   ########.fr        #
+#    Updated: 2020/12/18 22:51:22 by enena            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -74,6 +74,7 @@ endif
 vpath %.c $(ENGINE_PATH) $(MAND_PATH) $(BONUS_PATH)
 vpath %.h hdrs
 vpath %.a $(LIB_PATH)
+
 SRCS_ALL = $(PRINTF_SRC) $(ENGINE_SRCS) $(BODY_SRCS)
 
 OBJ_ALL = $(SRCS_ALL:%.c=%.o)
