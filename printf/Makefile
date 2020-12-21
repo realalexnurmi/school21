@@ -6,17 +6,17 @@
 #    By: enena <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/08/03 17:51:07 by enena             #+#    #+#              #
-#    Updated: 2020/12/18 22:51:22 by enena            ###   ########.fr        #
+#    Updated: 2020/12/22 01:32:05 by enena            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SHELL = /bin/sh
 
-.PHONY: all clean fclean re bonus 
+.PHONY: all clean fclean re bonus checkpar
 
 CC = gcc
 
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -c -Wall -Wextra -Werror
 
 NAME = libftprintf.a
 
@@ -26,83 +26,112 @@ LIB_PATH = libft
 
 LIB_NAME = ft
 
-HEADER_MAND = libftprintf.h
+vpath %.a $(LIB_PATH)
 
-HEADER_BONUS = libftprintf_bonus.h
+HEADER_PRINTF = libftprintf.h
 
-PRINTF_SRC = ft_printf.c
+HEADERS_NAME = srcs
 
-ENGINE_PATH = engine_srcs
+vpath %.h hdrs
 
-ENGINE_SRCS =	find_handler.c\
-				find_width_prec.c\
-				ft_error_escape.c\
-				funcdo_width_prec.c\
-				general_func.c\
-				list_free_utils.c\
-				list_work_utils.c\
-				tab_utils.c
+ENGINE_NAME =	ft_printf\
+				find_handler\
+				find_width_prec\
+				ft_error_escape\
+				funcdo_width_prec\
+				general_func\
+				list_free_utils\
+				list_work_utils\
+				tab_utils
 
-MAND_PATH = srcs
-
-MAND_SRCS = apply_handlers.c\
-			check_mod_special_case.c\
-			ft_lstprf_new.c\
-			funcdo_convert_utils.c\
-			handle_cs_prc_func.c\
-			handle_diuxp_func.c\
-			malloc_claim_content.c
+JOINT_NAME = apply_handlers\
+			 check_mod_special_case\
+			 ft_lstprf_new\
+			 funcdo_convert_utils\
+			 handle_cs_prc_func\
+			 handle_diuxp_func\
+			 malloc_claim_content
 
 BONUS ?= off
 
-BONUS_PATH = srcs_bonus
-
-BONUS_SRCS = claim_size_content_funcs_bonus.c\
-			 malloc_size_content_funcs_bonus.c\
-			 handle_nofge_func_bonus.c
+BONUS_NAME = claim_size_content_funcs\
+			 malloc_size_content_funcs\
+			 handle_nofge_func
 
 ifeq ($(BONUS),on)
 	DEFINE = BONUS
-	BODY_SRCS = $(MAND_SRCS:%.c=%_bonus.c) $(BONUS_SRCS)
-	HEADER_ALL = $(HEADER_BONUS)
+	INTER_ENGINE_SUF = _bp
+	INTER_SUF = _bonus
+	OPOSITE_ENGINE_SUF = _mp
+	OPOSITE_SUF = _mandatory
+	BODY_NAME = $(JOINT_NAME) $(BONUS_NAME)
+	OPOSITE_NAME = $(JOINT_NAME)
 else
 	DEFINE = MANDATORY
-	BODY_SRCS = $(MAND_SRCS)
-	HEADER_ALL = $(HEADER_MAND)
+	INTER_ENGINE_SUF = _mp
+	INTER_SUF = _mandatory
+	OPOSITE_ENGINE_SUF = _bp
+	OPOSITE_SUF = _bonus
+	BODY_NAME = $(JOINT_NAME)
+	OPOSITE_NAME = $(JOINT_NAME) $(BONUS_NAME)
 endif
 
-vpath %.c $(ENGINE_PATH) $(MAND_PATH) $(BONUS_PATH)
-vpath %.h hdrs
-vpath %.a $(LIB_PATH)
+ENGINE_PATH = engine
 
-SRCS_ALL = $(PRINTF_SRC) $(ENGINE_SRCS) $(BODY_SRCS)
+OBJ_PATH = obj/
 
-OBJ_ALL = $(SRCS_ALL:%.c=%.o)
+SRCS_PATH = $(addsuffix $(INTER_SUF), srcs)
 
-REMOVE_O_ALL = $(OBJ_ALL) $(MAND_SRCS:%.c=%_bonus.o) $(BONUS_SRCS:%.c=%.o)
+O_ENGINE = $(addsuffix .o, $(addsuffix $(INTER_ENGINE_SUF), $(ENGINE_NAME)))
+
+O_BODY = $(addsuffix .o, $(addsuffix $(INTER_SUF), $(BODY_NAME)))
+
+O_ALL = $(O_ENGINE) $(O_BODY)
+
+O_ENGINE_GOAL = $(O_ENGINE:%$(INTER_ENGINE_SUF).o=%.o) 
+
+O_BODY_GOAL = $(O_BODY:%$(INTER_SUF).o=%.o)
+
+O_ALL_GOAL = $(O_ENGINE_GOAL) $(O_BODY_GOAL)
+
+O_OPOSITE_ENGINE = $(addsuffix .o, $(addsuffix $(OPOSITE_ENGINE_SUF), $(ENGINE_NAME)))
+
+O_OPOSITE_BODY = $(addsuffix .o, $(addsuffix $(OPOSITE_SUF), $(OPOSITE_NAME)))
+
+O_OPOSITE = $(O_OPOSITE_ENGINE) $(O_OPOSITE_BODY)
+
+HEADER_SRCS = $(addsuffix .h, $(addsuffix $(INTER_SUF), $(HEADER_NAME)))
+
+vpath %.c $(ENGINE_PATH) $(SRCS_PATH)
 
 all: $(NAME)
 
-$(LIB):
-	$(MAKE) -C $(LIB_PATH)
-	cp $(LIB_PATH)/$(LIB) $(NAME)
-
-%.o: %.c $(HEADER_ALL)
-	$(CC) -c $(FLAGS) -Ihdrs -D$(DEFINE) $< -o $@
-
-$(NAME): $(LIB) $(OBJ_ALL)	
-	ar rc $@ $(OBJ_ALL)
+$(NAME): $(LIB) $(O_ALL)
+	rm -f $(O_OPOSITE)
+	ar rc $@ $(O_ALL_GOAL)
+	rm -f $(O_ALL_GOAL)
 	ranlib $@
 
+$(LIB):
+	@$(MAKE) -C $(LIB_PATH)
+
+%$(INTER_SUF).o: %$(INTER_SUF).c
+	$(CC) $(FLAGS) -I. -D$(DEFINE) $< -o $@
+	cp $@ $(@:%$(INTER_SUF).o=%.o)
+
+%$(INTER_ENGINE_SUF).o: %.c $(HEADER_PRINTF)
+	$(CC) $(FLAGS) -I. -D$(DEFINE) $< -o $@
+	cp $@ $(@:%$(INTER_ENGINE_SUF).o=%.o)
+
 bonus:
-	$(MAKE) BONUS:=on all
+	@$(MAKE) BONUS:=on all
 
 clean:
-	$(MAKE) -C $(LIB_PATH) clean
-	rm -f $(REMOVE_O_ALL)
+	@$(MAKE) -C $(LIB_PATH) clean
+	@rm -rf $(O_ALL) $(O_ALL_GOAL) $(O_OPOSITE)
 
 fclean: clean
-	$(MAKE) -C $(LIB_PATH) fclean
-	rm -f $(NAME)
+	@$(MAKE) -C $(LIB_PATH) fclean
+	@rm -f $(NAME)
 
 re: fclean all

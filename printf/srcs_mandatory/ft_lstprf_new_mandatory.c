@@ -1,29 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   funcdo_convert_utils.c                             :+:      :+:    :+:   */
+/*   ft_lstprf_new.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: enena <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/15 16:40:06 by enena             #+#    #+#             */
-/*   Updated: 2020/12/17 23:46:32 by enena            ###   ########.fr       */
+/*   Created: 2020/12/16 22:50:11 by enena             #+#    #+#             */
+/*   Updated: 2020/12/21 21:46:26 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-long long int	ft_take_signed(t_list_prf *curr)
+t_list_prf	*ft_lstprf_new(size_t begin, size_t end, t_func_do func)
 {
-	long long int	ret;
+	t_list_prf	*new;
 
-	ret = *((int *)curr->p_cnt);
-	return (ret);
-}
-
-t_ullint		ft_take_unsigned(t_list_prf *curr)
-{
-	t_ullint	ret;
-
-	ret = *((t_uint *)curr->p_cnt);
-	return (ret);
+	new = NULL;
+	if (!(new = malloc(sizeof(t_list_prf))))
+		return (NULL);
+	new->next = NULL;
+	new->begin = begin;
+	new->end = end;
+	new->func = func;
+	new->flag = NONE_FLAG;
+	new->width = NULL;
+	new->prec = NULL;
+	new->p_cnt = NULL;
+	new->print = NULL;
+	return (new);
 }

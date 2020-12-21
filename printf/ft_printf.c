@@ -6,13 +6,13 @@
 /*   By: enena <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/19 17:37:53 by enena             #+#    #+#             */
-/*   Updated: 2020/12/18 21:59:36 by enena            ###   ########.fr       */
+/*   Updated: 2020/12/21 19:30:42 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-int				ft_printf(char const *format, ...)
+int		ft_printf(char const *format, ...)
 {
 	char			*print_str;
 	char			**s_tab;

@@ -6,11 +6,11 @@
 /*   By: enena <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/16 22:46:19 by enena             #+#    #+#             */
-/*   Updated: 2020/12/18 19:45:33 by enena            ###   ########.fr       */
+/*   Updated: 2020/12/22 01:35:25 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "libftprintf.h"
+#include "libftprintf.h"
 
 char	*ft_make_min_width(t_list_prf *lp, char *pr)
 {
