@@ -1,24 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   ft_error_escape.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: enena <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/31 18:54:20 by enena             #+#    #+#             */
-/*   Updated: 2020/12/23 12:10:18 by enena            ###   ########.fr       */
+/*   Created: 2020/12/16 22:56:50 by enena             #+#    #+#             */
+/*   Updated: 2020/12/22 15:46:10 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "libftprintf.h"
 
-void	*ft_calloc(size_t count, size_t size)
+int	ft_error_escape(t_list_prf **list)
 {
-	void	*p_temp;
-
-	p_temp = NULL;
-	p_temp = malloc(count * size);
-	if (p_temp)
-		ft_bzero(p_temp, count * size);
-	return (p_temp);
+	ft_lstprf_clear(list);
+	return (-1);
 }

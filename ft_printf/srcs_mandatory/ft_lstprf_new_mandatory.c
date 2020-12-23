@@ -1,24 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   ft_lstprf_new.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: enena <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/31 18:54:20 by enena             #+#    #+#             */
-/*   Updated: 2020/12/23 12:10:18 by enena            ###   ########.fr       */
+/*   Created: 2020/12/16 22:50:11 by enena             #+#    #+#             */
+/*   Updated: 2020/12/22 14:39:58 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "libftprintf.h"
 
-void	*ft_calloc(size_t count, size_t size)
+t_list_prf	*ft_lstprf_new(size_t begin, size_t end, t_func_do func)
 {
-	void	*p_temp;
+	t_list_prf	*new;
 
-	p_temp = NULL;
-	p_temp = malloc(count * size);
-	if (p_temp)
-		ft_bzero(p_temp, count * size);
-	return (p_temp);
+	new = NULL;
+	if (!(new = malloc(sizeof(t_list_prf))))
+		return (NULL);
+	new->next = NULL;
+	new->begin = begin;
+	new->end = end;
+	new->func = func;
+	new->flag = NONE_FLAG;
+	new->width = NULL;
+	new->prec = NULL;
+	new->p_cnt = NULL;
+	new->len = 0;
+	new->print = NULL;
+	return (new);
 }

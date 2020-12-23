@@ -1,24 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   littlethings.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: enena <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/31 18:54:20 by enena             #+#    #+#             */
-/*   Updated: 2020/12/23 12:10:18 by enena            ###   ########.fr       */
+/*   Created: 2020/12/22 18:08:39 by enena             #+#    #+#             */
+/*   Updated: 2020/12/22 18:10:29 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "libftprintf.h"
 
-void	*ft_calloc(size_t count, size_t size)
+char	*ft_nullstr(void)
 {
-	void	*p_temp;
+	char *ret;
 
-	p_temp = NULL;
-	p_temp = malloc(count * size);
-	if (p_temp)
-		ft_bzero(p_temp, count * size);
-	return (p_temp);
+	ret = ft_calloc(7, sizeof(char));
+	ft_memcpy(ret, "(null)", 6);
+	return (ret);
+}
+
+void	ft_takesign(char *sign, char *anum)
+{
+	*sign = *anum;
+	*anum = '0';
+}
+
+void	ft_addsign(char sign, char *anum)
+{
+	while (!(ft_isdigit(*anum)))
+		anum++;
+	*anum = sign;
 }

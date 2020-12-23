@@ -1,24 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   ft_halfnumstr.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: enena <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/31 18:54:20 by enena             #+#    #+#             */
-/*   Updated: 2020/12/23 12:10:18 by enena            ###   ########.fr       */
+/*   Created: 2020/12/23 12:12:53 by enena             #+#    #+#             */
+/*   Updated: 2020/12/23 12:44:27 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_calloc(size_t count, size_t size)
+void	ft_halfnumstr(char *quo)
 {
-	void	*p_temp;
+	char	*temp;
+	char	newn;
+	char	trans;
 
-	p_temp = NULL;
-	p_temp = malloc(count * size);
-	if (p_temp)
-		ft_bzero(p_temp, count * size);
-	return (p_temp);
+	temp = quo;
+	trans = 0;
+	while (*temp)
+	{
+		newn = (((trans * 10) + (*temp - '0')) / 2) + '0';
+		trans = ((*temp - '0') % 2) + '0';
+		*temp = newn;
+		temp++;
+	}
 }

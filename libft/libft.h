@@ -6,7 +6,7 @@
 /*   By: enena <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/31 19:33:47 by enena             #+#    #+#             */
-/*   Updated: 2020/12/17 18:35:50 by enena            ###   ########.fr       */
+/*   Updated: 2020/12/23 13:06:55 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,16 @@ typedef struct	s_list
 }				t_list;
 
 /*
+** Struct for convert double
+*/
+typedef struct	s_binary_d
+{
+	char			sign;
+	t_ullint		mant;
+	long long int	exp;
+}					t_binary_d;
+
+/*
 ** Family of list-based functions
 */
 t_list			*ft_lstnew(void *content);
@@ -101,6 +111,7 @@ long long int	ft_atoll(const char *str);
 char			*ft_itoa(int n);
 char			*ft_lltoa_base(long long int n, t_uchar base);
 char			*ft_ulltoa_base(t_ullint n, t_uchar base);
+char			*ft_dtoa(double dnum, int prec);
 /*
 ** Function's for analize character.
 ** My functions are similar to macros ctype.h returning TRUE (1) and FALSE(0)
@@ -124,6 +135,8 @@ void			ft_upper(char *s);
 void			*ft_memset(void *b, int c, size_t len);
 void			ft_bzero(void *s, size_t n);
 void			*ft_calloc(size_t count, size_t size);
+void			*ft_zerroc(size_t count, size_t size);
+void			ft_twinfree(void **twin1, void **twin2);
 void			*ft_memccpy(void *dst, const void *src, int c, size_t n);
 void			*ft_memchr(const void *s, int c, size_t n);
 int				ft_memcmp(const void *s1, const void *s2, size_t n);
@@ -161,5 +174,12 @@ void			ft_putendl_fd(char *s, int fd);
 void			ft_putnbr_fd(int n, int fd);
 void			ft_putchar_fd(char *c, int fd);
 size_t			ft_putstr_fd(char *s, int fd);
+/*
+** Functions to strings arithmetic
+*/
+void			ft_sumnumstr(char *sum, char *add);
+void			ft_mulnumstr(char *comp, char *mult);
+char			*ft_pownumstr(char *base, char *pow);
+void			ft_halfnumstr(char *quo);
 
 #endif
