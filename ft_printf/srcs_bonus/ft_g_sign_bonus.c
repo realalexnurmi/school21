@@ -1,27 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_zerroc.c                                        :+:      :+:    :+:   */
+/*   ft_g_sign_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: enena <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/23 12:05:04 by enena             #+#    #+#             */
-/*   Updated: 2020/12/24 00:35:46 by enena            ###   ########.fr       */
+/*   Created: 2020/12/26 03:26:20 by enena             #+#    #+#             */
+/*   Updated: 2020/12/26 03:33:47 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "libftprintf.h"
 
-char	*ft_zerroc(size_t count)
+t_bool		take_g_sign(double *fnum)
 {
-	char	*p_temp;
+	t_ullint	mem;
+	t_bool		ret;
 
-	p_temp = NULL;
-	p_temp = malloc((count + 1) * sizeof(char));
-	if (p_temp)
-	{
-		ft_memset(p_temp, '0', count);
-		p_temp[count] = '\0';
-	}
-	return (p_temp);
+	ft_memcpy(&mem, fnum, 8);
+	ret = !!(mem & 0x8000000000000000);
+	mem &= 0x7fffffffffffffff;
+	ft_memcpy(fnum, &mem, 8);
+	return (ret);
 }

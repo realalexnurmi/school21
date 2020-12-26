@@ -6,7 +6,7 @@
 /*   By: enena <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/17 00:03:27 by enena             #+#    #+#             */
-/*   Updated: 2020/12/23 00:28:58 by enena            ###   ########.fr       */
+/*   Updated: 2020/12/25 08:01:02 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,12 +68,12 @@ t_bool	ft_x_func(void *node)
 	if (!(print = ft_take_prec_int(lp, print, FALSE)))
 		return (FALSE);
 	if (num != 0 || lp->func == ft_p_func)
-		if (!(print = ft_hash(lp, print, TRUE)))
+		if (!(print = ft_hash(lp, print)))
 			return (FALSE);
 	if (!(lp->print = ft_make_min_width(lp, print)))
-		return (FALSE);	
+		return (FALSE);
 	if (num != 0 && lp->flag & HASH_FLAG)
-		ft_checkXhash(lp->print);
+		ft_checkxhash(lp->print);
 	if (lp->flag & UPCS_FLAG)
 		ft_upper(lp->print);
 	return (TRUE);

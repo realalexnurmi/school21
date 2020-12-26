@@ -6,7 +6,7 @@
 /*   By: enena <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/21 14:40:04 by enena             #+#    #+#             */
-/*   Updated: 2020/12/22 23:54:40 by enena            ###   ########.fr       */
+/*   Updated: 2020/12/26 03:24:05 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,8 +118,8 @@ static const char		g_conv_array_printf[CONV_COUNT] = {
 	'x',
 	'n',
 	'f',
-	'g',
-	'e'};
+	'e',
+	'g'};
 
 /*
 ** Global array corresponding handlers for specifier:
@@ -137,8 +137,8 @@ static const t_func_do	g_func_array_printf[CONV_COUNT] = {
 	ft_x_func,
 	ft_n_func,
 	ft_f_func,
-	ft_g_func,
-	ft_e_func};
+	ft_e_func,
+	ft_g_func};
 
 /*
 ** BODY PART {srcs_bonus folder}
@@ -192,7 +192,17 @@ void			ft_claim_z_content(t_list_prf *curr, va_list *ap, char conv);
 long long int	ft_take_signed(t_list_prf *curr);
 t_ullint		ft_take_unsigned(t_list_prf *curr);
 char			*ft_take_space_plus(t_list_prf *lp, char *pr);
-char			*ft_hash(t_list_prf *lp, char *pr, t_bool isx);
-void			ft_checkXhash(char *pr);
+char			*ft_hash(t_list_prf *lp, char *pr);
+void			ft_checkxhash(char *pr);
+
+/*
+** extention_handlers
+*/
+t_bool			ft_isspecialfloat(char *pr, t_uchar *outflag);
+void			ft_movedot(char *b, char *place);
+char			*ft_findexp(double fnum, int prec, int *intexp);
+char			*ft_writeexp(char *in, int exp, int prec);
+char			*ft_get_e(double fnum, int prec);
+t_bool			take_g_sign(double *fnum);
 
 #endif

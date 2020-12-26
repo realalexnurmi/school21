@@ -6,7 +6,7 @@
 #    By: enena <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/08/03 17:51:07 by enena             #+#    #+#              #
-#    Updated: 2020/12/23 12:49:20 by enena            ###   ########.fr        #
+#    Updated: 2020/12/24 15:11:28 by enena            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,12 +26,13 @@ SRC_NAME =  ft_atoi\
 			ft_bzero\
 			ft_calloc\
 			ft_zerroc\
-			ft_twinfree\
 			ft_isalnum\
 			ft_isalpha\
 			ft_isascii\
 			ft_isupper\
 			ft_islower\
+			ft_isodd\
+			ft_iseven\
 			ft_upper\
 			ft_lower\
 			ft_isspace\
@@ -77,7 +78,8 @@ SRC_NAME =  ft_atoi\
 			ft_sumnumstr\
 			ft_mulnumstr\
 			ft_halfnumstr\
-			ft_pownumstr
+			ft_pownumstr\
+			ft_getmemdouble
 
 BONUS_NAME = ft_lstadd_back\
 			 ft_lstadd_front\

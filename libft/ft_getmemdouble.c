@@ -1,27 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_zerroc.c                                        :+:      :+:    :+:   */
+/*   ft_getmemdouble.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: enena <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/23 12:05:04 by enena             #+#    #+#             */
-/*   Updated: 2020/12/24 00:35:46 by enena            ###   ########.fr       */
+/*   Created: 2020/12/24 14:27:02 by enena             #+#    #+#             */
+/*   Updated: 2020/12/25 18:34:24 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_zerroc(size_t count)
+t_binary_d	ft_getmemdouble(double dnum, char **a, char **b, char **c, char **d)
 {
-	char	*p_temp;
+	t_binary_d	mem;
 
-	p_temp = NULL;
-	p_temp = malloc((count + 1) * sizeof(char));
-	if (p_temp)
-	{
-		ft_memset(p_temp, '0', count);
-		p_temp[count] = '\0';
-	}
-	return (p_temp);
+	ft_memcpy(&mem.mant, &dnum, 8);
+	mem.sign = (mem.mant >> 63) & 0x0000000000000001;
+	mem.exp = ((mem.mant >> 52) & 0x00000000000007ff) - 1023;
+	mem.mant &= 0x000fffffffffffff;
+	if (mem.exp != -1023 && mem.exp < 0)
+		mem.mant |= 0x0010000000000000;
+	*a = NULL;
+	*b = NULL;
+	*c = NULL;
+	*d = NULL;
+	return (mem);
 }

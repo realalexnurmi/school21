@@ -1,27 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_zerroc.c                                        :+:      :+:    :+:   */
+/*   ft_swap_p.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: enena <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/23 12:05:04 by enena             #+#    #+#             */
-/*   Updated: 2020/12/24 00:35:46 by enena            ###   ########.fr       */
+/*   Created: 2020/12/25 12:51:54 by enena             #+#    #+#             */
+/*   Updated: 2020/12/25 19:19:30 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_zerroc(size_t count)
+void	ft_swap_p(void **a, void **b)
 {
-	char	*p_temp;
+	void *c;
 
-	p_temp = NULL;
-	p_temp = malloc((count + 1) * sizeof(char));
-	if (p_temp)
-	{
-		ft_memset(p_temp, '0', count);
-		p_temp[count] = '\0';
-	}
-	return (p_temp);
+	c = *a;
+	*a = *b;
+	*b = c;
 }

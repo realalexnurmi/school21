@@ -6,7 +6,7 @@
 #    By: enena <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/08/03 17:51:07 by enena             #+#    #+#              #
-#    Updated: 2020/12/15 17:28:55 by enena            ###   ########.fr        #
+#    Updated: 2020/12/25 19:57:31 by enena            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,17 +25,21 @@ SRC_NAME =  ft_atoi\
 			ft_atoll\
 			ft_bzero\
 			ft_calloc\
+			ft_zerroc\
 			ft_isalnum\
 			ft_isalpha\
 			ft_isascii\
 			ft_isupper\
 			ft_islower\
+			ft_isodd\
+			ft_iseven\
 			ft_upper\
 			ft_lower\
 			ft_isspace\
 			ft_isdigit\
 			ft_isprint\
 			ft_itoa\
+			ft_dtoa\
 			ft_lltoa_base\
 			ft_ulltoa_base\
 			ft_memccpy\
@@ -71,6 +75,14 @@ SRC_NAME =  ft_atoi\
 			ft_wcstombs\
 			ft_wclen\
 			ft_wstrlen_byte\
+			ft_sumnumstr\
+			ft_mulnumstr\
+			ft_halfnumstr\
+			ft_pownumstr\
+			ft_getmemdouble\
+			ft_doprec_fstr\
+			ft_swap_p\
+			ft_swap_ch
 
 BONUS_NAME = ft_lstadd_back\
 			 ft_lstadd_front\
@@ -95,7 +107,7 @@ HEADER_ALL ?= $(HEADER)
 all: $(NAME)
 
 $(NAME): $(O_ALL)
-	@ar rc $@ $?
+	ar rc $@ $?
 	@ranlib $@
 
 bonus:

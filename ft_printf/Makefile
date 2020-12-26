@@ -6,13 +6,13 @@
 #    By: enena <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/08/03 17:51:07 by enena             #+#    #+#              #
-#    Updated: 2020/12/23 00:28:12 by enena            ###   ########.fr        #
+#    Updated: 2020/12/26 04:38:39 by enena            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SHELL = /bin/sh
 
-.PHONY: all clean fclean re bonus
+.PHONY: all clean fclean re bonus mklib
 
 CC = gcc
 
@@ -22,17 +22,17 @@ NAME = libftprintf.a
 
 LIB = libft.a
 
-LIB_PATH = libft
+LIB_PATH = ./libft
 
 LIB_NAME = ft
 
 vpath %.a $(LIB_PATH)
 
-HEADER_PRINTF = libftprintf.h tester.h
+HEADER_PRINTF = libftprintf.h
 
 HEADERS_NAME = srcs
 
-vpath %.h hdrs
+vpath %.h ./hdrs
 
 ENGINE_NAME =	ft_printf\
 				find_handler\
@@ -43,8 +43,7 @@ ENGINE_NAME =	ft_printf\
 				list_free_utils\
 				list_work_utils\
 				tab_utils\
-				littlethings#\
-				tester
+				littlethings
 
 JOINT_NAME = apply_handlers\
 			 check_mod_special_case\
@@ -54,11 +53,13 @@ JOINT_NAME = apply_handlers\
 			 handle_diuxp_func\
 			 malloc_claim_content
 
-BONUS ?= on
+BONUS ?= off
 
 BONUS_NAME = claim_size_content_funcs\
 			 malloc_size_content_funcs\
-			 handle_nofge_func
+			 handle_nofge_func\
+			 extention_handlers\
+			 ft_g_sign
 
 ifeq ($(BONUS),on)
 	DEFINE = BONUS
@@ -79,8 +80,6 @@ else
 endif
 
 ENGINE_PATH = engine
-
-OBJ_PATH = obj/
 
 SRCS_PATH = $(addsuffix $(INTER_SUF), srcs)
 
@@ -106,19 +105,21 @@ O_REMOVE = $(addsuffix .o, $(ENGINE_NAME) $(JOINT_NAME) $(BONUS_NAME)) $(O_ALL) 
 
 HEADER_SRCS = $(addsuffix .h, $(addsuffix $(INTER_SUF), $(HEADER_NAME)))
 
-vpath %.c $(ENGINE_PATH) $(SRCS_PATH)
+vpath %.c $(ENGINE_PATH) $(SRCS_PATH) .
 
-all: $(NAME)
+all: mklib $(NAME)
 
-$(NAME): $(LIB) $(O_ALL)
+$(NAME): $(O_ALL)
 	@rm -f $(O_OPOSITE)
 	ar rc $@ $(filter $(?:%$(INTER_ENGINE_SUF).o=%.o) $(?:%$(INTER_SUF).o=%.o) ,$(O_ALL_GOAL))
-	ranlib $@
+	@ranlib $@
 
-$(LIB):
+$(LIB): mklib
+
+mklib: 
 	@$(MAKE) -C $(LIB_PATH)
 
-%$(INTER_SUF).o: %$(INTER_SUF).c
+%$(INTER_SUF).o: %$(INTER_SUF).c $(HEADER_SRCS)
 	$(CC) $(FLAGS) -I. -D$(DEFINE) $< -o $@
 	cp $@ $(@:%$(INTER_SUF).o=%.o)
 

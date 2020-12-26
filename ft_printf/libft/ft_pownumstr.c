@@ -6,7 +6,7 @@
 /*   By: enena <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/23 11:21:13 by enena             #+#    #+#             */
-/*   Updated: 2020/12/25 18:58:40 by enena            ###   ########.fr       */
+/*   Updated: 2020/12/24 10:36:57 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,6 @@ char	*ft_pownumstr(char *base, char *pow)
 		while (--pown)
 		{
 			ft_mulnumstr(rez, base);
-			//printf("rez %s\n\n", rez);
-			//printf("pow %lld\n\n", pown);
 		}
 		return (rez);
 	}

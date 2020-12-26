@@ -6,7 +6,7 @@
 /*   By: enena <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/31 19:33:47 by enena             #+#    #+#             */
-/*   Updated: 2020/12/23 13:06:55 by enena            ###   ########.fr       */
+/*   Updated: 2020/12/25 18:32:31 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ typedef struct	s_binary_d
 	char			sign;
 	t_ullint		mant;
 	long long int	exp;
-}					t_binary_d;
+}				t_binary_d;
 
 /*
 ** Family of list-based functions
@@ -125,6 +125,8 @@ t_bool			ft_isalnum(int c);
 t_bool			ft_isascii(int c);
 t_bool			ft_isprint(int c);
 t_bool			ft_isspace(int c);
+t_bool			ft_isodd(int c);
+t_bool			ft_iseven(int c);
 int				ft_tolower(int c);
 int				ft_toupper(int c);
 void			ft_lower(char *s);
@@ -135,8 +137,7 @@ void			ft_upper(char *s);
 void			*ft_memset(void *b, int c, size_t len);
 void			ft_bzero(void *s, size_t n);
 void			*ft_calloc(size_t count, size_t size);
-void			*ft_zerroc(size_t count, size_t size);
-void			ft_twinfree(void **twin1, void **twin2);
+char			*ft_zerroc(size_t count);
 void			*ft_memccpy(void *dst, const void *src, int c, size_t n);
 void			*ft_memchr(const void *s, int c, size_t n);
 int				ft_memcmp(const void *s1, const void *s2, size_t n);
@@ -180,6 +181,10 @@ size_t			ft_putstr_fd(char *s, int fd);
 void			ft_sumnumstr(char *sum, char *add);
 void			ft_mulnumstr(char *comp, char *mult);
 char			*ft_pownumstr(char *base, char *pow);
-void			ft_halfnumstr(char *quo);
+char			*ft_halfnumstr(char *quo);
+/*
+** Utils for dtoa
+*/
+t_binary_d		ft_getmemdouble(double dnum, char **a, char **b, char **c, char **d);
 
 #endif

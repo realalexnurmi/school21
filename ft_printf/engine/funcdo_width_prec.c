@@ -6,7 +6,7 @@
 /*   By: enena <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/16 22:46:19 by enena             #+#    #+#             */
-/*   Updated: 2020/12/22 23:44:15 by enena            ###   ########.fr       */
+/*   Updated: 2020/12/25 07:55:24 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,9 +75,9 @@ char	*ft_take_prec_int(t_list_prf *lp, char *pr, t_bool issigned)
 			free(pr);
 			return (ret);
 		}
-	}	
+	}
 	if ((!(lp->prec) || (*(lp->prec) == 0)) &&
 			len == 1 && *(pr + issigned) == '0')
-			*(pr + issigned) = '\0';	
+		*(pr + issigned) = '\0';
 	return (pr);
 }

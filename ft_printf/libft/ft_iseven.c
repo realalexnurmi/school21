@@ -1,27 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_zerroc.c                                        :+:      :+:    :+:   */
+/*   ft_iseven.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: enena <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/23 12:05:04 by enena             #+#    #+#             */
-/*   Updated: 2020/12/24 00:35:46 by enena            ###   ########.fr       */
+/*   Created: 2020/12/24 14:46:59 by enena             #+#    #+#             */
+/*   Updated: 2020/12/24 14:47:30 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_zerroc(size_t count)
+t_bool	ft_isodd(int c)
 {
-	char	*p_temp;
-
-	p_temp = NULL;
-	p_temp = malloc((count + 1) * sizeof(char));
-	if (p_temp)
-	{
-		ft_memset(p_temp, '0', count);
-		p_temp[count] = '\0';
-	}
-	return (p_temp);
+	if ((c == '0') || (c == '2') || (c == '4') || (c == '6') || (c == '8'))
+		return (TRUE);
+	else
+		return (FALSE);
 }

@@ -6,7 +6,7 @@
 /*   By: enena <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/16 23:38:38 by enena             #+#    #+#             */
-/*   Updated: 2020/12/23 00:20:08 by enena            ###   ########.fr       */
+/*   Updated: 2020/12/26 04:23:14 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,30 +72,35 @@ char			*ft_take_space_plus(t_list_prf *lp, char *pr)
 	return (pr);
 }
 
-char			*ft_hash(t_list_prf *lp, char *pr, t_bool isx)
+char			*ft_hash(t_list_prf *lp, char *pr)
 {
 	char	*ret;
 
 	if (lp->flag & HASH_FLAG)
 	{
-		if (isx)
-		{
-			ret = ft_strjoin("0x", pr);
-		}
+		ret = NULL;
+		if (lp->func == ft_f_func)
+			*(pr + ft_strlen(pr) - 1) = '\0';
 		else
-			ret = ft_strjoin("0", pr);
-		if (!ret)
-			return (NULL);
-		free(pr);
-		return (ret);
+		{
+			if (lp->func == ft_x_func ||
+					lp->func == ft_p_func)
+				ret = ft_strjoin("0x", pr);
+			else if (lp->func == ft_o_func)
+				ret = ft_strjoin("0", pr);
+			if (!ret)
+				return (NULL);
+			free(pr);
+			return (ret);
+		}
 	}
 	return (pr);
 }
 
-void			ft_checkXhash(char *pr)
+void			ft_checkxhash(char *pr)
 {
 	char *sec_place;
-	
+
 	if (ft_strlen(pr) > 3)
 		if (*pr == '0')
 		{

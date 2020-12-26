@@ -6,11 +6,12 @@
 /*   By: enena <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/17 18:14:14 by enena             #+#    #+#             */
-/*   Updated: 2020/12/22 19:25:31 by enena            ###   ########.fr       */
+/*   Updated: 2020/12/26 01:58:38 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
+#include <stdio.h>
 
 t_bool	ft_n_func(void *node)
 {
@@ -46,7 +47,7 @@ t_bool	ft_o_func(void *node)
 		return (FALSE);
 	if (!(print = ft_take_prec_int(lp, print, FALSE)))
 		return (FALSE);
-	if (!(print = ft_hash(lp, print, FALSE)))
+	if (!(print = ft_hash(lp, print)))
 		return (FALSE);
 	if (!(lp->print = ft_make_min_width(lp, print)))
 		return (FALSE);
@@ -56,22 +57,49 @@ t_bool	ft_o_func(void *node)
 t_bool	ft_f_func(void *node)
 {
 	t_list_prf		*lp;
-	
-	lp = (t_list_prf *)node;
-	if (!(node))
-		return (FALSE);
-	lp->print = malloc(1);
-	return (TRUE);
-}
+	char			*print;
+	t_bool			issign;
+	char			sign;
+	int				prec;
 
-t_bool	ft_g_func(void *node)
-{
-	if (!(node))
+	lp = (t_list_prf *)node;
+	prec = (lp->prec ? *lp->prec : 6) + !!(lp->flag & HASH_FLAG);
+	if (!(print = ft_dtoa(*((double *)lp->p_cnt), prec)))
 		return (FALSE);
+	ft_isspecialfloat(print, &(lp->flag));
+	if (!(print = ft_hash(lp, print)))
+		return (FALSE);
+	if (!(print = ft_take_space_plus(lp, print)))
+		return (FALSE);
+	if (!!(issign = !(ft_isdigit(*print))))
+		ft_takesign(&sign, print);
+	if (!(lp->print = ft_make_min_width(lp, print)))
+		return (FALSE);
+	if (lp->flag & UPCS_FLAG)
+		ft_upper(lp->print);
+	if (issign)
+		ft_addsign(sign, lp->print);
 	return (TRUE);
 }
 
 t_bool	ft_e_func(void *node)
+{
+	t_list_prf		*lp;
+	char			*print;
+	int				prec;
+
+	lp = (t_list_prf *)node;
+	prec = (lp->prec ? *lp->prec : 6);
+	if (!(print = ft_get_e(*((double *)lp->p_cnt), prec)))
+		return (FALSE);
+	if (!(lp->print = ft_make_min_width(lp, print)))
+		return (FALSE);
+	if (lp->flag & UPCS_FLAG)
+		ft_upper(lp->print);
+	return (TRUE);
+}
+
+t_bool	ft_g_func(void *node)
 {
 	if (!(node))
 		return (FALSE);
