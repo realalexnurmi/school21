@@ -6,7 +6,7 @@
 #    By: enena <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/08/03 17:51:07 by enena             #+#    #+#              #
-#    Updated: 2020/12/25 19:57:31 by enena            ###   ########.fr        #
+#    Updated: 2020/12/26 20:50:33 by enena            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -82,7 +82,8 @@ SRC_NAME =  ft_atoi\
 			ft_getmemdouble\
 			ft_doprec_fstr\
 			ft_swap_p\
-			ft_swap_ch
+			ft_swap_ch\
+			ft_stous
 
 BONUS_NAME = ft_lstadd_back\
 			 ft_lstadd_front\

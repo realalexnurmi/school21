@@ -6,7 +6,7 @@
 /*   By: enena <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/16 22:43:18 by enena             #+#    #+#             */
-/*   Updated: 2020/12/22 13:31:31 by enena            ###   ########.fr       */
+/*   Updated: 2020/12/26 20:56:19 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_bool	ft_check_width_prec(t_list_prf *curr, va_list *ap, char *s)
 		if (*s == '.')
 			if (!(curr->prec))
 			{
-				if (!(curr->prec = malloc(sizeof(int))))
+				if (!(curr->prec = (int *)malloc(sizeof(int))))
 					return (FALSE);
 				*(curr->prec) = 0;
 			}
@@ -30,7 +30,7 @@ t_bool	ft_check_width_prec(t_list_prf *curr, va_list *ap, char *s)
 			else
 			{
 				if (!(curr->width))
-					if (!(curr->width = malloc(sizeof(int))))
+					if (!(curr->width = (int *)malloc(sizeof(int))))
 						return (FALSE);
 				*(curr->width) = va_arg(*ap, int);
 			}

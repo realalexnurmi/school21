@@ -6,7 +6,7 @@
 /*   By: enena <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/16 22:46:19 by enena             #+#    #+#             */
-/*   Updated: 2020/12/25 07:55:24 by enena            ###   ########.fr       */
+/*   Updated: 2020/12/27 04:30:24 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,14 @@ char	*ft_make_min_width(t_list_prf *lp, char *pr)
 	char	*add;
 	char	*ret;
 
-	lp->len = ft_strlen(pr);
-	lp->len = (lp->len == 0 && lp->func == ft_c_func) ? 1 : lp->len;
+	lp->len = (ft_strlen(pr) == 0 && lp->func == ft_c_func) ? 1 : ft_strlen(pr);
 	if (lp->width)
 	{
+		if (*(lp->width) == INT_MAX || *(lp->width) == INT_MIN)
+			return (NULL);
 		if ((size_t)*(lp->width) > lp->len)
 		{
-			if (!(ret = ft_calloc(*(lp->width) + 1, sizeof(char))))
+			if (!(ret = ft_calloc((size_t)(*(lp->width)) + 1, sizeof(char))))
 				return (NULL);
 			setchar = (lp->flag & ZERO_FLAG) ? '0' : ' ';
 			add = (lp->flag & MNUS_FLAG) ? ret : ret + *(lp->width) - lp->len;

@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: enena <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/19 16:09:01 by enena             #+#    #+#             */
-/*   Updated: 2020/12/30 06:42:00 by enena            ###   ########.fr       */
+/*   Updated: 2020/12/30 07:29:32 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char			*ft_strdup(const char *s)
 {
@@ -98,23 +98,23 @@ int				n_check_line(char **buf, char **line)
 
 int				get_next_line(int fd, char **line)
 {
-	static t_buf	buf;
+	static t_buf	buf[OPEN_MAX];
 
-	if ((fd < 0) || (fd >= OPEN_MAX) || (read(fd, buf.buf, 0) < 0)
+	if ((fd < 0) || (fd >= OPEN_MAX) || (read(fd, buf[fd].buf, 0) < 0)
 			|| !(line) || (BUFFER_SIZE <= 0))
 		return (-1);
 	if (!(*line = ft_strdup("\0")))
 		return (-1);
-	if (buf.buf)
-		if (!!((buf.ret = n_check_line(&buf.buf, line))))
-			return (buf.ret);
-	buf.ret = take_buff(fd, line, &buf.buf);
-	if (!buf.ret && buf.buf)
+	if (buf[fd].buf)
+		if (!!((buf[fd].ret = n_check_line(&buf[fd].buf, line))))
+			return (buf[fd].ret);
+	buf[fd].ret = take_buff(fd, line, &buf[fd].buf);
+	if (!buf[fd].ret && buf[fd].buf)
 	{
 		*line = ft_sec_free(*line);
-		if (!(*line = ft_strdup(buf.buf)))
+		if (!(*line = ft_strdup(buf[fd].buf)))
 			return (-1);
-		buf.buf = ft_sec_free(buf.buf);
+		buf[fd].buf = ft_sec_free(buf[fd].buf);
 	}
-	return (buf.ret);
+	return (buf[fd].ret);
 }

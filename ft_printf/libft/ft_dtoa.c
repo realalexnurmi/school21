@@ -6,7 +6,7 @@
 /*   By: enena <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/16 15:36:10 by enena             #+#    #+#             */
-/*   Updated: 2020/12/25 23:14:13 by enena            ###   ########.fr       */
+/*   Updated: 2020/12/27 11:10:42 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,14 +57,12 @@ static char			*getdec(t_ullint mant, long long int exp, int prec)
 		add[0] = '1';
 		while ((exp-- >= 0) &&
 				(add = ((exp != 1074) ? ft_halfnumstr(add) : add)))
-		{
 			if (exp <= 52)
 			{
 				if (mant & 0x0010000000000000)
 					ft_sumnumstr(ret, add);
 				mant <<= 1;
 			}
-		}
 		free(add);
 	}
 	ret[0] = '.';
@@ -80,7 +78,7 @@ char				*ft_dtoa(double dnum, int prec)
 
 	if (dnum != dnum)
 		return (ft_strdup("nan"));
-	mem = ft_getmemdouble(dnum, &int_ret, &dec, &tmp, &tmp);
+	mem = ft_getmemdouble(dnum, &int_ret, &dec, &tmp);
 	if (mem.exp == 1024)
 		return (mem.sign ? ft_strdup("-inf") : ft_strdup("inf"));
 	if (!(int_ret = getint(mem.mant, mem.exp)) ||

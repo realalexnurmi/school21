@@ -1,24 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   ft_stous.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: enena <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/31 18:54:20 by enena             #+#    #+#             */
-/*   Updated: 2020/12/26 20:42:49 by enena            ###   ########.fr       */
+/*   Created: 2020/12/26 20:43:08 by enena             #+#    #+#             */
+/*   Updated: 2020/12/26 20:52:30 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_calloc(size_t count, size_t size)
+size_t		ft_stous(long long int signd)
 {
-	void	*p_temp;
+	size_t	ret;
 
-	p_temp = NULL;
-	p_temp = malloc(count * size);
-	if (p_temp)
-		ft_bzero(p_temp, count * size);
-	return (p_temp);
+	if (signd < 0)
+		ret = ~signd + 1;
+	else
+		ret = signd;
+	return (ret);
 }

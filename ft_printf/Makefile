@@ -6,13 +6,13 @@
 #    By: enena <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/08/03 17:51:07 by enena             #+#    #+#              #
-#    Updated: 2020/12/26 04:38:39 by enena            ###   ########.fr        #
+#    Updated: 2020/12/27 11:18:59 by enena            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SHELL = /bin/sh
 
-.PHONY: all clean fclean re bonus mklib
+.PHONY: all clean fclean re bonus addlib norme
 
 CC = gcc
 
@@ -22,17 +22,13 @@ NAME = libftprintf.a
 
 LIB = libft.a
 
-LIB_PATH = ./libft
+LIB_PATH = libft
 
 LIB_NAME = ft
-
-vpath %.a $(LIB_PATH)
 
 HEADER_PRINTF = libftprintf.h
 
 HEADERS_NAME = srcs
-
-vpath %.h ./hdrs
 
 ENGINE_NAME =	ft_printf\
 				find_handler\
@@ -105,27 +101,32 @@ O_REMOVE = $(addsuffix .o, $(ENGINE_NAME) $(JOINT_NAME) $(BONUS_NAME)) $(O_ALL) 
 
 HEADER_SRCS = $(addsuffix .h, $(addsuffix $(INTER_SUF), $(HEADER_NAME)))
 
-vpath %.c $(ENGINE_PATH) $(SRCS_PATH) .
+ARGS = rcs
 
-all: mklib $(NAME)
+vpath %.a $(LIB_PATH)
 
-$(NAME): $(O_ALL)
-	@rm -f $(O_OPOSITE)
-	ar rc $@ $(filter $(?:%$(INTER_ENGINE_SUF).o=%.o) $(?:%$(INTER_SUF).o=%.o) ,$(O_ALL_GOAL))
-	@ranlib $@
+vpath %.h hdrs
 
-$(LIB): mklib
+vpath %.c $(ENGINE_PATH) $(SRCS_PATH)
 
-mklib: 
+all: $(NAME)
+
+$(NAME): $(LIB) $(O_ALL)
+	ranlib $@
+
+$(LIB):
 	@$(MAKE) -C $(LIB_PATH)
-
-%$(INTER_SUF).o: %$(INTER_SUF).c $(HEADER_SRCS)
-	$(CC) $(FLAGS) -I. -D$(DEFINE) $< -o $@
-	cp $@ $(@:%$(INTER_SUF).o=%.o)
+	cp $(LIB_PATH)/$(LIB) $(NAME)
 
 %$(INTER_ENGINE_SUF).o: %.c $(HEADER_PRINTF)
 	$(CC) $(FLAGS) -I. -D$(DEFINE) $< -o $@
 	cp $@ $(@:%$(INTER_ENGINE_SUF).o=%.o)
+	ar rc $(NAME) $(@:%$(INTER_ENGINE_SUF).o=%.o)
+
+%$(INTER_SUF).o: %$(INTER_SUF).c $(HEADER_SRCS)
+	$(CC) $(FLAGS) -I. -D$(DEFINE) $< -o $@
+	cp $@ $(@:%$(INTER_SUF).o=%.o)
+	ar rc $(NAME) $(@:%$(INTER_SUF).o=%.o)
 
 bonus:
 	@$(MAKE) BONUS:=on all
@@ -139,3 +140,17 @@ fclean: clean
 	@rm -f $(NAME)
 
 re: fclean all
+
+norme:
+	@clear && clear
+	@norminette libft/*.c
+	@norminette libft/*.h
+	@norminette engine/*.c
+	@norminette srcs_mandatory/*.c
+	@norminette srcs_bonus/*.c
+	@norminette hdrs/*.h
+	@norminette ft_printf.c
+	@norminette libftprintf.h
+
+%:
+	@echo "Can't find rule for target $@"

@@ -6,13 +6,13 @@
 /*   By: enena <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/24 14:27:02 by enena             #+#    #+#             */
-/*   Updated: 2020/12/25 10:40:53 by enena            ###   ########.fr       */
+/*   Updated: 2020/12/27 11:08:39 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_binary_d	ft_getmemdouble(double dnum, char **a, char **b, char **c, char** d)
+t_binary_d	ft_getmemdouble(double dnum, char **a, char **b, char **c)
 {
 	t_binary_d	mem;
 
@@ -25,6 +25,5 @@ t_binary_d	ft_getmemdouble(double dnum, char **a, char **b, char **c, char** d)
 	*a = NULL;
 	*b = NULL;
 	*c = NULL;
-	*d = NULL;
 	return (mem);
 }
