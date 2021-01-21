@@ -6,13 +6,13 @@
 #    By: enena <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/08/03 17:51:07 by enena             #+#    #+#              #
-#    Updated: 2020/12/27 11:18:59 by enena            ###   ########.fr        #
+#    Updated: 2021/01/21 01:43:09 by enena            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SHELL = /bin/sh
 
-.PHONY: all clean fclean re bonus addlib norme
+.PHONY: all clean fclean re bonus norme recl
 
 CC = gcc
 
@@ -23,6 +23,8 @@ NAME = libftprintf.a
 LIB = libft.a
 
 LIB_PATH = libft
+
+PREREC_LIB = $(shell $(MAKE) -s -C $(LIB_PATH) sayprec)
 
 LIB_NAME = ft
 
@@ -49,13 +51,13 @@ JOINT_NAME = apply_handlers\
 			 handle_diuxp_func\
 			 malloc_claim_content
 
-BONUS ?= off
+BONUS ?= on
 
 BONUS_NAME = claim_size_content_funcs\
 			 malloc_size_content_funcs\
 			 handle_nofge_func\
 			 extention_handlers\
-			 ft_g_sign
+			 g_converter
 
 ifeq ($(BONUS),on)
 	DEFINE = BONUS
@@ -114,7 +116,7 @@ all: $(NAME)
 $(NAME): $(LIB) $(O_ALL)
 	ranlib $@
 
-$(LIB):
+$(LIB): 
 	@$(MAKE) -C $(LIB_PATH)
 	cp $(LIB_PATH)/$(LIB) $(NAME)
 
@@ -142,15 +144,16 @@ fclean: clean
 re: fclean all
 
 norme:
-	@clear && clear
-	@norminette libft/*.c
-	@norminette libft/*.h
+	@$(MAKE) -C $(LIB_PATH) norme
 	@norminette engine/*.c
 	@norminette srcs_mandatory/*.c
 	@norminette srcs_bonus/*.c
 	@norminette hdrs/*.h
 	@norminette ft_printf.c
 	@norminette libftprintf.h
+
+recl:
+	@make re && make clean
 
 %:
 	@echo "Can't find rule for target $@"

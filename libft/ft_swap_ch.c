@@ -1,35 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   littlethings.c                                     :+:      :+:    :+:   */
+/*   ft_swap_ch.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: enena <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/22 18:08:39 by enena             #+#    #+#             */
-/*   Updated: 2021/01/19 23:05:01 by enena            ###   ########.fr       */
+/*   Created: 2020/12/25 12:52:30 by enena             #+#    #+#             */
+/*   Updated: 2020/12/25 12:53:41 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "libft.h"
 
-char	*ft_nullstr(void)
+void	ft_swap_ch(char *a, char *b)
 {
-	char *ret;
+	char c;
 
-	ret = ft_calloc(7, sizeof(char));
-	ft_memcpy(ret, "(null)", 6);
-	return (ret);
-}
-
-void	ft_takesign(char *sign, char *anum)
-{
-	*sign = *anum;
-	*anum = '0';
-}
-
-void	ft_addsign(char sign, char *anum)
-{
-	while (!(ft_isdigit(*anum)))
-		anum++;
-	*anum = sign;
+	c = *a;
+	*a = *b;
+	*b = c;
 }

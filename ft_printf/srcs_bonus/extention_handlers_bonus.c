@@ -6,7 +6,7 @@
 /*   By: enena <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/25 07:10:51 by enena             #+#    #+#             */
-/*   Updated: 2020/12/26 04:17:25 by enena            ###   ########.fr       */
+/*   Updated: 2021/01/21 05:55:05 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,51 +29,34 @@ t_bool	ft_isspecialfloat(char *pr, t_uchar *outflag)
 		*outflag &= ~ZERO_FLAG;
 		return (TRUE);
 	}
-	return (TRUE);
+	return (FALSE);
 }
 
-void	ft_movedot(char *b, char *place)
+int		ft_movedot(char *str, char *place)
 {
-	char *tmp;
+	char	*tmp;
+	int		ofst;
+	int		dir;
 
-	tmp = ft_strchr(b, '.');
+	tmp = ft_strchr(str, '.');
+	ofst = 0;
+	dir = (place > tmp ? 1 : -1);
 	while (tmp != place)
 	{
-		ft_swap_ch(tmp, (place > tmp ? tmp + 1 : tmp - 1));
-		tmp = ft_strchr(b, '.');
+		ft_swap_ch(tmp, tmp + dir);
+		tmp += dir;
+		ofst -= dir;
 	}
+	return (ofst);
 }
 
-char	*ft_findexp(double fnum, int prec, int *intexp)
-{
-	char	*snum;
-	char	*tmp;
-	char	*dot;
-
-	if (!(snum = ft_dtoa(fnum, 333)))
-		return (NULL);
-	tmp = snum;
-	dot = NULL;
-	while (*tmp == '0' || *tmp == '.')
-		tmp++;
-	if (!dot)
-		dot = ft_strchr(snum, '.');
-	*intexp = dot - tmp - (dot > tmp);
-	free(snum);
-	snum = ft_dtoa(fnum, prec - *intexp);
-	if (!snum)
-		return (NULL);
-	return (snum);
-}
-
-char	*ft_writeexp(char *in, int exp, int prec)
+char	*ft_writeexp(char *in, int exp, t_bool ish)
 {
 	char	*a;
 	char	*ret;
 
-	prec++;
-	if (exp == -335)
-		exp = 0;
+	if (ish)
+		in[ft_strlen(in) - 1] = '\0';
 	if (exp < 0)
 	{
 		if (!(a = ft_strjoin(in, exp > -10 ? "e-0" : "e-")))
@@ -91,25 +74,61 @@ char	*ft_writeexp(char *in, int exp, int prec)
 	return (ret);
 }
 
-char	*ft_get_e(double fnum, int prec)
+char	*ft_prepare_scientific(char *s_dbl, int prec, t_bool issign,
+														t_bool ish)
 {
-	char		*p1;
-	char		*p2;
-	char		*ret;
-	int			intexp;
-	t_bool		sign;
+	char	*tmp_place;
+	int		exp;
+	int		finddot;
 
-	sign = take_g_sign(&fnum);
-	if (!(p1 = ft_findexp(fnum, prec, &intexp)))
+	tmp_place = s_dbl;
+	finddot = 0;
+	while (*tmp_place == '0' || *tmp_place == '.')
+	{
+		finddot = finddot || (*tmp_place == '.');
+		tmp_place++;
+	}
+	exp = ft_movedot(s_dbl, tmp_place + !finddot);
+	if (!(tmp_place = ft_doprec_fstr(s_dbl, prec)))
 		return (NULL);
-	ft_movedot(p1, ft_strchr(p1, '.') - intexp);
-	if (!(ret = ft_strdup(ft_strchr(p1, '.') - 1)))
+	s_dbl = ft_strchr(tmp_place, (prec == 0 ? '\0' : '.')) - 1;
+	if (*s_dbl == '0')
+	{
+		exp += (prec == 0 || ft_movedot(s_dbl, s_dbl));
+		s_dbl[ft_strlen(s_dbl) - 1] = '\0';
+		s_dbl--;
+	}
+	if (!(s_dbl = ft_strdup(s_dbl - issign)))
 		return (NULL);
-	free(p1);
-	ret = ft_doprec_fstr(ret, prec);
-	if (!(p2 = ft_writeexp(ret, intexp, prec)))
+	free(tmp_place);
+	return (ft_writeexp(s_dbl, exp, ish));
+}
+
+char	*ft_convert_in_scientific(double dbl, int prec, t_uchar *flg)
+{
+	char		*s_dbl;
+	char		*tmp;
+	t_bool		issign;
+	t_bool		ish;
+	char		sign;
+
+	ish = !!(*flg & HASH_FLAG);
+	if (!(s_dbl = ft_dtoa(dbl, 324 + prec)))
 		return (NULL);
-	ret = sign ? ft_strjoin("-", p2) : ft_strdup(p2);
-	free(p2);
-	return (ret);
+	if (!!ft_isspecialfloat(s_dbl, flg))
+		return (s_dbl);
+	if (!!(issign = !(ft_isdigit(*s_dbl))))
+		ft_takesign(&sign, s_dbl);
+	if (!(tmp = ((dbl == 0.0 || dbl == -0.0) ? ft_strdup(s_dbl) :
+					ft_strjoin("0", s_dbl))))
+		return (NULL);
+	free(s_dbl);
+	s_dbl = NULL;
+	if (!(s_dbl = ((dbl == 0.0 || dbl == -0.0) ?
+					ft_writeexp(ft_doprec_fstr(tmp, prec), 0, ish) :
+					ft_prepare_scientific(tmp, prec, issign, ish))))
+		return (NULL);
+	if (issign)
+		ft_addsign(sign, s_dbl);
+	return (s_dbl);
 }

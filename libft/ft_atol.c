@@ -6,7 +6,7 @@
 /*   By: enena <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/10 22:00:44 by enena             #+#    #+#             */
-/*   Updated: 2020/12/13 06:46:49 by enena            ###   ########.fr       */
+/*   Updated: 2021/01/21 00:16:13 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ long int	ft_atol(const char *str)
 		sign = (*str++ == '-') ? -1 : 1;
 	while ((*str && ft_isdigit(*str)) && sign)
 	{
-		ret = ret * 10 + (*str - '0' * sign);
+		ret = ret * 10 + ((*str - '0') * sign);
 		if (ret && (ret * sign < 0))
 			return (sign > 0 ? -1 : 0);
 		str++;

@@ -6,7 +6,7 @@
 /*   By: enena <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/16 15:36:10 by enena             #+#    #+#             */
-/*   Updated: 2020/12/27 11:10:42 by enena            ###   ########.fr       */
+/*   Updated: 2021/01/21 01:12:55 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,13 @@ static char			*getdec(t_ullint mant, long long int exp, int prec)
 	return (ret);
 }
 
+static void			init(char **a, char **b, char **c)
+{
+	*a = NULL;
+	*b = NULL;
+	*c = NULL;
+}
+
 char				*ft_dtoa(double dnum, int prec)
 {
 	t_binary_d	mem;
@@ -78,13 +85,13 @@ char				*ft_dtoa(double dnum, int prec)
 
 	if (dnum != dnum)
 		return (ft_strdup("nan"));
-	mem = ft_getmemdouble(dnum, &int_ret, &dec, &tmp);
+	init(&int_ret, &dec, &tmp);
+	mem = ft_getmemdouble(dnum);
 	if (mem.exp == 1024)
 		return (mem.sign ? ft_strdup("-inf") : ft_strdup("inf"));
 	if (!(int_ret = getint(mem.mant, mem.exp)) ||
 			!(dec = getdec(mem.mant, mem.exp, prec)) ||
-			!(tmp = ft_strjoin(int_ret, dec)) ||
-			!(tmp = ft_doprec_fstr(tmp, prec)))
+			!(tmp = ft_doprec_fstr(ft_strjoin(int_ret, dec), prec)))
 		return (NULL);
 	free(dec);
 	dec = tmp;

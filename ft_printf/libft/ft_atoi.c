@@ -6,7 +6,7 @@
 /*   By: enena <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/29 17:55:40 by enena             #+#    #+#             */
-/*   Updated: 2020/12/13 06:42:23 by enena            ###   ########.fr       */
+/*   Updated: 2021/01/21 00:16:30 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,9 @@ int	ft_atoi(const char *str)
 		str++;
 	if (*str == '-' || *str == '+')
 		sign = (*str++ == '-') ? -1 : 1;
-	while ((*str && ft_isdigit(*str)) && sign)
+	while ((*str && ft_isdigit(*str)))
 	{
-		ret = ret * 10 + (*str - '0' * sign);
+		ret = ret * 10 + ((*str - '0') * sign);
 		if (ret && (ret * sign < 0))
 			return (sign > 0 ? -1 : 0);
 		str++;

@@ -6,13 +6,13 @@
 #    By: enena <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/08/03 17:51:07 by enena             #+#    #+#              #
-#    Updated: 2020/12/24 15:11:28 by enena            ###   ########.fr        #
+#    Updated: 2021/01/21 01:43:27 by enena            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SHELL = /bin/sh
 
-.PHONY: all clean fclean re recl bonus
+.PHONY: all bonus clean fclean re norme recl
 
 CC = gcc
 
@@ -79,7 +79,11 @@ SRC_NAME =  ft_atoi\
 			ft_mulnumstr\
 			ft_halfnumstr\
 			ft_pownumstr\
-			ft_getmemdouble
+			ft_getmemdouble\
+			ft_doprec_fstr\
+			ft_swap_p\
+			ft_swap_ch\
+			ft_stous
 
 BONUS_NAME = ft_lstadd_back\
 			 ft_lstadd_front\
@@ -104,7 +108,7 @@ HEADER_ALL ?= $(HEADER)
 all: $(NAME)
 
 $(NAME): $(O_ALL)
-	@ar rc $@ $?
+	ar rc $@ $?
 	@ranlib $@
 
 bonus:
@@ -121,5 +125,13 @@ fclean: clean
 
 re: fclean all
 
+norme:
+	@clear && clear
+	@norminette *.c
+	@norminette *.h
+
 recl:
 	@make re && make clean
+
+%:
+	@echo "Can't find rule for target $@"

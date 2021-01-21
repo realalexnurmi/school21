@@ -6,7 +6,7 @@
 /*   By: enena <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/21 14:40:04 by enena             #+#    #+#             */
-/*   Updated: 2020/12/26 03:24:05 by enena            ###   ########.fr       */
+/*   Updated: 2021/01/21 05:18:45 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -199,10 +199,16 @@ void			ft_checkxhash(char *pr);
 ** extention_handlers
 */
 t_bool			ft_isspecialfloat(char *pr, t_uchar *outflag);
-void			ft_movedot(char *b, char *place);
-char			*ft_findexp(double fnum, int prec, int *intexp);
-char			*ft_writeexp(char *in, int exp, int prec);
-char			*ft_get_e(double fnum, int prec);
-t_bool			take_g_sign(double *fnum);
+int				ft_movedot(char *str, char *place);
+char			*ft_writeexp(char *in, int exp, t_bool ish);
+char			*ft_prepare_scientific(char *s_dbl, int prec, t_bool issign,
+																t_bool ish);
+char			*ft_convert_in_scientific(double dbl, int prec, t_uchar *flg);
+
+/*
+** g_converter
+*/
+char			*ft_g_convert(char *in, int prec, double src, t_uchar *flg);
+int				ft_prec_g_real(int cnt_num, int exp, char *in);
 
 #endif

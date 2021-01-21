@@ -6,13 +6,13 @@
 #    By: enena <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/08/03 17:51:07 by enena             #+#    #+#              #
-#    Updated: 2020/12/26 20:50:33 by enena            ###   ########.fr        #
+#    Updated: 2021/01/21 01:43:27 by enena            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SHELL = /bin/sh
 
-.PHONY: all clean fclean re recl bonus
+.PHONY: all bonus clean fclean re norme recl
 
 CC = gcc
 
@@ -125,5 +125,13 @@ fclean: clean
 
 re: fclean all
 
+norme:
+	@clear && clear
+	@norminette *.c
+	@norminette *.h
+
 recl:
 	@make re && make clean
+
+%:
+	@echo "Can't find rule for target $@"

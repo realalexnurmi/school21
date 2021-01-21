@@ -6,7 +6,7 @@
 /*   By: enena <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/17 18:14:14 by enena             #+#    #+#             */
-/*   Updated: 2020/12/26 01:58:38 by enena            ###   ########.fr       */
+/*   Updated: 2021/01/21 05:15:49 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,22 +86,53 @@ t_bool	ft_e_func(void *node)
 {
 	t_list_prf		*lp;
 	char			*print;
+	t_bool			issign;
+	char			sign;
 	int				prec;
 
 	lp = (t_list_prf *)node;
-	prec = (lp->prec ? *lp->prec : 6);
-	if (!(print = ft_get_e(*((double *)lp->p_cnt), prec)))
+	prec = (lp->prec ? *lp->prec : 6) + !!(lp->flag & HASH_FLAG);
+	if (!(print = ft_convert_in_scientific(*((double *)lp->p_cnt),
+					prec, &(lp->flag))))
 		return (FALSE);
+	if (!(print = ft_take_space_plus(lp, print)))
+		return (FALSE);
+	if (!!(issign = !(ft_isdigit(*print))))
+		ft_takesign(&sign, print);
 	if (!(lp->print = ft_make_min_width(lp, print)))
 		return (FALSE);
 	if (lp->flag & UPCS_FLAG)
 		ft_upper(lp->print);
+	if (issign)
+		ft_addsign(sign, lp->print);
 	return (TRUE);
 }
 
 t_bool	ft_g_func(void *node)
 {
-	if (!(node))
+	t_list_prf		*lp;
+	char			*print;
+	t_bool			issign;
+	char			sign;
+	int				prec;
+
+	lp = (t_list_prf *)node;
+	prec = (lp->prec ? *lp->prec + (*lp->prec == 0) : 6);
+	if (!(print = ft_convert_in_scientific(*((double *)lp->p_cnt),
+					prec - 1, &(lp->flag))))
 		return (FALSE);
+	if (!(print = ft_g_convert(print, prec, *((double *)lp->p_cnt),
+					&(lp->flag))))
+		return (FALSE);
+	if (!(print = ft_take_space_plus(lp, print)))
+		return (FALSE);
+	if (!!(issign = !(ft_isdigit(*print))))
+		ft_takesign(&sign, print);
+	if (!(lp->print = ft_make_min_width(lp, print)))
+		return (FALSE);
+	if (lp->flag & UPCS_FLAG)
+		ft_upper(lp->print);
+	if (issign)
+		ft_addsign(sign, lp->print);
 	return (TRUE);
 }

@@ -6,7 +6,7 @@
 /*   By: enena <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/31 19:33:47 by enena             #+#    #+#             */
-/*   Updated: 2020/12/27 11:09:50 by enena            ###   ########.fr       */
+/*   Updated: 2021/01/19 19:29:47 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -185,7 +185,7 @@ char			*ft_halfnumstr(char *quo);
 /*
 ** Utils for dtoa
 */
-t_binary_d		ft_getmemdouble(double dnum, char **a, char **b, char **c);
+t_binary_d		ft_getmemdouble(double dnum);
 char			*ft_doprec_fstr(char *num, int prec);
 /*
 ** Swap utits
