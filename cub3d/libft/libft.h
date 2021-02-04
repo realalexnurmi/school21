@@ -6,7 +6,7 @@
 /*   By: enena <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/31 19:33:47 by enena             #+#    #+#             */
-/*   Updated: 2021/01/19 19:29:47 by enena            ###   ########.fr       */
+/*   Updated: 2021/02/04 05:38:41 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,15 @@ typedef int						t_bool;
 # define TRUE 1
 # define FALSE 0
 
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 65534
+# endif
+
+typedef struct					s_buf
+{
+        int		ret;
+        char	*buf;
+}								t_buf;
 /*
 ** Redefinition UNSIGNED type for shorter cast
 */
@@ -134,6 +143,7 @@ void			ft_upper(char *s);
 /*
 ** Comment
 */
+void			*ft_sec_free(void *p);
 void			*ft_memset(void *b, int c, size_t len);
 void			ft_bzero(void *s, size_t n);
 void			*ft_calloc(size_t count, size_t size);
@@ -197,5 +207,9 @@ t_bool			ft_swap(void *v1, void *v2, size_t size);
 ** Convert signed(all) to unsigned (size_t)
 */
 size_t			ft_stous(long long int signd);
+/*
+** GNL
+*/
+int				ft_get_next_line(int fd, char **line);
 
 #endif

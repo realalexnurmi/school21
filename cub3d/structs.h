@@ -1,4 +1,4 @@
-/* ************************************************************************** */
+ /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
@@ -58,4 +58,17 @@ typedef struct	s_pxl
 	t_uint	y;
 	t_rule	rule;
 }				t_pxl;
+
+typedef struct	s_game_master
+{
+	void	*mlx;
+	void	*win;
+	t_image	*frame;
+	t_image	*next_frame;
+}				t_game_master;
+
+tydef struct	s_object_master
+{
+	
+}
 #endif

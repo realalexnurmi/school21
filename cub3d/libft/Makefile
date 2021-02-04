@@ -84,7 +84,9 @@ SRC_NAME =  ft_atoi\
 			ft_swap_p\
 			ft_swap_ch\
 			ft_swap\
-			ft_stous
+			ft_stous\
+			ft_get_next_line\
+			ft_sec_free
 
 BONUS_NAME = ft_lstadd_back\
 			 ft_lstadd_front\

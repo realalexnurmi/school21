@@ -12,8 +12,10 @@
 
 #include "cub3d.h"
 
-int main()
+int main(int argc, char **argv)
 {
+	t_game_master gm;
+	if (init_gm(&gm))
 	void *mlx = mlx_init();
 	void *win = mlx_new_window(mlx, W, H, "SUCK");
 	t_image	data;
