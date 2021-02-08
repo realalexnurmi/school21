@@ -53,6 +53,7 @@ SRC_NAME =  ft_atoi\
 			ft_putchar_fd\
 			ft_putstr_fd\
 			ft_split\
+			ft_free_tab\
 			ft_strchr\
 			ft_strdup\
 			ft_strjoin\
@@ -86,7 +87,8 @@ SRC_NAME =  ft_atoi\
 			ft_swap\
 			ft_stous\
 			ft_get_next_line\
-			ft_sec_free
+			ft_sec_free\
+			ft_set_output_attr
 
 BONUS_NAME = ft_lstadd_back\
 			 ft_lstadd_front\
@@ -120,8 +122,10 @@ bonus:
 %.o: %.c $(HEADER_ALL)
 	$(CC) $(FLAGS) -c $< -o $@ 
 
-clean: 
+clean:
+	@echo Cleaning...
 	@rm -f $(O_FILE) $(O_BONUS_FILE)
+	@echo Done
 
 fclean: clean
 	@rm -f $(NAME)

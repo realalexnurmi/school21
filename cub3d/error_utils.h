@@ -1,21 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   error_utils.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: enena <enena@student.21-school.ru>         +#+  +:+       +#+        */
+/*   By: enena <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/23 20:43:39 by enena             #+#    #+#             */
-/*   Updated: 2021/01/26 20:42:43 by enena            ###   ########.fr       */
+/*   Created: 2021/02/07 13:49:00 by enena             #+#    #+#             */
+/*   Updated: 2021/02/07 13:49:04 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//#include "cub3d.h"
+#ifndef ERROR_UTILS_H
+# define ERROR_UTILS_H
 
-int main(int argc, char **argv)
+typedef enum	e_retval
 {
-
-	if (pass_err(init_gm(&gm, &argc, &argv)))
-		escape_deal();
-	return (1);
-}
+	ALL_RIGHT,
+	ERR_ALLOC_FAIL,
+	ERR_MISSING_CONF,
+	ERR_BAD_EXTENTION_CONF,
+	ERR_OPEN_FAIL,
+	ERR_READ_FAIL,
+	ERR_INCORECT_NAME_SETTING
+}				t_retval;
+#endif

@@ -53,14 +53,6 @@ static size_t		ft_wrdlen(char const *s, char c)
 	return (wrdlen);
 }
 
-static char			**ft_attention_escape(char **removetb, unsigned int wrdcnt)
-{
-	while (wrdcnt)
-		free(removetb[wrdcnt--]);
-	free(removetb);
-	return (NULL);
-}
-
 char				**ft_split(char const *s, char c)
 {
 	unsigned int	wrdcnt;
@@ -81,7 +73,7 @@ char				**ft_split(char const *s, char c)
 			s = ft_begin_end_wrd(s, c, 'b');
 			wrdtb[curwrd] = ft_substr(s, 0, ft_wrdlen(s, c));
 			if (!wrdtb[curwrd])
-				return (ft_attention_escape(wrdtb, wrdcnt));
+				return (wrdtb = ft_free_tab(wrdtb));
 			curwrd++;
 			s = ft_begin_end_wrd(s, c, 'e');
 		}

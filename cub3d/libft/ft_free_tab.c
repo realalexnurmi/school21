@@ -1,21 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_free_tab.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: enena <enena@student.21-school.ru>         +#+  +:+       +#+        */
+/*   By: enena <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/23 20:43:39 by enena             #+#    #+#             */
-/*   Updated: 2021/01/26 20:42:43 by enena            ###   ########.fr       */
+/*   Created: 2021/02/08 14:40:19 by enena             #+#    #+#             */
+/*   Updated: 2021/02/08 14:40:37 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//#include "cub3d.h"
+#include "libft.h"
 
-int main(int argc, char **argv)
+char		**ft_free_tab(char **removetb)
 {
+	char	**tmp;
 
-	if (pass_err(init_gm(&gm, &argc, &argv)))
-		escape_deal();
-	return (1);
+	tmp = removetb;
+	while (*tmp)
+	{
+		*tmp = ft_sec_free(*tmp);
+		tmp++;
+	}
+	return (removetb = ft_sec_free(removetb));
 }

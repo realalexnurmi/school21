@@ -14,7 +14,6 @@
 
 void	*ft_sec_free(void *p)
 {
-	if (p)
-		free(p);
+	free(p);
 	return (NULL);
 }

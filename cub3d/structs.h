@@ -59,13 +59,48 @@ typedef struct	s_pxl
 	t_rule	rule;
 }				t_pxl;
 
+typedef struct	s_resolution
+{
+	int	width;
+	int height;
+}				t_resolution;
+
 typedef struct	s_game_master
 {
-	void	*mlx;
-	void	*win;
-	t_image	*frame;
-	t_image	*next_frame;
+	t_resolution	res;
+	void			*mlx;
+	void			*win;
+	t_image			*frame;
+	t_image			*next_frame;
 }				t_game_master;
+
+typedef void	(*t_set_setting)(void *, char **);
+
+enum			e_setting_name
+{
+	RESOLUTION,
+	NO_TEXTURE,
+	SO_TEXTURE,
+	WE_TEXTURE,
+	EA_TEXTURE,
+	S_TEXTURE,
+	FLOOR_COLOR,
+	CEIL_COLOR
+};
+
+typedef struct	s_setting_link
+{
+	char			idntfr[3];
+	t_bool			set;
+	void			*param;
+	t_set_settnig	setter;
+}				t_setting_link;
+
+typedef struct	s_settings
+{
+	t_bool			all_set;
+	t_setting_link	*setting;
+}				t_settings;
 
 tydef struct	s_object_master
 {

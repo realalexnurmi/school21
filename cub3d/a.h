@@ -1,21 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   a.h                                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: enena <enena@student.21-school.ru>         +#+  +:+       +#+        */
+/*   By: enena <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/23 20:43:39 by enena             #+#    #+#             */
-/*   Updated: 2021/01/26 20:42:43 by enena            ###   ########.fr       */
+/*   Created: 2021/02/08 15:51:01 by enena             #+#    #+#             */
+/*   Updated: 2021/02/08 15:53:06 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//#include "cub3d.h"
+#ifndef A_H
+# define A_H
 
-int main(int argc, char **argv)
+typedef enum	e_set
 {
-
-	if (pass_err(init_gm(&gm, &argc, &argv)))
-		escape_deal();
-	return (1);
-}
+	A = 3,
+	B = 5,
+	C = 9
+}				t_set;
+#endif

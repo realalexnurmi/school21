@@ -13,5 +13,6 @@
 #ifndef GENERAL_H
 # define GENERAL_H
 
-t_uchar	init_gm(t_game_master *gm);
+t_retval	init_gm(t_game_master *gm, int *argc, char ***argv);
+t_retval	parse_conf(t_game_master *gm, char **argv, int numarg);
 #endif

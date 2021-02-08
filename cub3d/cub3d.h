@@ -17,6 +17,8 @@
 //test
 # include "libft.h"
 # include "mlx.h"
+# include "fcntl.h"
+# include "error_utils.h"
 # include "structs.h"
 # include "general.h"
 # include "instruments.h"

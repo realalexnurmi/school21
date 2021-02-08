@@ -51,13 +51,6 @@
 */
 # include <unistd.h>
 
-/*
-** My type and macros boolean for Norme like <stdbool>
-*/
-typedef int						t_bool;
-# define TRUE 1
-# define FALSE 0
-
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 65534
 # endif
@@ -76,6 +69,14 @@ typedef unsigned short int		t_usint;
 typedef unsigned int			t_uint;
 typedef unsigned long int		t_ulint;
 typedef unsigned long long int	t_ullint;
+
+/*
+** My type and macros boolean for Norme like <stdbool> but unsigned char
+*/
+typedef t_uchar					t_bool;
+# define TRUE 1
+# define FALSE 0
+
 /*
 ** Basic style for list structure: Singly linked list ~ SLL
 */
@@ -154,6 +155,7 @@ int				ft_memcmp(const void *s1, const void *s2, size_t n);
 void			*ft_memcpy(void *dst, const void *src, size_t n);
 void			*ft_memmove(void *dst, const void *src, size_t n);
 char			**ft_split(char const *s, char c);
+char			**ft_free_tab(char **removetb);
 char			*ft_strchr(const char *s, int c);
 char			*ft_strdup(const char *s);
 char			*ft_strjoin(char const *s1, char const *s2);
@@ -178,9 +180,41 @@ size_t			ft_wstrlen_byte(wchar_t *wstring);
 wchar_t			ft_mbtowc(char *mbc);
 char			*ft_wctomb(wchar_t src, char *dest);
 char			*ft_wcstombs(wchar_t *wstring);
+
 /*
 ** Own function to write output
 */
+typedef enum	e_text_attr
+{
+	DEFAULT_ALL,
+	BOLD,
+	LOW_INTENSIVE,
+	UNDERLINE,
+	BLINK,
+	REVERSE_BG_FG,
+	DEFAULT_INTENSIVE,
+	CNCL_UNDERLINE,
+	CNCL_BLINK,
+	CNCL_REVERSE_BG_FG,
+	FG_BLACK,
+	FG_RED,
+	FG_GREEN,
+	FG_YELLOW,
+	FG_BLUE,
+	FG_PURPLE,
+	FG_CYAN,
+	FG_GRAY,
+	BG_BLACK,
+	BG_RED,
+	BG_GREEN,
+	BG_YELLOW,
+	BG_BLUE,
+	BG_PURPLE,
+	BG_CYAN,
+	BG_GRAY
+}				t_text_attr;
+
+t_bool			ft_set_output_attr(int fd, t_text_attr attr);
 void			ft_putendl_fd(char *s, int fd);
 void			ft_putnbr_fd(int n, int fd);
 void			ft_putchar_fd(char *c, int fd);
