@@ -6,7 +6,7 @@
 /*   By: enena <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/21 14:40:04 by enena             #+#    #+#             */
-/*   Updated: 2021/01/21 05:18:45 by enena            ###   ########.fr       */
+/*   Updated: 2021/02/12 05:21:31 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,12 @@ typedef t_bool	(*t_func_do)(void *);
 */
 typedef enum	e_msize
 {
-	NONE,
-	L,
-	LL,
-	H,
-	HH,
-	Z
+	none,
+	l,
+	ll,
+	h,
+	hh,
+	z
 }				t_msize;
 
 /*

@@ -6,7 +6,7 @@
 /*   By: enena <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/17 00:07:13 by enena             #+#    #+#             */
-/*   Updated: 2020/12/26 21:05:44 by enena            ###   ########.fr       */
+/*   Updated: 2021/02/12 05:28:54 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_bool	ft_malloc_content(t_list_prf *curr, char conv)
 {
-	if (curr->size == NONE)
+	if (curr->size == none)
 	{
 		if ((conv == 'f') || (conv == 'e') || (conv == 'g'))
 			curr->p_cnt = malloc(sizeof(double));
@@ -38,15 +38,15 @@ t_bool	ft_malloc_content(t_list_prf *curr, char conv)
 
 void	ft_malloc_size_content(t_list_prf *curr, char conv)
 {
-	if (curr->size == L)
+	if (curr->size == l)
 		ft_malloc_l_content(curr, conv);
-	if (curr->size == LL)
+	if (curr->size == ll)
 		ft_malloc_ll_content(curr, conv);
-	if (curr->size == H)
+	if (curr->size == h)
 		ft_malloc_h_content(curr, conv);
-	if (curr->size == HH)
+	if (curr->size == hh)
 		ft_malloc_hh_content(curr, conv);
-	if (curr->size == Z)
+	if (curr->size == z)
 		ft_malloc_z_content(curr, conv);
 }
 
@@ -56,7 +56,7 @@ t_bool	ft_claim_content(t_list_prf *curr, va_list *ap, char conv)
 		curr->size = L;
 	if (!(ft_malloc_content(curr, conv)))
 		return (FALSE);
-	if (curr->size == NONE)
+	if (curr->size == none)
 	{
 		if ((conv == 'f') || (conv == 'e') || (conv == 'g'))
 			*((double *)curr->p_cnt) = va_arg(*ap, double);
@@ -80,14 +80,14 @@ t_bool	ft_claim_content(t_list_prf *curr, va_list *ap, char conv)
 
 void	ft_claim_size_content(t_list_prf *curr, va_list *ap, char conv)
 {
-	if (curr->size == L)
+	if (curr->size == l)
 		ft_claim_l_content(curr, ap, conv);
-	if (curr->size == LL)
+	if (curr->size == ll)
 		ft_claim_ll_content(curr, ap, conv);
-	if (curr->size == H)
+	if (curr->size == h)
 		ft_claim_h_content(curr, ap, conv);
-	if (curr->size == HH)
+	if (curr->size == hh)
 		ft_claim_hh_content(curr, ap, conv);
-	if (curr->size == Z)
+	if (curr->size == z)
 		ft_claim_z_content(curr, ap, conv);
 }

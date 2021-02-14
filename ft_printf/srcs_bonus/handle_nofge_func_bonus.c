@@ -6,7 +6,7 @@
 /*   By: enena <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/17 18:14:14 by enena             #+#    #+#             */
-/*   Updated: 2021/01/21 05:15:49 by enena            ###   ########.fr       */
+/*   Updated: 2021/02/12 05:26:37 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,17 @@ t_bool	ft_n_func(void *node)
 	t_list_prf	*lp;
 
 	lp = (t_list_prf *)node;
-	if (lp->size == NONE)
+	if (lp->size == none)
 		**((int **)lp->p_cnt) = lp->begin + lp->ofst;
-	if (lp->size == L)
+	if (lp->size == l)
 		**((long int **)lp->p_cnt) = lp->begin + lp->ofst;
-	if (lp->size == LL)
+	if (lp->size == ll)
 		**((long long int **)lp->p_cnt) = lp->begin + lp->ofst;
-	if (lp->size == H)
+	if (lp->size == h)
 		**((short int **)lp->p_cnt) = lp->begin + lp->ofst;
-	if (lp->size == HH)
+	if (lp->size == hh)
 		**((t_schar **)lp->p_cnt) = lp->begin + lp->ofst;
-	if (lp->size == Z)
+	if (lp->size == z)
 		**((ssize_t **)lp->p_cnt) = lp->begin + lp->ofst;
 	if (!(lp->print = ft_calloc(1, sizeof(char))))
 		return (FALSE);

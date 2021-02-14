@@ -6,7 +6,7 @@
 /*   By: enena <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/16 23:37:42 by enena             #+#    #+#             */
-/*   Updated: 2020/12/22 14:40:23 by enena            ###   ########.fr       */
+/*   Updated: 2021/02/12 05:29:28 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ t_list_prf		*ft_lstprf_new(size_t begin, size_t end, t_func_do func)
 	new->flag = NONE_FLAG;
 	new->width = NULL;
 	new->prec = NULL;
-	new->size = NONE;
+	new->size = none;
 	new->p_cnt = NULL;
 	new->len = 0;
 	new->print = NULL;

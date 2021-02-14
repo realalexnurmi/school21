@@ -6,7 +6,7 @@
 /*   By: enena <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/16 23:38:38 by enena             #+#    #+#             */
-/*   Updated: 2021/01/20 19:47:05 by enena            ###   ########.fr       */
+/*   Updated: 2021/02/12 05:25:32 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,17 @@ long long int	ft_take_signed(t_list_prf *curr)
 {
 	long long int	ret;
 
-	if (curr->size == NONE)
+	if (curr->size == none)
 		ret = *((int *)curr->p_cnt);
-	if (curr->size == L)
+	if (curr->size == l)
 		ret = *((long int*)curr->p_cnt);
-	if (curr->size == LL)
+	if (curr->size == ll)
 		ret = *((long long int*)curr->p_cnt);
-	if (curr->size == H)
+	if (curr->size == h)
 		ret = *((short int*)curr->p_cnt);
-	if (curr->size == HH)
+	if (curr->size == hh)
 		ret = *((t_schar*)curr->p_cnt);
-	if (curr->size == Z)
+	if (curr->size == z)
 		ret = *((ssize_t*)curr->p_cnt);
 	return (ret);
 }
@@ -35,17 +35,17 @@ t_ullint		ft_take_unsigned(t_list_prf *curr)
 {
 	t_ullint	ret;
 
-	if (curr->size == NONE)
+	if (curr->size == none)
 		ret = *((t_uint *)curr->p_cnt);
-	if (curr->size == L)
+	if (curr->size == l)
 		ret = *((t_ulint*)curr->p_cnt);
-	if (curr->size == LL)
+	if (curr->size == ll)
 		ret = *((t_ullint*)curr->p_cnt);
-	if (curr->size == H)
+	if (curr->size == h)
 		ret = *((t_usint*)curr->p_cnt);
-	if (curr->size == HH)
+	if (curr->size == hh)
 		ret = *((t_uchar*)curr->p_cnt);
-	if (curr->size == Z)
+	if (curr->size == z)
 		ret = *((size_t*)curr->p_cnt);
 	return (ret);
 }

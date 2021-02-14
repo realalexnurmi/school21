@@ -6,7 +6,7 @@
 /*   By: enena <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/16 23:31:48 by enena             #+#    #+#             */
-/*   Updated: 2020/12/26 22:51:19 by enena            ###   ########.fr       */
+/*   Updated: 2021/02/12 05:23:12 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,9 @@ void	ft_check_special_case(t_list_prf *curr, char *s)
 void	ft_check_size(t_msize *size, char *s)
 {
 	if (*s == 'l')
-		*size = (*(s - 1) == 'l') ? LL : L;
+		*size = (*(s - 1) == 'l') ? ll : l;
 	if (*s == 'h')
-		*size = (*(s - 1) == 'h') ? HH : H;
+		*size = (*(s - 1) == 'h') ? hh : h;
 	if (*s == 'z')
-		*size = Z;
+		*size = z;
 }
