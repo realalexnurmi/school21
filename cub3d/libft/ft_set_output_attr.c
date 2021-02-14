@@ -21,7 +21,7 @@ static char	*pick_setstring_from_attr(t_text_attr attr)
 		"\033[37m", "\033[40m", "\033[41m", "\033[42m", "\033[43m", "\033[44m",
 		"\033[45m", "\033[46m", "\033[47m"};
 
-	return (ft_strdup(ss[attr]));	
+	return (ft_strdup(ss[attr]));
 }
 
 t_bool		ft_set_output_attr(int fd, t_text_attr attr)
@@ -30,8 +30,8 @@ t_bool		ft_set_output_attr(int fd, t_text_attr attr)
 
 	setstring = NULL;
 	if (!(setstring = pick_setstring_from_attr(attr)))
-		return (FALSE);
+		return (false);
 	write(fd, setstring, 6);
 	setstring = ft_sec_free(setstring);
-	return (TRUE);
+	return (true);
 }

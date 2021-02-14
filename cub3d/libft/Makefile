@@ -88,7 +88,8 @@ SRC_NAME =  ft_atoi\
 			ft_stous\
 			ft_get_next_line\
 			ft_sec_free\
-			ft_set_output_attr
+			ft_set_output_attr\
+			ft_write_bmp
 
 BONUS_NAME = ft_lstadd_back\
 			 ft_lstadd_front\

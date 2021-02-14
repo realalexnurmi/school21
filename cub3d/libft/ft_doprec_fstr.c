@@ -17,10 +17,10 @@ static void		increasenum(char *p, char *e)
 	t_bool		hasdig;
 	char		trans;
 
-	hasdig = FALSE;
+	hasdig = false;
 	while (--e != p + 1 + (*(p + 1) == '.'))
 		if (*e != '0')
-			hasdig = TRUE;
+			hasdig = true;
 	trans = 1;
 	if (!hasdig && ft_iseven(*p))
 		trans = 0;

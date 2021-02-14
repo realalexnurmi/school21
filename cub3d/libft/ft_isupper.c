@@ -19,7 +19,7 @@
 t_bool	ft_isupper(int c)
 {
 	if ((c >= 'A') && (c <= 'Z'))
-		return (TRUE);
+		return (true);
 	else
-		return (FALSE);
+		return (false);
 }

@@ -55,11 +55,11 @@
 #  define BUFFER_SIZE 65534
 # endif
 
-typedef struct					s_buf
+typedef struct	s_buf
 {
-        int		ret;
-        char	*buf;
-}								t_buf;
+	int		ret;
+	char	*buf;
+}				t_buf;
 /*
 ** Redefinition UNSIGNED type for shorter cast
 */
@@ -73,9 +73,11 @@ typedef unsigned long long int	t_ullint;
 /*
 ** My type and macros boolean for Norme like <stdbool> but unsigned char
 */
-typedef t_uchar					t_bool;
-# define TRUE 1
-# define FALSE 0
+typedef enum	e_bool
+{
+	false = 0,
+	true = 1
+}				t_bool;
 
 /*
 ** Basic style for list structure: Singly linked list ~ SLL
@@ -245,5 +247,44 @@ size_t			ft_stous(long long int signd);
 ** GNL
 */
 int				ft_get_next_line(int fd, char **line);
+
+typedef struct	s_bitmapfileheader
+{
+	char			type[2];
+	unsigned int	size;
+	unsigned int	reserved;
+	unsigned int	offset;
+}				t_bitmapfileheader;
+
+typedef struct	s_bitmapinfo
+{
+	int		size;
+	int		width;
+	int		height;
+	short	planes;
+	short	bitcount;
+	int		compression;
+	int		sizeimage;
+	int		xpelspermeter;
+	int		ypelspermeter;
+	int		clrused;
+	int		clrimportant;
+}				t_bitmapinfo;
+
+/*
+** Sructure for setting/storage bmpfile image
+*/
+typedef struct	s_bmpfile
+{
+	t_bitmapfileheader	fileheader;
+	t_bitmapinfo		info;
+	char				*data;
+}				t_bmpfile;
+
+/*
+** My functions ((!!read!!))/write bmp file ((!!in!!))/from setted structure
+** ((!!COMING SOON!!))
+*/
+t_bool			ft_write_bmp(int fd, t_bmpfile *bitmap);
 
 #endif

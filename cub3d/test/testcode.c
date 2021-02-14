@@ -56,4 +56,25 @@
 	// line.p2 = get_point(40 + i, 150);
 	// draw_line(&data, line);
 	// i++;
+	// IN MAIN A
+	// int			fd = open("file", O_RDONLY);
+	// char		*line;
+	// t_bool		lastline;
+	// int			retgnl;
+	// lastline = FALSE;
+	// ft_set_output_attr(1, FG_RED);
+	// ft_set_output_attr(1, UNDERLINE);
+	// printf("%d\n", fd);
+	// while (((retgnl = ft_get_next_line(fd, &line)) > 0) || 
+	// 			(lastline = (!(lastline) && (retgnl == 0))))
+	// {
+	// 	write(1, line, ft_strlen(line));
+	// 	write(1, "\n", 1);
+	// 	line = ft_sec_free(line);
+	// }
+	// if (retgnl)
+	// 	printf("ERROR\n");
+	// close(fd);
+	//sleep(30);
+	// return(0);
 	// }

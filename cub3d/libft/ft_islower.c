@@ -19,7 +19,7 @@
 t_bool	ft_islower(int c)
 {
 	if ((c >= 'a') && (c <= 'z'))
-		return (TRUE);
+		return (true);
 	else
-		return (FALSE);
+		return (false);
 }

@@ -14,14 +14,14 @@
 
 t_bool	ft_swap(void *v1, void *v2, size_t size)
 {
-    void	*v3;
-	
+	void	*v3;
+
 	v3 = NULL;
 	if (!(v3 = malloc(size)))
-		return (FALSE);
+		return (false);
 	ft_memmove(v3, v1, size);
-    ft_memmove(v1, v2, size);
-    ft_memmove(v2, v3, size);
-    free(v3);
-	return (TRUE);
+	ft_memmove(v1, v2, size);
+	ft_memmove(v2, v3, size);
+	free(v3);
+	return (true);
 }
