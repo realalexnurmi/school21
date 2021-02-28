@@ -180,6 +180,7 @@ int	mipng_data(mlx_img_list_t *img, unsigned char *dat, png_info_t *pi)
   z_ret = inflateInit(&z_strm);
   if (z_ret != Z_OK)
     return (ERR_ZLIB);
+
   while (mipng_is_type(dat, "IDAT"))
     {
       len = *((unsigned int *)dat);
@@ -207,7 +208,7 @@ int	mipng_data(mlx_img_list_t *img, unsigned char *dat, png_info_t *pi)
 	  b_pos += Z_CHUNK - z_strm.avail_out;
 	}
       dat += len + 4 + 4 + 4;
-    }
+    } 
   inflateEnd(&z_strm);
   if (b_pos != img->width*img->height*pi->bpp+img->height)
     {
@@ -216,7 +217,7 @@ int	mipng_data(mlx_img_list_t *img, unsigned char *dat, png_info_t *pi)
     }
   if ((ret = mipng_fill_img(img, buffer, pi)))
     return (ret);
-	free(buffer); 
+	free(buffer);
   return (0);
 }
 
@@ -370,7 +371,7 @@ mlx_img_list_t	*mlx_int_parse_png(mlx_ptr_t *xvar, unsigned char *fptr, int size
       warnx("mlx PNG error : %s", mipng_err[err]);
       return ((mlx_img_list_t *)0);
     }
-  if (!(img = mlx_new_image(xvar, pi.width, pi.height)))
+  if (!(img = mlx_new_image(xvar, pi.width, pi.height, 0x00000000)))
     {
       warnx("mlx PNG error : Can't create mlx image");
       return ((mlx_img_list_t *)0);

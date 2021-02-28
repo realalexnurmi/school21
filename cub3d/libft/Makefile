@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: enena <marvin@42.fr>                       +#+  +:+       +#+         #
+#    By: enena <enena@student.21-school.ru>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/08/03 17:51:07 by enena             #+#    #+#              #
-#    Updated: 2021/01/21 01:43:27 by enena            ###   ########.fr        #
+#    Updated: 2021/02/27 01:39:07 by enena            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,6 +33,7 @@ SRC_NAME =  ft_atoi\
 			ft_islower\
 			ft_isodd\
 			ft_iseven\
+			ft_isanum\
 			ft_upper\
 			ft_lower\
 			ft_isspace\
@@ -54,6 +55,7 @@ SRC_NAME =  ft_atoi\
 			ft_putstr_fd\
 			ft_split\
 			ft_free_tab\
+			ft_tab_size\
 			ft_strchr\
 			ft_strdup\
 			ft_strjoin\
@@ -89,7 +91,8 @@ SRC_NAME =  ft_atoi\
 			ft_get_next_line\
 			ft_sec_free\
 			ft_set_output_attr\
-			ft_write_bmp
+			ft_write_bmp\
+			ft_check_extention
 
 BONUS_NAME = ft_lstadd_back\
 			 ft_lstadd_front\

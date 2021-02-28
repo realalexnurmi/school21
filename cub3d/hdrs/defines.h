@@ -3,27 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   defines.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: enena <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: enena <enena@student.21-school.ru>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/28 21:28:01 by enena             #+#    #+#             */
-/*   Updated: 2021/01/28 21:28:02 by enena            ###   ########.fr       */
+/*   Updated: 2021/02/28 15:31:56 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DEFINES_H
 # define DEFINES_H
-# define BASENAME			"cub3D_"
-# define BASE_10			10
-# define CONF_EXTN			".cub"
-# define CNT_SETTING		8
-# define CNT_BASE_COLOR		18
-# define CNT_SETTED_COLOR	2
-# define CNT_TEXTURE		4
-# define CNT_RULE			CNT_BASE_COLOR + CNT_SETTED_COLOR + CNT_TEXTURE
-# define CNT_TYPE_RULE		3
-# define MIN_WIDTH			300
-# define MIN_HEIGHT			300
-# define STD_RATIO_SCREEN	1.765625
-# define STD_WIDTH			640
-# define STD_HEIGHT			360
+# define BASENAME				"cub3D_"
+# define BASE_10				10
+# define CONF_EXTN				".cub"
+# define TEXTURE_PNG_EXTN		".png"
+# define TEXTURE_XPM_EXTN		".xpm"
+# define CNT_ARG				2
+# define CNT_FLAGS				1
+# define CNT_SETTING			8
+# define LEN_IDNTF_SETTING		2
+# define SIZE_IDNTF_SETTING		LEN_IDNTF_SETTING + 1
+# define MIN_WIDTH				50
+# define MIN_HEIGHT				50
+# define VALID_FILL_MAP_CHAR	" "
+# define VALID_WALL_MAP_CHAR	"1"
+# define VALID_INSIDE_MAP_CHAR	"02"
+# define SPRITE_CHAR			"2"
+# define VALID_PLAYER_MAP_CHAR	"NSWE"
+# define MAP_CHAR_UNDER_PLAYER	'0'
 #endif

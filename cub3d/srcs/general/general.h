@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   general.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: enena <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: enena <enena@student.21-school.ru>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/04 05:13:40 by enena             #+#    #+#             */
-/*   Updated: 2021/02/04 05:13:47 by enena            ###   ########.fr       */
+/*   Updated: 2021/02/28 11:22:15 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,4 @@
 # include "error_handling.h"
 # include <fcntl.h>
 
-t_bool	init_gm(t_game_master *gm, int *argc, char ***argv);
-t_bool	parse_conf(t_game_master *gm, t_settings *sl, char **argv);
-t_bool	init_settings_linker(t_game_master *gm, t_settings *sl);
-t_bool	parse_conf(t_game_master *gm, t_settings *sl, char **argv);
-t_bool	analyze(t_game_master *gm, char *line);
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   naming_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: enena <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: enena <enena@student.21-school.ru>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/10 18:14:55 by enena             #+#    #+#             */
-/*   Updated: 2021/02/10 18:15:00 by enena            ###   ########.fr       */
+/*   Updated: 2021/02/28 10:05:51 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static t_bool	name_resolution(char **filename, int value)
 	return (true);
 }
 
-t_bool		add_name_image_resolution(char **filename, t_image *data)
+t_bool			add_name_image_resolution(char **filename, t_image *data)
 {
 	if (!(name_resolution(filename, data->width)))
 		return (false);
@@ -38,5 +38,3 @@ t_bool		add_name_image_resolution(char **filename, t_image *data)
 		return (false);
 	return (true);
 }
-
-

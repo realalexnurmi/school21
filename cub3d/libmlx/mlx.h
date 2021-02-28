@@ -43,7 +43,8 @@
 
 
 #ifndef MLX_H
-# define MLX_H
+
+#define	MLX_H
 
 
 void	*mlx_init();
@@ -100,7 +101,6 @@ int	mlx_expose_hook (void *win_ptr, int (*funct_ptr)(), void *param);
 int	mlx_loop_hook (void *mlx_ptr, int (*funct_ptr)(), void *param);
 int	mlx_loop (void *mlx_ptr);
 
-
 /*
 **  hook funct are called as follow :
 **
@@ -110,7 +110,6 @@ int	mlx_loop (void *mlx_ptr);
 **   loop_hook(void *param);
 **
 */
-
 
 /*
 **  Usually asked...
@@ -144,5 +143,7 @@ int     mlx_mouse_get_pos(void *win_ptr, int *x, int *y);
 int	mlx_do_key_autorepeatoff(void *mlx_ptr);
 int	mlx_do_key_autorepeaton(void *mlx_ptr);
 int	mlx_do_sync(void *mlx_ptr);
+
+void    mlx_get_screen_size(int *width, int *height);
 
 #endif /* MLX_H */

@@ -1,29 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   color_utils_part_5.c                               :+:      :+:    :+:   */
+/*   free_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: enena <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: enena <enena@student.21-school.ru>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/31 04:45:35 by enena             #+#    #+#             */
-/*   Updated: 2021/01/31 04:45:38 by enena            ###   ########.fr       */
+/*   Created: 2021/02/28 07:25:02 by enena             #+#    #+#             */
+/*   Updated: 2021/02/28 18:08:54 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "color_utils.h"
+#include "error_handling.h"
 
-
-t_clr	base_clr(void *info, void *data)
+void	free_resolution(void *plink)
 {
-	return (get_clr(0x00FF0000));
+	t_setting_link	*link;
+
+	link = plink;
 }
 
-t_clr	setted_clr(void *info, void *data)
+void	free_image(void *plink)
 {
-	return (base_clr(info, data));
+	t_setting_link	*link;
+
+	link = plink;
 }
 
-t_clr	texture_clr(void *info, void *data)
+void	free_color(void *plink)
 {
-	return (base_clr(info, data));
+	t_setting_link	*link;
+
+	link = plink;
 }

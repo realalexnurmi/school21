@@ -10,6 +10,7 @@
 #include "mlx_int.h"
 #include "mlx_new_window.h"
 
+
 static void	set_image(char *buf, int width, int height, int setvalue)
 {
 	int	width_restore;
@@ -51,28 +52,26 @@ void    *mlx_new_image(mlx_ptr_t *mlx_ptr, int width, int height, int setvalue)
 
 mlx_img_ctx_t	*add_img_to_ctx(mlx_img_list_t *img, mlx_win_list_t *win)
 {
-  mlx_img_ctx_t	*imgctx;
-
-  imgctx = win->img_list;
-  while (imgctx)
-    {
-      if (imgctx->img == img)
-	return (imgctx);
-      imgctx = imgctx->next;
-    }
-
-  imgctx = malloc(sizeof(*imgctx));
-  imgctx->img = img;
-  imgctx->next = win->img_list;
-  win->img_list = imgctx;
-
-  glGenTextures(1, &(imgctx->texture));
-  glBindTexture(GL_TEXTURE_2D, imgctx->texture);
-  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S,     GL_CLAMP_TO_EDGE);
-  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T,     GL_CLAMP_TO_EDGE);
-  glTexImage2D(
+	mlx_img_ctx_t	*imgctx;
+	
+	imgctx = win->img_list;
+	while (imgctx)
+	{
+		if (imgctx->img == img)
+			return (imgctx);
+		imgctx = imgctx->next;
+	}
+	imgctx = malloc(sizeof(*imgctx));
+	imgctx->img = img;
+	imgctx->next = win->img_list;
+	win->img_list = imgctx;
+	glGenTextures(1, &(imgctx->texture));
+	glBindTexture(GL_TEXTURE_2D, imgctx->texture);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S,     GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T,     GL_CLAMP_TO_EDGE);
+	glTexImage2D(
 	       GL_TEXTURE_2D, 0,           /* target, level of detail */
 	       GL_RGBA8,                    /* internal format */
 	       img->width, img->height, 0,           /* width, height, border */
@@ -83,7 +82,6 @@ mlx_img_ctx_t	*add_img_to_ctx(mlx_img_list_t *img, mlx_win_list_t *win)
   glGenBuffers(1, &(imgctx->vbuffer));
   glBindBuffer(GL_ARRAY_BUFFER, imgctx->vbuffer);
   glBufferData(GL_ARRAY_BUFFER, sizeof(img->vertexes), img->vertexes, GL_DYNAMIC_DRAW); // 4 points buff
-
   return (imgctx);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bmp_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: enena <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: enena <enena@student.21-school.ru>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/10 18:16:17 by enena             #+#    #+#             */
-/*   Updated: 2021/02/10 18:16:19 by enena            ###   ########.fr       */
+/*   Updated: 2021/02/28 11:15:45 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static void		set_bmp_data_from_image(t_bmpfile *bmp, t_image *data)
 	bmp->data = data->addr;
 }
 
-t_bool		save_image_as_bmp(t_image *data, const char *name)
+t_bool			save_image_as_bmp(t_image *data, const char *name)
 {
 	int			fd;
 	char		*bmp_file_name;
@@ -46,12 +46,18 @@ t_bool		save_image_as_bmp(t_image *data, const char *name)
 
 	if (!(bmp_file_name = ft_strjoin(name, BMP_EXTN)))
 		return (error_handler(err_alloc_fail));
-	if ((fd = open(bmp_file_name, O_CREAT | O_WRONLY | O_TRUNC, S_IRUSR | S_IWUSR)) < 0)
+	if ((fd = open(bmp_file_name, O_CREAT | O_WRONLY | O_TRUNC,
+											S_IRUSR | S_IWUSR)) < 0)
 		return (error_handler(err_open_write_fail));
 	bmp_file_name = ft_sec_free(bmp_file_name);
 	set_bmp_data_from_image(&bmp_data, data);
 	if (!(ft_write_bmp(fd, &bmp_data)))
-		return (error_handler(err_write_fail));
+	{
+		if (close(fd) < 0)
+			return (error_handler(err_write_fail) ||
+					error_handler(err_close_fail));
+			return (error_handler(err_write_fail));
+	}
 	if (close(fd) < 0)
 		return (error_handler(err_close_fail));
 	return (true);

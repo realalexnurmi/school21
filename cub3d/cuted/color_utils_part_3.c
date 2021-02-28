@@ -1,16 +1,64 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   color_utils_part_2.c                               :+:      :+:    :+:   */
+/*   color_utils_part_3.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: enena <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: enena <enena@student.21-school.ru>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/29 05:06:59 by enena             #+#    #+#             */
-/*   Updated: 2021/01/29 05:07:04 by enena            ###   ########.fr       */
+/*   Created: 2021/01/31 04:45:35 by enena             #+#    #+#             */
+/*   Updated: 2021/02/27 12:52:02 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "color_utils.h"
+
+/*
+** Getting Alpha component ARGB from raw color data {clr_data}
+*/
+t_uchar	get_a(t_uint clr_data)
+{
+	return ((clr_data >> 24) & 0x000000FF);
+}
+
+/*
+** Getting Red component ARGB from raw color data {clr_data}
+*/
+t_uchar	get_r(t_uint clr_data)
+{
+	return ((clr_data >> 16) & 0x000000FF);
+}
+
+/*
+** Getting Green component ARGB from raw color data {clr_data}
+*/
+t_uchar	get_g(t_uint clr_data)
+{
+	return ((clr_data >> 8) & 0x000000FF);
+}
+
+/*
+** Getting Blue component ARGB from raw color data {clr_data}
+*/
+t_uchar	get_b(t_uint clr_data)
+{
+	return (clr_data & 0x000000FF);
+}
+
+/*
+** Setting storage color struct [t_clr] 
+** from ARGB component {red, green, blue}
+** [t_clr.a]lpha, [t_clr.br]igthness, [t_clr.tr]ansparancy set as default
+** (.a = 0; .br = 1.0; .tr = 0.0)
+*/
+void	set_clr(t_clr *clr, t_uchar red, t_uchar green, t_uchar blue)
+{
+	clr->a = 0;
+	clr->r = red;
+	clr->g = green;
+	clr->b = blue;
+	clr->br = 1.0;
+	clr->tr	= 0.0;
+}
 
 /*
 ** Set {br}igthness (br < 0.0 = 0.0) in storage color struct [t_clr] {clr}

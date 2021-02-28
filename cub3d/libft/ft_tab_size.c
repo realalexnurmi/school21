@@ -1,21 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3D.c                                            :+:      :+:    :+:   */
+/*   ft_tab_size.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: enena <enena@student.21-school.ru>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/23 20:43:39 by enena             #+#    #+#             */
-/*   Updated: 2021/01/26 20:42:43 by enena            ###   ########.fr       */
+/*   Created: 2021/02/27 00:27:59 by enena             #+#    #+#             */
+/*   Updated: 2021/02/27 00:39:50 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//#include "cub3d.h"
+#include "libft.h"
 
-int main(int argc, char **argv)
+size_t	ft_tab_size(char **tab)
 {
+	size_t i;
 
-	if (pass_err(init_gm(&gm, &argc, &argv)))
-		escape_deal();
-	return (1);
+	i = 0;
+	while (*tab++)
+		i++;
+	return (i);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: enena <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: enena <enena@student.21-school.ru>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/31 19:33:47 by enena             #+#    #+#             */
-/*   Updated: 2021/02/04 05:38:41 by enena            ###   ########.fr       */
+/*   Updated: 2021/02/27 01:38:53 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,6 +139,7 @@ t_bool			ft_isprint(int c);
 t_bool			ft_isspace(int c);
 t_bool			ft_isodd(int c);
 t_bool			ft_iseven(int c);
+t_bool			ft_isanum(char *s);
 int				ft_tolower(int c);
 int				ft_toupper(int c);
 void			ft_lower(char *s);
@@ -158,6 +159,7 @@ void			*ft_memcpy(void *dst, const void *src, size_t n);
 void			*ft_memmove(void *dst, const void *src, size_t n);
 char			**ft_split(char const *s, char c);
 char			**ft_free_tab(char **removetb);
+size_t			ft_tab_size(char **tab);
 char			*ft_strchr(const char *s, int c);
 char			*ft_strdup(const char *s);
 char			*ft_strjoin(char const *s1, char const *s2);
@@ -286,5 +288,10 @@ typedef struct	s_bmpfile
 ** ((!!COMING SOON!!))
 */
 t_bool			ft_write_bmp(int fd, t_bmpfile *bitmap);
+
+/*
+** Check extn
+*/
+t_bool	ft_check_extention(const char *name, const char *extn);
 
 #endif
