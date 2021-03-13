@@ -6,7 +6,7 @@
 /*   By: enena <enena@student.21-school.ru>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 14:08:03 by enena             #+#    #+#             */
-/*   Updated: 2021/02/28 07:42:11 by enena            ###   ########.fr       */
+/*   Updated: 2021/03/14 00:29:58 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,22 +53,27 @@ static t_bool	is_closed(t_map *map, const ssize_t y, const ssize_t x)
 static t_bool	player_init(t_map *map, t_player **pl,
 							const ssize_t y, const ssize_t x)
 {
-	const float		dirxy[4][2] =
-	{{-1.0, 0.0}, {1.0, 0.0}, {0.0, -1.0}, {0.0, 1.0}};
-	t_side_player	side;
+	const float		vec_xy[2][4][2] =
+	{{{-1.0, 0.0}, {0.0, -1.0}, {1.0, 0.0}, {0.0, 1.0}},
+	{{0.0, -1.0}, {1.0, 0.0}, {0.0, 1.0}, {-1.0, 0.0}}};
+	t_side			side;
 
 	if (!(*pl = malloc(sizeof(t_player))))
 		return (error_handler(err_alloc_fail));
 	if (map->yx[y][x] == 'N')
-		side = south;
+		side = north;
 	if (map->yx[y][x] == 'S')
 		side = south;
 	if (map->yx[y][x] == 'W')
 		side = west;
 	if (map->yx[y][x] == 'E')
 		side = east;
-	(*pl)->dirx = dirxy[side][0];
-	(*pl)->diry = dirxy[side][1];
+	(*pl)->dir_x = vec_xy[0][side][0];
+	(*pl)->dir_y = vec_xy[0][side][1];
+	(*pl)->pln_x = vec_xy[1][side][0];
+	(*pl)->pln_y = vec_xy[1][side][1];
+	(*pl)->strafe_l_x = vec_xy[1][side][0];
+	(*pl)->strafe_l_y = vec_xy[1][side][1];
 	map->yx[y][x] = MAP_CHAR_UNDER_PLAYER;
 	(*pl)->x = (float)x + 0.5;
 	(*pl)->y = (float)y + 0.5;
@@ -96,6 +101,8 @@ static t_bool	check_closed_and_player_init(t_map *map, t_player **pl)
 				if (!(player_init(map, pl, y, x)))
 					return (false);
 			}
+			if (ft_strchr(SPRITE_CHAR, map->yx[y][x]))
+				map->count_sprite++;
 		}
 	}
 	return (true);

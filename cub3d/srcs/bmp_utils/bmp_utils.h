@@ -6,7 +6,7 @@
 /*   By: enena <enena@student.21-school.ru>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/09 21:31:21 by enena             #+#    #+#             */
-/*   Updated: 2021/02/26 11:36:19 by enena            ###   ########.fr       */
+/*   Updated: 2021/03/09 21:31:10 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@
 # define BMP_YPELSPERMETER	0
 # define BMP_CLRUSED		0
 # define BMP_CLRIMPORTANT	0
+# define BMP_MAX_DIMENSION	10000
 
 t_bool	save_image_as_bmp(t_image *data, const char *name);
 

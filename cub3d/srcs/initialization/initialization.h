@@ -6,7 +6,7 @@
 /*   By: enena <enena@student.21-school.ru>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 13:42:20 by enena             #+#    #+#             */
-/*   Updated: 2021/02/28 18:08:11 by enena            ###   ########.fr       */
+/*   Updated: 2021/03/09 07:12:36 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "libft.h"
 # include "defines.h"
 # include "structs.h"
+# include "general.h"
 # include "error_handling.h"
 # include "mlx.h"
 # include <fcntl.h>
@@ -52,7 +53,6 @@ t_bool	analyze_map(void *pmap, const char *line, t_bool *ll_dr);
 */
 
 t_bool	init_settings_linker(t_settings **settings, t_game_master *bl);
-void	init_links_group_1(t_setting_link *links);
 /*
 ** File: setters_settings
 */
@@ -80,5 +80,14 @@ t_bool	convert_map_player_init(t_map *map, t_player **pl);
 t_image	*get_image(void *img, int width, int height);
 t_bool	make_frame(t_game_master *gm);
 t_bool	open_window(t_game_master *gm);
+
+/*
+** File: keys_init
+*/
+
+t_bool	keys_init(t_keys **keys);
+void	init_keys_group_1(t_key *keys);
+
+t_bool	render_init(t_game_master *gm);
 
 #endif

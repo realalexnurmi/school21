@@ -6,7 +6,7 @@
 /*   By: enena <enena@student.21-school.ru>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 17:24:57 by enena             #+#    #+#             */
-/*   Updated: 2021/02/28 11:07:10 by enena            ###   ########.fr       */
+/*   Updated: 2021/03/11 01:39:36 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,10 @@ static void	map_setup(t_map *map)
 	map->yx = NULL;
 	map->mx_y = 0;
 	map->mx_x = 0;
+	map->count_sprite = 0;
 	map->tmp->bgn_ind = 0;
 	map->tmp->end_ind = 0;
+	map->tmp->len = 0;
 	map->tmp->listsize = 0;
 	map->tmp->list = NULL;
 }

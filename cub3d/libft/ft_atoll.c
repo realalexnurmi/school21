@@ -6,7 +6,7 @@
 /*   By: enena <enena@student.21-school.ru>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/10 22:02:48 by enena             #+#    #+#             */
-/*   Updated: 2021/02/27 00:28:35 by enena            ###   ########.fr       */
+/*   Updated: 2021/03/02 15:47:09 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,5 @@ long long int	ft_atoll(const char *str)
 			return (sign > 0 ? -1 : 0);
 		str++;
 	}
-	return ((int)ret);
+	return (ret);
 }

@@ -6,7 +6,7 @@
 /*   By: enena <enena@student.21-school.ru>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/07 13:49:00 by enena             #+#    #+#             */
-/*   Updated: 2021/02/28 18:08:49 by enena            ###   ########.fr       */
+/*   Updated: 2021/03/09 21:40:11 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ typedef enum	e_error
 	err_unknown_flag,
 	err_new_image_fail,
 	err_window_not_open,
+	err_too_big_save_bmp,
 	warning,
 	wrn_resolution_width_increased,
 	wrn_resolution_height_increased,
@@ -65,7 +66,7 @@ static char		*g_err_wrn_strings[all] = {
 	" texture has wrong extention. Only .xpm and .png allowed",
 	" texture not converted. Maybe it is broken",
 	" detect wrong count comma in set color",
-	"SETTINGS ERRORS END"
+	"SETTINGS ERRORS END",
 	"Allocate error",
 	"Configuration missing",
 	"Bad extension configuration. Need \".cub\"",
@@ -91,10 +92,10 @@ static char		*g_err_wrn_strings[all] = {
 	"Trouble with new image.",
 	"Trouble with new window.",
 	"WARNING!!!",
-	"Your resolution incorrect. Width increased to minimal value",
-	"Your resolution incorrect. Height increased to minimal value",
-	"Your resolution incorrect. Width reduced to screen size",
-	"Your resolution incorrect. Height reduced to screen size",
+	"Your resolution setting incorrect. Width increased to minimal value",
+	"Your resolution setting incorrect. Height increased to minimal value",
+	"Your resolution setting incorrect. Width reduced to screen size",
+	"Your resolution setting incorrect. Height reduced to screen size",
 	"ALL? How you see it? Review? My code is the best"
 };
 
@@ -105,4 +106,5 @@ void	escape_deal(t_game_master *gm);
 void	free_resolution(void *plink);
 void	free_image(void *plink);
 void	free_color(void *plink);
+void	free_matrix(char **mtrx, ssize_t count_row);
 #endif

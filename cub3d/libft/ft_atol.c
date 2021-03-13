@@ -6,7 +6,7 @@
 /*   By: enena <enena@student.21-school.ru>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/10 22:00:44 by enena             #+#    #+#             */
-/*   Updated: 2021/02/27 00:28:30 by enena            ###   ########.fr       */
+/*   Updated: 2021/03/02 15:47:02 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,5 @@ long int	ft_atol(const char *str)
 			return (sign > 0 ? -1 : 0);
 		str++;
 	}
-	return ((int)ret);
+	return ((long int)ret);
 }

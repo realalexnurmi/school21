@@ -6,7 +6,7 @@
 /*   By: enena <enena@student.21-school.ru>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 13:43:57 by enena             #+#    #+#             */
-/*   Updated: 2021/02/28 17:54:22 by enena            ###   ########.fr       */
+/*   Updated: 2021/03/09 06:14:58 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,16 @@
 static void		gm_setup(t_game_master *gm)
 {
 	gm->mlx = mlx_init();
+	gm->name = NULL;
 	gm->win = NULL;
 	gm->sl = NULL;
 	gm->map = NULL;
+	gm->pl = NULL;
 	gm->save = false;
+	gm->keys = NULL;
 	gm->frame = NULL;
+	gm->table = NULL;
+	gm->render = NULL;
 }
 
 /*
@@ -41,10 +46,8 @@ t_bool			init_gm(t_game_master *gm, const int argc, char **argv)
 
 	numarg = 0;
 	gm_setup(gm);
-	if (!(init_settings_linker(&gm->sl, gm)))
-		return (false);
 	if (argc > 1)
-		while (numarg++ < argc)
+		while (++numarg < argc)
 		{
 			if (numarg == 1)
 			{
@@ -59,6 +62,8 @@ t_bool			init_gm(t_game_master *gm, const int argc, char **argv)
 	if (!(make_frame(gm)))
 		return (false);
 	if (!(open_window(gm)))
+		return (false);
+	if (!(keys_init(&gm->keys)))
 		return (false);
 	return (true);
 }
@@ -99,6 +104,10 @@ t_bool			parse_conf(t_game_master *gm, const char *argv)
 
 	if (!(ft_check_extention(argv, CONF_EXTN)))
 		return (error_handler(err_bad_extention_conf));
+	if (!(gm->name = ft_strjoin(BASENAME, argv)))
+		return (error_handler(err_alloc_fail));
+	if (!(init_settings_linker(&gm->sl, gm)))
+		return (false);
 	if ((fd = open(argv, O_RDONLY)) < 0)
 		return (error_handler(err_open_read_fail));
 	line = NULL;

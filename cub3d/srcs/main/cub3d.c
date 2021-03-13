@@ -6,7 +6,7 @@
 /*   By: enena <enena@student.21-school.ru>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/23 20:43:39 by enena             #+#    #+#             */
-/*   Updated: 2021/02/28 18:07:30 by enena            ###   ########.fr       */
+/*   Updated: 2021/03/09 07:23:36 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,15 @@ int	main(int argc, char **argv)
 	t_game_master gm;
 
 	if (!(init_gm(&gm, argc, argv)))
-		printf("sorry\n");//escape_deal(&gm);
+		escape_deal(&gm);
 	else
 	{
-		mlx_put_image_to_window(gm.mlx, gm.win, ((t_image *)gm.sl->link[no_texture].get)->img, 0, 0);
-		mlx_loop(gm.mlx);
+		if (!(get_table(&gm.table)) ||
+			!(render_init(&gm)))
+			escape_deal(&gm);
+		if (gm.save)
+			do_bmp_from_frame(&gm, argv[1]);
+		game(&gm);
 	}
 	return (0);
 }

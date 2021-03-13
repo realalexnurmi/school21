@@ -6,7 +6,7 @@
 /*   By: enena <enena@student.21-school.ru>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/10 17:59:33 by enena             #+#    #+#             */
-/*   Updated: 2021/02/26 11:40:40 by enena            ###   ########.fr       */
+/*   Updated: 2021/03/09 07:23:18 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,4 +18,6 @@
 # include "error_handling.h"
 
 t_bool	add_name_image_resolution(char **filename, t_image *data);
+t_bool	put_name_screenshot(char **dst, const char *map, t_image *data);
+
 #endif

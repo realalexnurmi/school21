@@ -6,13 +6,13 @@
 /*   By: enena <enena@student.21-school.ru>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 08:27:13 by enena             #+#    #+#             */
-/*   Updated: 2021/02/27 00:37:39 by enena            ###   ########.fr       */
+/*   Updated: 2021/03/14 02:35:47 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static t_bool write_bitmapinfo(int fd, t_bitmapinfo *info)
+static t_bool	write_bitmapinfo(int fd, t_bitmapinfo *info)
 {
 	if (write(fd, &info->size, sizeof(info->size)) < 0)
 		return (false);

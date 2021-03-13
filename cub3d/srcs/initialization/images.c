@@ -6,7 +6,7 @@
 /*   By: enena <enena@student.21-school.ru>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/27 14:34:58 by enena             #+#    #+#             */
-/*   Updated: 2021/02/28 17:53:49 by enena            ###   ########.fr       */
+/*   Updated: 2021/03/09 07:27:13 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,8 @@ t_bool		open_window(t_game_master *gm)
 
 	if (!(gm->save))
 	{
-		if (!(gm->win = mlx_new_window(gm->mlx, 
-						res->width, res->height, BASENAME)))
+		if (!(gm->win = mlx_new_window(gm->mlx,
+					res->width, res->height, BASENAME)))
 			return (error_handler(err_window_not_open));
 	}
 	return (true);

@@ -6,7 +6,7 @@
 /*   By: enena <enena@student.21-school.ru>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 16:21:46 by enena             #+#    #+#             */
-/*   Updated: 2021/02/28 11:15:06 by enena            ###   ########.fr       */
+/*   Updated: 2021/03/12 14:39:36 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,12 @@ t_bool	read_part(void *part, const int fd,
 
 t_bool	analyze_setting(void *psettings, const char *line, t_bool *ll_dr)
 {
-	char		**tab_line;
-	ssize_t		i;
-	t_bool		retset;
-	t_settings	*stngs;
+	char			**tab_line;
+	ssize_t			i;
+	t_bool			retset;
+	t_setting_link	*l;
 
-	stngs = psettings;
+	l = ((t_settings *)psettings)->link;
 	if (*ll_dr)
 		return (*ll_dr = error_handler(err_missing_map));
 	if (!(*line))
@@ -62,9 +62,9 @@ t_bool	analyze_setting(void *psettings, const char *line, t_bool *ll_dr)
 	i = -1;
 	retset = false;
 	while (++i < CNT_SETTING)
-		if (!(ft_strncmp(stngs->link[i].idntf, *tab_line, SIZE_IDNTF_SETTING)))
+		if (!(ft_strncmp(l[i].idntf, *tab_line, SIZE_IDNTF_SETTING)))
 		{
-			retset = stngs->link[i].set(&(stngs->link[i]), tab_line);
+			retset = l[i].set(&l[i], tab_line);
 			tab_line = ft_free_tab(tab_line);
 			return (retset);
 		}
@@ -83,7 +83,12 @@ t_bool	analyze_map(void *pmap, const char *line, t_bool *ll_dr)
 	t_bool	only_fill;
 
 	if (!(*line))
-		return (*ll_dr = error_handler(err_empty_line_in_map));
+	{
+		if (*ll_dr)
+			return (true);
+		else
+			return (*ll_dr = error_handler(err_empty_line_in_map));
+	}
 	map = pmap;
 	only_fill = true;
 	if (!(check_junk(line, *ll_dr ? err_last_line_map : err_middle_line_map,

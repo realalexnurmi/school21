@@ -6,7 +6,7 @@
 /*   By: enena <enena@student.21-school.ru>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/31 19:33:47 by enena             #+#    #+#             */
-/*   Updated: 2021/02/27 01:38:53 by enena            ###   ########.fr       */
+/*   Updated: 2021/03/13 23:56:22 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -292,6 +292,6 @@ t_bool			ft_write_bmp(int fd, t_bmpfile *bitmap);
 /*
 ** Check extn
 */
-t_bool	ft_check_extention(const char *name, const char *extn);
+t_bool			ft_check_extention(const char *name, const char *extn);
 
 #endif

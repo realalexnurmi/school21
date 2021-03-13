@@ -6,7 +6,7 @@
 /*   By: enena <enena@student.21-school.ru>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/28 21:28:01 by enena             #+#    #+#             */
-/*   Updated: 2021/02/28 15:31:56 by enena            ###   ########.fr       */
+/*   Updated: 2021/03/14 00:22:55 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,10 @@
 # define CNT_ARG				2
 # define CNT_FLAGS				1
 # define CNT_SETTING			8
+# define CNT_KEY_REACT			7
 # define LEN_IDNTF_SETTING		2
-# define SIZE_IDNTF_SETTING		LEN_IDNTF_SETTING + 1
+# define ANGLE_DEGREE_ROTATE	1
+# define SIZE_IDNTF_SETTING		(LEN_IDNTF_SETTING + 1)
 # define MIN_WIDTH				50
 # define MIN_HEIGHT				50
 # define VALID_FILL_MAP_CHAR	" "
@@ -30,4 +32,10 @@
 # define SPRITE_CHAR			"2"
 # define VALID_PLAYER_MAP_CHAR	"NSWE"
 # define MAP_CHAR_UNDER_PLAYER	'0'
+# define MAX_RENDER_DISTANCE	300
+# define MOVE_SPEED				0.0625
+# define FOV					0.75
+# define UDIV					1
+# define VDIV					1
+# define VMOVE					0.0
 #endif
