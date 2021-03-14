@@ -6,7 +6,7 @@
 #    By: enena <enena@student.21-school.ru>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/08/03 17:51:07 by enena             #+#    #+#              #
-#    Updated: 2021/02/27 01:39:07 by enena            ###   ########.fr        #
+#    Updated: 2021/03/14 04:59:40 by enena            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -92,7 +92,8 @@ SRC_NAME =  ft_atoi\
 			ft_sec_free\
 			ft_set_output_attr\
 			ft_write_bmp\
-			ft_check_extention
+			ft_check_extention\
+			ft_charcount
 
 BONUS_NAME = ft_lstadd_back\
 			 ft_lstadd_front\
@@ -114,14 +115,14 @@ O_ALL ?= $(O_FILE)
 
 HEADER_ALL ?= $(HEADER)
 
+bonus:
+	@make O_ALL:="$(O_FILE) $(O_BONUS_FILE)" all
+
 all: $(NAME)
 
 $(NAME): $(O_ALL)
 	ar rc $@ $?
 	@ranlib $@
-
-bonus:
-	@make O_ALL:="$(O_FILE) $(O_BONUS_FILE)" all
 
 %.o: %.c $(HEADER_ALL)
 	$(CC) $(FLAGS) -c $< -o $@ 

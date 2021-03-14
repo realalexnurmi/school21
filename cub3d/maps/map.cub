@@ -1,9 +1,9 @@
-R 1200 1200
+R 640 480
 NO ./texture/wall_illusion1/0.png
-S ./texture/wall_illusion2/0.png
+SO ./texture/wall_illusion2/0.png
 WE ./texture/wall_illusion3/0.png
 EA ./texture/wall_illusion4/0.png
-SO ./texture/sprite1/0.png
+S ./texture/sprite1/0.png
 F 211,134,156
 C 156,178,111
 

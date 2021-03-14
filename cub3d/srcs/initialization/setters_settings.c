@@ -6,13 +6,13 @@
 /*   By: enena <enena@student.21-school.ru>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 15:34:35 by enena             #+#    #+#             */
-/*   Updated: 2021/03/09 07:23:15 by enena            ###   ########.fr       */
+/*   Updated: 2021/03/14 05:20:31 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "initialization.h"
 
-t_bool	set_resolution(void *plink, char **tab)
+t_bool			set_resolution(void *plink, char **tab)
 {
 	t_setting_link	*link;
 	long long int	width;
@@ -23,19 +23,21 @@ t_bool	set_resolution(void *plink, char **tab)
 		return (setting_error(link->idntf, err_wrong_count_fields));
 	if (!(ft_isanum(tab[1])) || !(ft_isanum(tab[2])))
 		return (setting_error(link->idntf, err_wrong_information));
+	if (tab[1][0] == '-' || tab[2][0] == '-')
+		return (setting_error(link->idntf, err_wrong_information));
 	width = ft_atoll(tab[1]);
 	height = ft_atoll(tab[2]);
-	if ((width < 0) || (height < 0))
-		return (setting_error(link->idntf, err_wrong_information));
 	if (!(link->get = malloc(sizeof(t_resolution))))
 		return (error_handler(err_alloc_fail));
-	((t_resolution *)link->get)->width = (width > INT_MAX) ? INT_MAX : width;
-	((t_resolution *)link->get)->height = (height > INT_MAX) ? INT_MAX : height;
+	((t_resolution *)link->get)->width = (width > INT_MAX || width == -1) ?
+		INT_MAX : width;
+	((t_resolution *)link->get)->height = (height > INT_MAX  || height == -1) ?
+		INT_MAX : height;
 	link->destroy = &free_resolution;
 	return (link->is_set = true);
 }
 
-t_bool	set_texture(void *plink, char **tab)
+t_bool			set_texture(void *plink, char **tab)
 {
 	t_setting_link	*link;
 	t_bool			is_png;
@@ -62,7 +64,7 @@ t_bool	set_texture(void *plink, char **tab)
 	return (link->is_set = true);
 }
 
-t_bool	set_color(void *plink, char **tab)
+t_bool			set_color(void *plink, char **tab)
 {
 	t_setting_link	*link;
 	char			**rgbtab;
@@ -71,10 +73,10 @@ t_bool	set_color(void *plink, char **tab)
 	link = plink;
 	if (ft_tab_size(tab) != link->cnt_fields)
 		return (setting_error(link->idntf, err_wrong_count_fields));
+	if (ft_charcount(tab[1], ',') != 2)
+		return (setting_error(link->idntf, err_wrong_count_comma_color));
 	if (!(rgbtab = ft_split(tab[1], ',')))
 		return (error_handler(err_alloc_fail));
-	if (ft_tab_size(rgbtab) != 3)
-		return (setting_error(link->idntf, err_wrong_count_comma_color));
 	if (!(ft_isanum(rgbtab[0])) || !(ft_isanum(rgbtab[1])) ||
 		!(ft_isanum(rgbtab[2])))
 		return (setting_error(link->idntf, err_wrong_information));

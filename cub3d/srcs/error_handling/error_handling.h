@@ -6,7 +6,7 @@
 /*   By: enena <enena@student.21-school.ru>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/07 13:49:00 by enena             #+#    #+#             */
-/*   Updated: 2021/03/09 21:40:11 by enena            ###   ########.fr       */
+/*   Updated: 2021/03/14 06:05:30 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ static char		*g_err_wrn_strings[all] = {
 	"Unknown flag(s). Abort.",
 	"Trouble with new image.",
 	"Trouble with new window.",
+	"Resolution for save BMP too big!",
 	"WARNING!!!",
 	"Your resolution setting incorrect. Width increased to minimal value",
 	"Your resolution setting incorrect. Height increased to minimal value",

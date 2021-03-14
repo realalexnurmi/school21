@@ -12,10 +12,7 @@ SRC =	mlx_shaders.c\
 		mlx_mouse.m
 OBJ1 = $(SRC:%.c=%.o)
 OBJ = $(OBJ1:%.m=%.o)
-CFLAGS += -O2
-
-# add to match string put with X11 in size and position
-CFLAGS+= -DSTRINGPUTX11
+CFLAGS += -O2 -DSTRINGPUTX11 -w
 
 all: $(NAME)
 
@@ -24,7 +21,9 @@ $(NAME): $(OBJ)
 	ranlib $@
 
 clean:
-	rm -f $(NOM) $(OBJ) *~
-	rm -f mlx_app
+	rm -f $(OBJ)
+
+fclean: clean
+	rm -f $(NAME)
 
 re: clean all

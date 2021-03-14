@@ -6,7 +6,7 @@
 /*   By: enena <enena@student.21-school.ru>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/31 19:33:47 by enena             #+#    #+#             */
-/*   Updated: 2021/03/13 23:56:22 by enena            ###   ########.fr       */
+/*   Updated: 2021/03/14 05:13:22 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,6 +173,7 @@ char			*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 char			*ft_strnstr(const char *haystack, const char *needle,
 																	size_t len);
 char			*ft_strrchr(const char *s, int c);
+size_t			ft_charcount(const char *s, int c);
 /*
 ** Functions to convert wide character/string in MB (UTF-8)
 */

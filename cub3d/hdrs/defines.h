@@ -6,7 +6,7 @@
 /*   By: enena <enena@student.21-school.ru>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/28 21:28:01 by enena             #+#    #+#             */
-/*   Updated: 2021/03/14 00:22:55 by enena            ###   ########.fr       */
+/*   Updated: 2021/03/14 05:55:15 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,4 @@
 # define MAX_RENDER_DISTANCE	300
 # define MOVE_SPEED				0.0625
 # define FOV					0.75
-# define UDIV					1
-# define VDIV					1
-# define VMOVE					0.0
 #endif
