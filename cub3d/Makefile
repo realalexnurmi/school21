@@ -6,7 +6,7 @@
 #    By: enena <enena@student.21-school.ru>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/08/03 17:51:07 by enena             #+#    #+#              #
-#    Updated: 2021/03/14 05:10:31 by enena            ###   ########.fr        #
+#    Updated: 2021/03/14 06:33:27 by enena            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -96,7 +96,7 @@ libft.a:
 
 libmlx.a:
 	@echo Checking libmlx
-	make -C libft
+	make -C libmlx
 
 real: $(OBJS_FILE)
 	@echo Build all .o in $(NAME)
@@ -110,15 +110,16 @@ $(OBJS_DIR):
 	mkdir -p $@
 
 clean: 
-	@echo Cleaning .o file...
+	@echo Cleaning...
 	@rm -rf $(OBJS_DIR)
-	@rm -rf $(DEPS_DIR)
 	@make clean -C libft
 	@make clean -C libmlx
 	@echo Done!
 
 fclean: clean
 	@echo Remove $(NAME)
+	@rm -f libft/libft.a
+	@rm -f libmlx/libmlx.a
 	@rm -f $(NAME)
 
 re: fclean all

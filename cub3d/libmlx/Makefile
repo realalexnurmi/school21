@@ -1,9 +1,7 @@
-#
-#
-
 NAME =	libmlx.a
 SRC =	mlx_shaders.c\
 		mlx_png.c\
+		mlx_xpm.c\
 		mlx_int_str_to_wordtab.c\
 		mlx_new_window.m\
 		mlx_get_screen_size.m\

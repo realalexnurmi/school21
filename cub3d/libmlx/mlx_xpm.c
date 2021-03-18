@@ -214,7 +214,7 @@ void	*mlx_int_parse_xpm(mlx_ptr_t *xvar,void *info,int info_size,char *(*f)())
       tab = 0;
     }
 
-  if (!(img = mlx_new_image(xvar,width,height)))
+  if (!(img = mlx_new_image(xvar,width,height,0x00000000)))
     RETURN;
   //opp = img->bpp/8;
   opp = 4;
