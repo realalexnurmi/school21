@@ -29,7 +29,7 @@ static void	calc_sprite(t_sprite *sp, t_player *pl, t_image *frame)
 	sp->height = (int)(fabs(frame->width / FOV / sp->perp_dist));
 	calculate_edge(&(sp->y_draw_begin), &(sp->y_draw_end),
 						frame->height, sp->height);
-	sp->width = (int)(fabs(frame->width / FOV / sp->perp_dist));
+	sp->width = sp->height;
 	sp->x_draw_begin = sp->cntr - sp->width / 2;
 	if (sp->x_draw_begin < 0)
 		sp->x_draw_begin = 0;
