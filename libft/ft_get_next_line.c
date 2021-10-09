@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_get_next_line.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: enena <enena@student.21-school.ru>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/10/09 16:20:43 by enena             #+#    #+#             */
+/*   Updated: 2021/10/09 16:20:46 by enena            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 // Checking for '\n' in taken buffer
 static int	n_check_line(char **buf, char **line)
@@ -53,7 +65,7 @@ static int	take_buff(int fd, char **line, char **buf)
 	mem = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
 	if (!(mem))
 		return (-1);
-	ret = read(fd, mem, BUFFER_SIZE));
+	ret = read(fd, mem, BUFFER_SIZE);
 	while (ret > 0)
 	{
 		mem[ret] = '\0';
@@ -63,7 +75,7 @@ static int	take_buff(int fd, char **line, char **buf)
 		ret = n_check_line(buf, line);
 		if (ret)
 			break ;
-		ret = read(fd, mem, BUFFER_SIZE));
+		ret = read(fd, mem, BUFFER_SIZE);
 	}
 	mem = ft_sec_free(mem);
 	return (ret);

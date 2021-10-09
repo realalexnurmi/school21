@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_set_output_attr.c                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: enena <enena@student.21-school.ru>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/10/09 16:22:48 by enena             #+#    #+#             */
+/*   Updated: 2021/10/09 16:22:50 by enena            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 // Function for setting attr text output from enum {t_text_attr}
 static char	*pick_setstring_from_attr(t_text_attr attr)
