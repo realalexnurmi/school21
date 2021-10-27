@@ -5,6 +5,9 @@
 # include <pthread.h>
 # include <stdlib.h>
 
+# define TRUE 1
+# define FALSE 0
+
 typedef struct s_options
 {
     signed int	number_of_philosophers;
