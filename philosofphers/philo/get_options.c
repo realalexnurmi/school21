@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_options.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: enena <enena@student.21-school.ru>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/10/31 04:28:06 by enena             #+#    #+#             */
+/*   Updated: 2021/10/31 04:28:47 by enena            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philo.h"
 
 static int	ft_isspace(int c)
@@ -44,17 +56,17 @@ static int	ft_atoi(const char *str)
 	return ((int)ret);
 }
 
-static int	options_is_incorrect(int count, t_options *options)
+static int	options_is_correct(int count, t_options *options)
 {
 	int	ret;
 
-	ret = FALSE;
+	ret = TRUE;
 	if (options->number_of_philosophers <= 0
 		|| options->time_to_die <= 0
 		|| options->time_to_eat <= 0
 		|| options->time_to_sleep <= 0
 		|| (count == 5 && options->number_of_times_each_philo_must_eat <= 0))
-		ret = TRUE;
+		ret = FALSE;
 	return (ret);
 }
 
@@ -74,7 +86,7 @@ int	get_options(int count_options, char **value_options, t_data *data)
 		if (count_options == 5)
 			data->options.number_of_times_each_philo_must_eat = \
 			ft_atoi(value_options[5]);
-		if (options_is_incorrect(count_options, &(data->options)))
+		if (options_is_correct(count_options, &(data->options)) == FALSE)
 			ret = EXIT_FAILURE;
 	}
 	return (ret);
