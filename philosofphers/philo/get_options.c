@@ -6,7 +6,7 @@
 /*   By: enena <enena@student.21-school.ru>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/31 04:28:06 by enena             #+#    #+#             */
-/*   Updated: 2021/10/31 04:28:47 by enena            ###   ########.fr       */
+/*   Updated: 2021/11/02 00:40:10 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,14 +79,16 @@ int	get_options(int count_options, char **value_options, t_data *data)
 		ret = EXIT_FAILURE;
 	else
 	{
-		data->options.number_of_philosophers = ft_atoi(value_options[1]);
-		data->options.time_to_die = ft_atoi(value_options[2]);
-		data->options.time_to_eat = ft_atoi(value_options[3]);
-		data->options.time_to_sleep = ft_atoi(value_options[4]);
+		data->opt.number_of_philosophers = ft_atoi(value_options[1]);
+		data->opt.time_to_die = ft_atoi(value_options[2]);
+		data->opt.time_to_eat = ft_atoi(value_options[3]);
+		data->opt.time_to_sleep = ft_atoi(value_options[4]);
 		if (count_options == 5)
-			data->options.number_of_times_each_philo_must_eat = \
+			data->opt.number_of_times_each_philo_must_eat = \
 			ft_atoi(value_options[5]);
-		if (options_is_correct(count_options, &(data->options)) == FALSE)
+		else
+			data->opt.number_of_times_each_philo_must_eat = -1;
+		if (options_is_correct(count_options, &(data->opt)) == FALSE)
 			ret = EXIT_FAILURE;
 	}
 	return (ret);
