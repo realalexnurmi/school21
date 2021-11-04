@@ -6,7 +6,7 @@
 #    By: enena <enena@student.21-school.ru>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/01 23:43:02 by enena             #+#    #+#              #
-#    Updated: 2021/11/02 00:14:46 by enena            ###   ########.fr        #
+#    Updated: 2021/11/03 17:37:59 by enena            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,9 +14,12 @@ NAME =	philo
 
 SRCS =	philo.c\
 		get_options.c\
-		init_data.c\
+		init_info.c\
+		init_mutex.c\
 		init_philos.c\
-		time_utils.c
+		philo_life.c\
+		time_utils.c\
+		print_utils.c
 
 HDRS =	philo.h
 

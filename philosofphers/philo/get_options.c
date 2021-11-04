@@ -6,7 +6,7 @@
 /*   By: enena <enena@student.21-school.ru>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/31 04:28:06 by enena             #+#    #+#             */
-/*   Updated: 2021/11/02 00:40:10 by enena            ###   ########.fr       */
+/*   Updated: 2021/11/04 12:34:33 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static int	ft_atoi(const char *str)
 	return ((int)ret);
 }
 
-static int	options_is_correct(int count, t_options *options)
+static int	options_is_correct(int count, t_info *options)
 {
 	int	ret;
 
@@ -70,7 +70,7 @@ static int	options_is_correct(int count, t_options *options)
 	return (ret);
 }
 
-int	get_options(int count_options, char **value_options, t_data *data)
+int	get_options(int count_options, char **value_options, t_info *info)
 {
 	int	ret;
 
@@ -79,16 +79,16 @@ int	get_options(int count_options, char **value_options, t_data *data)
 		ret = EXIT_FAILURE;
 	else
 	{
-		data->opt.number_of_philosophers = ft_atoi(value_options[1]);
-		data->opt.time_to_die = ft_atoi(value_options[2]);
-		data->opt.time_to_eat = ft_atoi(value_options[3]);
-		data->opt.time_to_sleep = ft_atoi(value_options[4]);
+		info->number_of_philosophers = ft_atoi(value_options[1]);
+		info->time_to_die = ft_atoi(value_options[2]);
+		info->time_to_eat = ft_atoi(value_options[3]);
+		info->time_to_sleep = ft_atoi(value_options[4]);
 		if (count_options == 5)
-			data->opt.number_of_times_each_philo_must_eat = \
+			info->number_of_times_each_philo_must_eat = \
 			ft_atoi(value_options[5]);
 		else
-			data->opt.number_of_times_each_philo_must_eat = -1;
-		if (options_is_correct(count_options, &(data->opt)) == FALSE)
+			info->number_of_times_each_philo_must_eat = EMPTY;
+		if (options_is_correct(count_options, info) == FALSE)
 			ret = EXIT_FAILURE;
 	}
 	return (ret);
