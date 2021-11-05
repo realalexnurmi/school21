@@ -6,7 +6,7 @@
 /*   By: enena <enena@student.21-school.ru>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 16:18:29 by enena             #+#    #+#             */
-/*   Updated: 2021/11/04 18:49:00 by enena            ###   ########.fr       */
+/*   Updated: 2021/11/04 20:40:20 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ static void	philo_sleeping_thinking(t_philo *philo)
 	printf("%llu %d %s\n", timestamp(philo->info->start_time), philo->index,
 		get_msg_from_type(philo->status));
 	pthread_mutex_unlock(philo->info->print);
-	sleep_carefully(philo->info->time_to_sleep, 2 * philo->info->number_of_philosophers);
+	sleep_carefully(philo->info->time_to_sleep,
+		2 * philo->info->number_of_philosophers);
 	philo->status = thinking;
 	pthread_mutex_lock(philo->info->print);
 	printf("%llu %d %s\n", timestamp(philo->info->start_time), philo->index,
@@ -59,13 +60,14 @@ static void	philo_eating(t_philo *philo)
 		get_msg_from_type(philo->status));
 	pthread_mutex_unlock(philo->info->print);
 	philo->time_last_meal = timestamp(philo->info->start_time);
-	sleep_carefully(philo->info->time_to_eat, 2 * philo->info->number_of_philosophers);
+	sleep_carefully(philo->info->time_to_eat,
+		2 * philo->info->number_of_philosophers);
 	philo_drop_forks(philo);
 	if (philo->info->number_of_times_each_philo_must_eat != EMPTY)
 	{
 		++philo->eat_times;
 		philo->is_hungry = philo->info->number_of_times_each_philo_must_eat
-			!= philo->eat_times;
+			> philo->eat_times;
 	}
 	pthread_mutex_unlock(philo->dead);
 }

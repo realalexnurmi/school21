@@ -6,7 +6,7 @@
 /*   By: enena <enena@student.21-school.ru>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/31 04:27:41 by enena             #+#    #+#             */
-/*   Updated: 2021/11/04 18:28:55 by enena            ###   ########.fr       */
+/*   Updated: 2021/11/04 22:10:27 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,13 +58,6 @@ static int	someone_hungry(t_data *data)
 		while ((!ret) && ++i < data->info->number_of_philosophers)
 			ret |= data->philos[i].is_hungry;
 	}
-	if (!ret)
-	{
-		pthread_mutex_lock(data->info->print);
-		printf("%llu all philos ate %d times\n",
-			timestamp(data->info->start_time),
-			data->info->number_of_times_each_philo_must_eat);
-	}
 	return (ret);
 }
 
@@ -99,6 +92,7 @@ int	main(int argc, char **argv)
 		sit_down_please(&data);
 		while (nobody_dead(&data) && someone_hungry(&data))
 			;
+		thank_you_for_visiting_my_restaurant_but_now_die_everyone(&data);
 	}
 	return (ret);
 }

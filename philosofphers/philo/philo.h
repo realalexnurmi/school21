@@ -6,7 +6,7 @@
 /*   By: enena <enena@student.21-school.ru>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/31 04:27:30 by enena             #+#    #+#             */
-/*   Updated: 2021/11/04 18:48:06 by enena            ###   ########.fr       */
+/*   Updated: 2021/11/04 22:08:15 by enena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,5 +83,6 @@ int		init_mutex(pthread_mutex_t	**mutex);
 void	print_message(t_data *data);
 void	sleep_carefully(t_ms time_to_sleep, t_ms part_sleep);
 t_ms	timestamp(t_ms start);
+void	thank_you_for_visiting_my_restaurant_but_now_die_everyone(t_data *data);
 
 #endif
